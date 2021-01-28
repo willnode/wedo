@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 15, 2021 at 09:06 AM
+-- Generation Time: Jan 15, 2021 at 09:27 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.13
 
@@ -64,6 +64,22 @@ CREATE TABLE `item` (
   `harga_item` int(50) NOT NULL,
   `logo_item` varchar(255) NOT NULL,
   `id_toko` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `penjualan`
+--
+
+CREATE TABLE `penjualan` (
+  `id` int(11) NOT NULL,
+  `id_user` int(11) NOT NULL,
+  `id_toko` int(11) NOT NULL,
+  `nota` text NOT NULL,
+  `status` varchar(30) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -134,6 +150,14 @@ ALTER TABLE `item`
   ADD KEY `id_toko` (`id_toko`);
 
 --
+-- Indexes for table `penjualan`
+--
+ALTER TABLE `penjualan`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_user` (`id_user`),
+  ADD KEY `id_toko` (`id_toko`);
+
+--
 -- Indexes for table `review`
 --
 ALTER TABLE `review`
@@ -169,6 +193,12 @@ ALTER TABLE `article`
 -- AUTO_INCREMENT for table `item`
 --
 ALTER TABLE `item`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `penjualan`
+--
+ALTER TABLE `penjualan`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
