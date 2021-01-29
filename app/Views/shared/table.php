@@ -18,7 +18,7 @@
         <?php else : ?>
             <tr>
                 <td colspan="<?= count($columns)?>" class="text-center text-muted">
-                    No data yet
+                    Belum ada data
                 </td>
             </tr>
         <?php endif ?>

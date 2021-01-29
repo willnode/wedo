@@ -13,7 +13,7 @@
             <form method="post">
               <div class="d-flex mb-3">
                 <h1 class="h3 mb-0 mr-auto">Edit Article</h1>
-                <a href="/user/article/" class="btn btn-outline-secondary ml-2">Back</a>
+                <a href="/user/article/" class="btn btn-outline-secondary ml-2">Kembali</a>
               </div>
               <label class="d-block mb-3">
                 <span>Title</span>
@@ -33,7 +33,7 @@
                 <textarea id="summernote" name="content" class="form-control w-100"><?= esc($item->content) ?></textarea>
               </label>
               <div class="d-flex mb-3">
-                <input type="submit" value="Save" class="btn btn-primary mr-auto">
+                <input type="submit" value="Simpan" class="btn btn-primary mr-auto">
                 <?php if ($item->id) : ?>
                   <label for="delete-form" class="btn btn-danger mb-0"><i class="fa fa-trash"></i></label>
                 <?php endif ?>

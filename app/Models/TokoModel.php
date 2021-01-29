@@ -17,6 +17,11 @@ class TokoModel extends Model
     protected $returnType = 'App\Entities\Toko';
     protected $useTimestamps = false;
 
+    public function where($filter)
+    {
+        $this->builder()->where($filter);
+    }
+
     public function processWeb($id)
     {
         if ($id === null) {

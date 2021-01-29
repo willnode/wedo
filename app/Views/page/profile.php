@@ -14,7 +14,7 @@
             <form enctype="multipart/form-data" method="post">
               <div class="d-flex mb-3">
                 <h1 class="h3 mb-0 mr-auto">Edit Profile</h1>
-                <a href="/user/" class="btn btn-outline-secondary ml-2">Back</a>
+                <a href="/user/" class="btn btn-outline-secondary ml-2">Kembali</a>
               </div>
               <label class="d-block mb-3">
                 <span>Full Name</span>
@@ -38,7 +38,7 @@
                 <input type="password" class="form-control" name="password" placeholder="<?= $item->id ? 'Only enter when you want to change your password' : '" required="required' ?>">
               </label>
               <div class="d-flex mb-3">
-                <input type="submit" value="Save" class="btn btn-primary mr-auto">
+                <input type="submit" value="Simpan" class="btn btn-primary mr-auto">
               </div>
             </form>
           </div>

@@ -5,9 +5,9 @@
 
 <body>
   <style>
-  .logo {
-    width: 64px;
-  }
+    .logo {
+      width: 64px;
+    }
   </style>
   <div class="wrapper">
     <?= view('shared/panel_navbar') ?>
@@ -36,7 +36,7 @@
                 },
                 'Edit' => function (\App\Entities\Toko $x) {
                   return view('shared/button', [
-                    'actions' => ['detail','edit','open'],
+                    'actions' => ['detail', 'edit', 'open'],
                     'target' => $x->id,
                     'size' => 'btn-sm'
                   ]);

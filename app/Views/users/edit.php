@@ -13,7 +13,7 @@
             <form enctype="multipart/form-data" method="post">
               <div class="d-flex mb-3">
                 <h1 class="h3 mb-0 mr-auto">Edit User</h1>
-                <a href="/user/manage/" class="btn btn-outline-secondary ml-2">Back</a>
+                <a href="/user/manage/" class="btn btn-outline-secondary ml-2">Kembali</a>
               </div>
               <label class="d-block mb-3">
                 <span>Full Name</span>
@@ -46,7 +46,7 @@
                 </select>
               </label>
               <div class="d-flex mb-3">
-                <input type="submit" value="Save" class="btn btn-primary mr-auto">
+                <input type="submit" value="Simpan" class="btn btn-primary mr-auto">
                 <?php if ($item->id) : ?>
                   <label for="delete-form" class="btn btn-danger mb-0"><i class="fa fa-trash"></i></label>
                 <?php endif ?>

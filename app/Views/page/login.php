@@ -79,7 +79,7 @@
                 <span class="mx-auto">Register with Email</span>
             </a>
             <a href="/" class="btn d-flex align-items-center btn-light border-secondary mb-2">
-                <span class="mx-auto">Back</span>
+                <span class="mx-auto">Kembali</span>
             </a>
         </form>
         <div class="floating">

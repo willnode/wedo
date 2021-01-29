@@ -86,3 +86,8 @@ function post_file(Entity $entity, $name, string $folder = null)
         $entity->{$name} = null;
     }
 }
+
+function rupiah($angka){
+	$hasil_rupiah = "Rp " . number_format($angka,2,',','.');
+	return $hasil_rupiah;
+}

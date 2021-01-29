@@ -2,6 +2,7 @@
 
 namespace App\Entities;
 
+use App\Models\TokoModel;
 use App\Models\UserModel;
 use CodeIgniter\Entity;
 use CodeIgniter\I18n\Time;
@@ -22,5 +23,8 @@ class Barang extends Entity
         'toko_id' => 'integer',
     ];
 
-    
+    public function getToko()
+    {
+        return (new TokoModel())->find($this->toko_id);
+    }
 }

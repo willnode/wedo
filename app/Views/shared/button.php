@@ -16,6 +16,11 @@
                 <a href="<?= $value . '/' . $target ?>" class="btn <?= $size ?> btn-primary"><i class="fa fa-info-circle"></i></a>
             <?php
                 break;
+            case 'open':
+            ?>
+                <a href="<?= $value . '/' . $target ?>" class="btn <?= $size ?> btn-success"><i class="fa fa-external-link-alt"></i></a>
+            <?php
+                break;
             case 'add':
             ?>
                 <a href="<?= $value . '/' . $target ?>" class="btn <?= $size ?> btn-success"><i class="fa fa-plus-circle"></i></a>

@@ -78,16 +78,38 @@
             </p>
           </a>
         </li>
-        <?php if (\Config\Services::login()->role === 'admin') : ?>
-          <li class="nav-item">
-            <a href="/user/manage/" class="nav-link <?= ($page ?? '') === 'users' ? 'active' : '' ?>">
-              <i class="nav-icon fas fa-users"></i>
-              <p>
-                Users
-              </p>
-            </a>
-          </li>
-        <?php endif ?>
+        <li class="nav-item">
+          <a href="/admin/review/" class="nav-link <?= ($page ?? '') === 'review' ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-scroll"></i>
+            <p>
+              Review
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/admin/penjualan/" class="nav-link <?= ($page ?? '') === 'penjualan' ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-scroll"></i>
+            <p>
+              Penjualan
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/admin/penjualan/laporan/" class="nav-link <?= ($page ?? '') === 'laporan' ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-scroll"></i>
+            <p>
+              Laporan
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="/admin/users/" class="nav-link <?= ($page ?? '') === 'users' ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-users"></i>
+            <p>
+              Users
+            </p>
+          </a>
+        </li>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->
