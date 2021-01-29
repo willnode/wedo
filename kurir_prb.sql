@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 15, 2021 at 09:27 AM
+-- Generation Time: Jan 29, 2021 at 10:10 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.13
 
@@ -55,15 +55,16 @@ INSERT INTO `article` (`id`, `title`, `content`, `category`, `user_id`, `created
 -- --------------------------------------------------------
 
 --
--- Table structure for table `item`
+-- Table structure for table `barang`
 --
 
-CREATE TABLE `item` (
+CREATE TABLE `barang` (
   `id` int(11) NOT NULL,
-  `nama_item` varchar(255) NOT NULL,
-  `harga_item` int(50) NOT NULL,
-  `logo_item` varchar(255) NOT NULL,
-  `id_toko` int(11) NOT NULL
+  `nama` varchar(255) NOT NULL,
+  `harga` int(50) NOT NULL,
+  `logo` varchar(255) NOT NULL,
+  `content` varchar(255) NOT NULL,
+  `toko_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -74,8 +75,8 @@ CREATE TABLE `item` (
 
 CREATE TABLE `penjualan` (
   `id` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `id_toko` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `toko_id` int(11) NOT NULL,
   `nota` text NOT NULL,
   `status` varchar(30) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -90,9 +91,11 @@ CREATE TABLE `penjualan` (
 
 CREATE TABLE `review` (
   `id` int(11) NOT NULL,
-  `id_toko` int(11) NOT NULL,
-  `id_user` int(11) NOT NULL,
-  `content` varchar(255) NOT NULL
+  `toko_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `content` varchar(255) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -103,10 +106,18 @@ CREATE TABLE `review` (
 
 CREATE TABLE `toko` (
   `id` int(11) NOT NULL,
-  `nama_toko` varchar(255) NOT NULL,
-  `logo_toko` varchar(255) NOT NULL,
-  `lokasi` varchar(255) NOT NULL
+  `nama` varchar(255) NOT NULL,
+  `logo` varchar(255) NOT NULL,
+  `lokasi` varchar(255) NOT NULL,
+  `deskripsi` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `toko`
+--
+
+INSERT INTO `toko` (`id`, `nama`, `logo`, `lokasi`, `deskripsi`) VALUES
+(1, 'toko 1', 'logo.png', '123', '1324567890');
 
 -- --------------------------------------------------------
 
@@ -143,27 +154,27 @@ ALTER TABLE `article`
   ADD KEY `category` (`category`);
 
 --
--- Indexes for table `item`
+-- Indexes for table `barang`
 --
-ALTER TABLE `item`
+ALTER TABLE `barang`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_toko` (`id_toko`);
+  ADD KEY `id_toko` (`toko_id`);
 
 --
 -- Indexes for table `penjualan`
 --
 ALTER TABLE `penjualan`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_user` (`id_user`),
-  ADD KEY `id_toko` (`id_toko`);
+  ADD KEY `id_user` (`user_id`),
+  ADD KEY `id_toko` (`toko_id`);
 
 --
 -- Indexes for table `review`
 --
 ALTER TABLE `review`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `id_toko` (`id_toko`),
-  ADD KEY `id_user` (`id_user`);
+  ADD KEY `id_toko` (`toko_id`),
+  ADD KEY `id_user` (`user_id`);
 
 --
 -- Indexes for table `toko`
@@ -190,9 +201,9 @@ ALTER TABLE `article`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT for table `item`
+-- AUTO_INCREMENT for table `barang`
 --
-ALTER TABLE `item`
+ALTER TABLE `barang`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -211,7 +222,7 @@ ALTER TABLE `review`
 -- AUTO_INCREMENT for table `toko`
 --
 ALTER TABLE `toko`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `user`

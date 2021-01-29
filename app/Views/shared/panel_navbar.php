@@ -70,7 +70,14 @@
             </p>
           </a>
         </li>
-
+        <li class="nav-item">
+          <a href="/admin/toko/" class="nav-link <?= ($page ?? '') === 'toko' ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-scroll"></i>
+            <p>
+              Toko
+            </p>
+          </a>
+        </li>
         <?php if (\Config\Services::login()->role === 'admin') : ?>
           <li class="nav-item">
             <a href="/user/manage/" class="nav-link <?= ($page ?? '') === 'users' ? 'active' : '' ?>">
