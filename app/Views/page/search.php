@@ -5,7 +5,7 @@
 <body>
   <div class="wrapper">
     <?= view('shared/navbar') ?>
-    <div class="content-wrapper p-4 text-navy">
+    <div class="content-wrapper p-4 text-yellow">
     </div>
   </div>
 </body>

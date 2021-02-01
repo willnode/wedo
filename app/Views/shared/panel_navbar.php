@@ -1,4 +1,4 @@
-<nav class="main-header navbar navbar-expand navbar-dark elevation-2">
+<nav class="main-header navbar navbar-expand navbar-light -yellow elevation-2">
   <!-- Left navbar links -->
   <ul class="navbar-nav">
     <li class="nav-item">
@@ -24,7 +24,7 @@
 </nav>
 
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-yellow elevation-4">
   <!-- Brand Logo -->
   <a href="/" class="brand-link">
     <img src="/logo_dark.png" alt="AdminLTE Logo" class="brand-image" style="opacity: .8">

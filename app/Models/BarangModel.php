@@ -22,6 +22,7 @@ class BarangModel extends Model
         $this->builder()->where([
             'toko_id' => $id,
         ]);
+            return $this;
     }
 
     public function processWeb($id)

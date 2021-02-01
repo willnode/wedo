@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Entities\Article;
 use App\Entities\User as EntitiesUser;
 use App\Models\ArticleModel;
+use App\Models\TokoModel;
 use App\Models\UserModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use Config\Services;
@@ -28,8 +29,21 @@ class User extends BaseController
 
 	public function index()
 	{
-		return view('page/dashboard', [
-			'page' => 'dashboard'
+		$model = new TokoModel();
+		return view('belanja/toko',[
+			'page' => 'dashboard',
+			'data' => find_with_filter($model),
+		]);
+	}
+
+	public function toko($id)
+	{
+		$model = new TokoModel();
+		if (!($item = $model->find($id))) {
+			throw new PageNotFoundException();
+		}
+		return view('belanja/barang',[
+			'item' => $item
 		]);
 	}
 
