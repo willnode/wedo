@@ -79,6 +79,7 @@
             <input type="text" name="name" placeholder="Nama" value="<?= old('name') ?>" minlength="3" class="form-control mb-2" required>
             <input type="text" name="nohp" pattern="08\d+" placeholder="Nomor HP (08xxx)" value="<?= old('nohp') ?>" class="form-control mb-2" required>
             <input type="password" name="password" placeholder="Password" class="form-control mb-2" minlength="8" autocomplete="new-password" required>
+            <textarea class="form-control" name="alamat" placeholder="Alamat Anda" required></textarea>
             <div class="g-recaptcha mb-2 mx-auto" data-sitekey="<?= $recapthaSite ?>"></div>
             <p><small>Dengan mendaftar anda menyetujui Kebijakan Layanan Kami</small></p>
             <input type="submit" value="Daftar" class="btn bg-indigo btn mb-3">

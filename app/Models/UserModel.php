@@ -38,9 +38,8 @@ class UserModel extends Model
     public function register($data, $thenLogin = true)
     {
         $data = array_intersect_key($data, array_flip(
-            ['name', 'nohp', 'password']
+            ['name', 'nohp', 'password', 'alamat']
         ));
-        $data['lang'] = Services::request()->getLocale();
         if (!empty($data['password']))
             $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT);
         if ($this->save($data)) {
