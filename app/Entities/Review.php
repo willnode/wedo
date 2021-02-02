@@ -9,7 +9,8 @@ use CodeIgniter\I18n\Time;
 
 /**
  * @property int $id
- * @property int $toko_id
+ * @property int $rating
+ * @property int $barang_id
  * @property int $user_id
  * @property string $content
  * @property User $user
@@ -21,7 +22,8 @@ class Review extends Entity
 {
     protected $casts = [
         'id' => 'integer',
-        'toko_id' => 'integer',
+        'rating' => 'integer',
+        'barang_id' => 'integer',
         'user_id' => 'integer',
     ];
 

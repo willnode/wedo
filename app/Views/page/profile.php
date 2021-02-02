@@ -4,7 +4,7 @@
 
 <body>
   <div class="wrapper">
-    <?= view('shared/navbar_admin') ?>
+    <?= view('shared/navbar') ?>
 
     <?php /** @var \App\Entities\User $item */ ?>
     <div class="content-wrapper p-4">
@@ -17,12 +17,16 @@
                 <a href="/user/" class="btn btn-outline-secondary ml-2">Kembali</a>
               </div>
               <label class="d-block mb-3">
-                <span>Full Name</span>
+                <span>Nama Lengkap</span>
                 <input type="text" class="form-control" name="name" value="<?= esc($item->name) ?>" required>
               </label>
               <label class="d-block mb-3">
                 <span>Nomor HP</span>
                 <input type="text" class="form-control" name="nohp" value="<?= esc($item->nohp) ?>" required>
+              </label>
+              <label class="d-block mb-3">
+                <span>Alamat</span>
+                <textarea type="text" class="form-control" name="alamat" required><?= esc($item->alamat) ?></textarea>
               </label>
               <label class="d-block mb-3">
                 <span>Avatar</span>
@@ -35,7 +39,7 @@
               </label>
               <label class="d-block mb-3">
                 <span>Password</span>
-                <input type="password" class="form-control" name="password" placeholder="<?= $item->id ? 'Only enter when you want to change your password' : '" required="required' ?>">
+                <input type="password" class="form-control" name="password" placeholder="<?= $item->id ? 'Masukkan apabila anda ingin mengganti dengan password baru' : '" required="required' ?>">
               </label>
               <div class="d-flex mb-3">
                 <input type="submit" value="Simpan" class="btn btn-primary mr-auto">

@@ -3,11 +3,13 @@
 namespace App\Controllers;
 
 use App\Entities\Article;
+use App\Entities\Review;
 use App\Entities\User as EntitiesUser;
 use App\Models\ArticleModel;
 use App\Models\BarangModel;
 use App\Models\CartModel;
 use App\Models\PenjualanModel;
+use App\Models\ReviewModel;
 use App\Models\TokoModel;
 use App\Models\UserModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
@@ -126,6 +128,16 @@ class User extends BaseController
 	{
 		$model = new PenjualanModel();
 		$model->withUser($this->login->id);
+		if ($this->request->getMethod() == 'post') {
+			$m = new ReviewModel();
+			$r = new Review($_POST);
+			$r->id = null;
+			$r->user_id = $this->login->id;
+			$r->created_at = date('Y-m-d H:i:s');
+			$r->updated_at = date('Y-m-d H:i:s');
+			$m->replace($r->toArray());
+			return $this->response->redirect('/user/history/view/' . $id);
+		}
 		switch ($page) {
 			case 'list':
 				return view('user/history/list', [
@@ -175,6 +187,7 @@ class User extends BaseController
 		}
 		return view('page/profile', [
 			'item' => $this->login,
+			'page' => 'profile'
 		]);
 	}
 }

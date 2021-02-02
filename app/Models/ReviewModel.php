@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Entities\Article;
+use App\Entities\Review;
 use CodeIgniter\Model;
 use Config\Services;
 
@@ -25,4 +26,13 @@ class ReviewModel extends Model
         return $this;
     }
 
+    /** @return Review */
+    public function atBarangUser($barang_id, $user_id)
+    {
+        $this->builder()->where([
+            'barang_id' => $barang_id,
+            'user_id' => $user_id,
+        ]);
+        return $this->findAll()[0] ?? null;
+    }
 }

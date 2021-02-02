@@ -1,3 +1,7 @@
 .logo {
     width: 64px;
 }
+
+img {
+    object-fit: contain;
+}

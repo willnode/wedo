@@ -7,6 +7,7 @@
   <div class="wrapper">
     <?= view('shared/navbar') ?>
     <?php /** @var \App\Entities\Penjualan $item */ ?>
+    <?php $rm = new \App\Models\ReviewModel() ?>
     <div class="content-wrapper p-4">
       <div class="container">
         <div class="card">
@@ -21,6 +22,7 @@
                   <th>Harga</th>
                   <th>Qty</th>
                   <th>Total</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -34,6 +36,14 @@
                     <td style="vertical-align: middle;"><?= rupiah($x->barang->harga) ?></td>
                     <td style="vertical-align: middle;"> &times; <?= esc($x->qty) ?> </td>
                     <td style="vertical-align: middle;"><?= rupiah($x->barang->harga * $x->qty) ?></td>
+                    <th>
+                      <?php if ($item->status == 'diterima') : ?>
+                        <?php $rr = $rm->atBarangUser($x->barang_id, $item->user_id) ?>
+                        <button type="button" onclick="updateRatingBox(this)" class="btn btn-success" title="Review Barang Ini" data-toggle="modal" data-target="#exampleModal" data-barang="<?= $x->barang_id ?>" data-rating="<?= $rr->rating ?? 0 ?>" data-content="<?= esc($rr->content ?? '') ?>">
+                          <i class="<?= $rr ? 'fas' : 'far' ?> fa-star"></i>
+                        </button>
+                      <?php endif ?>
+                    </th>
                   </tr>
                 <?php endforeach ?>
               </tbody>
@@ -41,6 +51,7 @@
                 <tr>
                   <th colspan="3">Total</th>
                   <th style="vertical-align: middle;"><?= rupiah(\App\Models\CartModel::getTotal($item->nota)) ?></th>
+                  <th></th>
                 </tr>
               </tfoot>
             </table>
@@ -48,11 +59,58 @@
         </div>
 
         <div class="mb-3">
-          <a href="/user/history/" class="btn btn-outline-secondary"><i class="fa fa-arrow-left"></i></a>
+          <a href="/user/history/" class="btn btn-outline-secondary"><i class="fa fa-arrow-left mr-2"></i>Kembali</a>
         </div>
       </div>
     </div>
   </div>
+  <!-- Modal -->
+  <form class="modal fade" method="POST" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Review Barang Ini</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <input type="text" id="barang" name="barang_id" hidden>
+          <input type="number" id="rating" hidden name="rating" min="1" max="5" required>
+          <div class="d-flex justify-content-center">
+            <?php for ($i = 1; $i <= 5; $i++) : ?>
+              <button type="button" id="ratingHUD_<?= $i ?>" onclick="$('#rating').val(<?= $i ?>); updateStarHUD()" class="btn">
+                <i class="far fa-2x fa-star"></i>
+              </button>
+            <?php endfor ?>
+          </div>
+          <textarea name="content" id="content" class="form-control"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary">Simpan</button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <script>
+    function updateRatingBox(event) {
+      var rating = $(event).data('rating');
+      var content = $(event).data('content');
+      var barang = $(event).data('barang');
+      $('#rating').val(rating);
+      $('#content').val(content);
+      $('#barang').val(barang);
+      updateStarHUD();
+    }
+
+    function updateStarHUD() {
+      var rating = parseInt($('#rating').val());
+      for (let i = 1; i <= 5; i++) {
+        $('#ratingHUD_' + i + ' i').removeClass(rating >= i ? 'far' : 'fas').addClass(rating >= i ? 'fas' : 'far');
+      }
+    }
+  </script>
 </body>
 
 </html>

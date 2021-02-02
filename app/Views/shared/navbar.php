@@ -67,6 +67,14 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="/user/profile/" class="nav-link <?= ($page ?? '') == 'profile' ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-user"></i>
+            <p>
+              Profil Anda
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="#" target="_blank" class="nav-link">
             <i class="nav-icon fas fa-info"></i>
             <p>

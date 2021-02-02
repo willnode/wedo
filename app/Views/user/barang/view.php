@@ -39,10 +39,13 @@
                 <?php foreach (($r = $item->reviews) as $review) : ?>
                   <?php $user = $review->user ?>
                   <div class="d-flex">
-                    <img src="<?= $user->getAvatarUrl() ?>" width="80px" alt="">
+                    <img src="<?= $user->getAvatarUrl() ?>" width="80px" alt="" class="mr-3">
                     <div>
                       <h5><?= esc($user->name) ?></h5>
-                      <p><?= esc($review->content) ?></p>
+                      <p><?= esc($review->content) ?>
+                        <br>
+                        <small class="text-black-50"><?= esc($review->updated_at->humanize()) ?></small>
+                      </p>
                     </div>
                   </div>
                 <?php endforeach ?>
