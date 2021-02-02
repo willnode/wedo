@@ -9,7 +9,7 @@
         <?php /** @var \App\Entities\Penjualan[] $data */ ?>
         <div class="content-wrapper p-4">
             <div class="container">
-                <?= view('belanja/cart/iframe') ?>
+                <?= view('user/cart/iframe') ?>
             </div>
         </div>
     </div>

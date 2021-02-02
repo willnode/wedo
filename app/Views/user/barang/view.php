@@ -57,7 +57,7 @@
             </div>
           </div>
           <div class="col-lg-6">
-            <?= view('belanja/cart/iframe') ?>
+            <?= view('user/cart/iframe') ?>
           </div>
         </div>
       </div>

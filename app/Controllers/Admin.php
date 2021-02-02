@@ -63,19 +63,19 @@ class Admin extends BaseController
 		}
 		switch ($page) {
 			case 'list':
-				return view('article/manage', [
+				return view('admin/article/manage', [
 					'data' => find_with_filter(empty($_GET['category']) ? $model : $model->withCategory($_GET['category'])),
 					'page' => 'article',
 				]);
 			case 'add':
-				return view('article/edit', [
+				return view('admin/article/edit', [
 					'item' => new Article()
 				]);
 			case 'edit':
 				if (!($item = $model->find($id))) {
 					throw new PageNotFoundException();
 				}
-				return view('article/edit', [
+				return view('admin/article/edit', [
 					'item' => $item
 				]);
 		}
@@ -98,19 +98,19 @@ class Admin extends BaseController
 			case 'barang':
 				return $this->response->redirect('/admin/barang/?toko_id=' . $id);
 			case 'list':
-				return view('toko/manage', [
+				return view('admin/toko/manage', [
 					'data' => find_with_filter($model),
 					'page' => 'toko',
 				]);
 			case 'add':
-				return view('toko/edit', [
+				return view('admin/toko/edit', [
 					'item' => new Toko()
 				]);
 			case 'edit':
 				if (!($item = $model->find($id))) {
 					throw new PageNotFoundException();
 				}
-				return view('toko/edit', [
+				return view('admin/toko/edit', [
 					'item' => $item
 				]);
 		}
@@ -135,13 +135,13 @@ class Admin extends BaseController
 			case 'review':
 				return $this->response->redirect('/admin/review/?toko_id=' . $id);
 			case 'list':
-				return view('barang/manage', [
+				return view('admin/barang/manage', [
 					'data' => find_with_filter($model),
 					'toko' => $toko ?? null,
 					'page' => 'barang',
 				]);
 			case 'add':
-				return view('barang/edit', [
+				return view('admin/barang/edit', [
 					'toko' => $toko ?? null,
 					'item' => new Barang()
 				]);
@@ -149,7 +149,7 @@ class Admin extends BaseController
 				if (!($item = $model->find($id))) {
 					throw new PageNotFoundException();
 				}
-				return view('barang/edit', [
+				return view('admin/barang/edit', [
 					'toko' => $toko ?? $item->toko,
 					'item' => $item
 				]);
@@ -173,13 +173,13 @@ class Admin extends BaseController
 		}
 		switch ($page) {
 			case 'list':
-				return view('review/manage', [
+				return view('admin/review/manage', [
 					'data' => find_with_filter($model),
 					'toko' => $toko ?? null,
 					'page' => 'review',
 				]);
 			case 'add':
-				return view('review/edit', [
+				return view('admin/review/edit', [
 					'toko' => $toko ?? null,
 					'item' => new Review()
 				]);
@@ -187,7 +187,7 @@ class Admin extends BaseController
 				if (!($item = $model->find($id))) {
 					throw new PageNotFoundException();
 				}
-				return view('review/edit', [
+				return view('admin/review/edit', [
 					'toko' => $toko ?? $item->toko,
 					'item' => $item
 				]);
@@ -211,19 +211,19 @@ class Admin extends BaseController
 		}
 		switch ($page) {
 			case 'list':
-				return view('penjualan/manage', [
+				return view('admin/penjualan/manage', [
 					'data' => find_with_filter($model),
 					'toko' => $toko ?? null,
 					'page' => 'penjualan',
 				]);
 			case 'laporan':
-				return view('penjualan/manage', [
+				return view('admin/penjualan/manage', [
 					'data' => find_with_filter($model),
 					'toko' => $toko ?? null,
 					'page' => 'laporan',
 				]);
 			case 'add':
-				return view('penjualan/edit', [
+				return view('admin/penjualan/edit', [
 					'toko' => $toko ?? null,
 					'item' => new Penjualan()
 				]);
@@ -231,7 +231,7 @@ class Admin extends BaseController
 				if (!($item = $model->find($id))) {
 					throw new PageNotFoundException();
 				}
-				return view('penjualan/edit', [
+				return view('admin/penjualan/edit', [
 					'toko' => $toko ?? $item->toko,
 					'item' => $item
 				]);
@@ -254,19 +254,19 @@ class Admin extends BaseController
 		}
 		switch ($page) {
 			case 'list':
-				return view('users/manage', [
+				return view('admin/users/manage', [
 					'data' => find_with_filter($model),
 					'page' => 'users',
 				]);
 			case 'add':
-				return view('users/edit', [
+				return view('admin/users/edit', [
 					'item' => new EntitiesUser()
 				]);
 			case 'edit':
 				if (!($item = $model->find($id))) {
 					throw new PageNotFoundException();
 				}
-				return view('users/edit', [
+				return view('admin/users/edit', [
 					'item' => $item
 				]);
 		}

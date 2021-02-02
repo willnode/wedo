@@ -4,37 +4,33 @@
 
 <body>
   <div class="wrapper">
-    <?= view('shared/panel_navbar') ?>
-    <?php /** @var \App\Entities\Toko $item */ ?>
+    <?= view('shared/navbar_admin') ?>
+    <?php /** @var \App\Entities\Article $item */ ?>
     <div class="content-wrapper p-4">
       <div class="container">
         <div class="card">
           <div class="card-body">
-            <form method="post" enctype="multipart/form-data">
+            <form method="post">
               <div class="d-flex mb-3">
-                <h1 class="h3 mb-0 mr-auto">Edit Toko</h1>
-                <a href="/admin/toko/" class="btn btn-outline-secondary ml-2">Kembali</a>
+                <h1 class="h3 mb-0 mr-auto">Edit Article</h1>
+                <a href="/user/article/" class="btn btn-outline-secondary ml-2">Kembali</a>
               </div>
               <label class="d-block mb-3">
-                <span>Nama</span>
-                <input type="text" class="form-control" name="nama" value="<?= esc($item->nama) ?>" required>
+                <span>Title</span>
+                <input type="text" class="form-control" name="title" value="<?= esc($item->title) ?>" required>
               </label>
               <label class="d-block mb-3">
-                <span>Lokasi</span>
-                <input type="text" class="form-control" name="lokasi" value="<?= esc($item->lokasi) ?>" required>
+                <span>Category</span>
+                <select name="category" class="form-control">
+                  <?= implode('', array_map(function ($x) use ($item) {
+                    return '<option ' . ($item->category === $x ? 'selected' : '') .
+                      ' value="' . $x . '">' . ucfirst($x) . '</option>';
+                  }, \App\Models\ArticleModel::$categories)) ?>
+                </select>
               </label>
               <label class="d-block mb-3">
-                <span>Deskripsi</span>
-                <textarea type="text" class="form-control" name="deskripsi"  required><?= esc($item->deskripsi) ?></textarea>
-              </label>
-              <label class="d-block mb-3">
-                <span>Logo</span>
-                <?= view('shared/file', [
-                  'value' => $item->logo,
-                  'name' => 'logo',
-                  'path' => 'logo',
-                  'disabled' => false,
-                ]) ?>
+                <span>Content</span>
+                <textarea id="summernote" name="content" class="form-control w-100"><?= esc($item->content) ?></textarea>
               </label>
               <div class="d-flex mb-3">
                 <input type="submit" value="Simpan" class="btn btn-primary mr-auto">

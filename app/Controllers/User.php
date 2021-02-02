@@ -41,7 +41,7 @@ class User extends BaseController
 		$model = new TokoModel();
 		switch ($page) {
 			case 'list':
-				return view('belanja/toko/list', [
+				return view('user/toko/list', [
 					'page' => 'toko',
 					'data' => find_with_filter($model),
 				]);
@@ -49,7 +49,7 @@ class User extends BaseController
 				if (!($item = $model->find($id))) {
 					throw new PageNotFoundException();
 				}
-				return view('belanja/toko/view', [
+				return view('user/toko/view', [
 					'item' => $item
 				]);
 		}
@@ -63,7 +63,7 @@ class User extends BaseController
 				if (!($item = $model->find($id))) {
 					throw new PageNotFoundException();
 				}
-				return view('belanja/barang/view', [
+				return view('user/barang/view', [
 					'item' => $item
 				]);
 		}
@@ -116,7 +116,7 @@ class User extends BaseController
 		}
 		switch ($page) {
 			case 'list':
-				return view('belanja/cart/view', [
+				return view('user/cart/view', [
 					'page' => 'cart',
 				]);
 		}
@@ -128,7 +128,7 @@ class User extends BaseController
 		$model->withUser($this->login->id);
 		switch ($page) {
 			case 'list':
-				return view('belanja/history/list', [
+				return view('user/history/list', [
 					'data' => find_with_filter($model),
 					'page' => 'history',
 				]);
@@ -136,7 +136,7 @@ class User extends BaseController
 				if (!($item = $model->find($id))) {
 					throw new PageNotFoundException();
 				}
-				return view('belanja/history/view', [
+				return view('user/history/view', [
 					'item' => $item,
 					'page' => 'history',
 				]);

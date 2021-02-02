@@ -4,7 +4,7 @@
 
 <body>
   <div class="wrapper">
-    <?= view('shared/panel_navbar') ?>
+    <?= view('shared/navbar_admin') ?>
     <?php /** @var \App\Entities\Barang $item */ ?>
     <?php /** @var \App\Entities\Toko $toko */ ?>
     <div class="content-wrapper p-4">
