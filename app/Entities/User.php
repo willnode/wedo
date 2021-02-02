@@ -8,6 +8,7 @@ use CodeIgniter\Entity;
  * @property int $id
  * @property string $name
  * @property string $nohp
+ * @property string $alamat
  * @property string $avatar
  * @property string $password
  * @property string $role

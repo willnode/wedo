@@ -15,7 +15,7 @@
       <div class="container">
         <div class="card">
           <div class="card-body">
-            <?php /** @var \App\Entities\Toko[] $data */ ?>
+            <?php /** @var \App\Entities\Penjualan[] $data */ ?>
             <div class="d-flex">
               <div class="ml-auto">
                 <?= view('shared/button', [
@@ -28,13 +28,13 @@
             <?= view('shared/table', [
               'data' => $data,
               'columns' => [
-                'Nama' => function (\App\Entities\Toko $x) {
+                'Nama' => function (\App\Entities\Penjualan $x) {
                   return '<img src="/uploads/logo/' . $x->logo . '" alt="" class="mr-2 logo">' . esc($x->nama);
                 },
-                'Lokasi' => function (\App\Entities\Toko $x) {
+                'Lokasi' => function (\App\Entities\Penjualan $x) {
                   return esc($x->lokasi);
                 },
-                'Edit' => function (\App\Entities\Toko $x) {
+                'Edit' => function (\App\Entities\Penjualan $x) {
                   return view('shared/button', [
                     'actions' => ['detail','edit','open'],
                     'target' => $x->id,

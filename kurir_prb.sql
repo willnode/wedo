@@ -132,6 +132,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `name` varchar(255) DEFAULT NULL,
   `nohp` varchar(255) DEFAULT NULL,
   `avatar` varchar(255) DEFAULT NULL,
+  `alamat` varchar(255) DEFAULT NULL,
   `password` varchar(255) DEFAULT NULL,
   `role` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -142,9 +143,9 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping data for table wedo_db.user: ~2 rows (approximately)
 DELETE FROM `user`;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` (`id`, `name`, `nohp`, `avatar`, `password`, `role`) VALUES
-	(1, 'My Admin', 'admin', NULL, '$2y$10$jxUPYzsLgtdjigdX81iXxefrlFUgPMlrwyyqURLDbNtvWjWlGZknW', 'admin'),
-	(2, 'My User', 'user', NULL, '$2y$10$wJoYLg0rFn6yfhIbmEDXHOIRP/ezl5hd2aV/q1O7QmQm.R329EQ9u', 'user');
+INSERT INTO `user` (`id`, `name`, `nohp`, `avatar`, `alamat`, `password`, `role`) VALUES
+	(1, 'My Admin', 'admin', NULL, NULL, '$2y$10$jxUPYzsLgtdjigdX81iXxefrlFUgPMlrwyyqURLDbNtvWjWlGZknW', 'admin'),
+	(2, 'My User', 'user', NULL, NULL, '$2y$10$wJoYLg0rFn6yfhIbmEDXHOIRP/ezl5hd2aV/q1O7QmQm.R329EQ9u', 'user');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

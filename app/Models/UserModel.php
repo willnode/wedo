@@ -15,7 +15,7 @@ class UserModel extends Model
 
     protected $table         = 'user';
     protected $allowedFields = [
-        'name', 'nohp', 'password', 'avatar', 'role'
+        'name', 'nohp', 'password', 'avatar', 'role', 'alamat'
     ];
     protected $primaryKey = 'id';
     protected $returnType = 'App\Entities\User';
