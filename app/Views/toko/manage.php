@@ -36,7 +36,7 @@
                 },
                 'Edit' => function (\App\Entities\Toko $x) {
                   return view('shared/button', [
-                    'actions' => ['detail','edit','open'],
+                    'actions' => ['barang','edit','open'],
                     'target' => $x->id,
                     'size' => 'btn-sm'
                   ]);

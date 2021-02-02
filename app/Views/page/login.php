@@ -71,12 +71,12 @@
         <p class="mt-5"><a href="/"><img src="/logo_dark.png" alt="Logo" width="150px"></a></p>
         <form method="POST" name="loginForm" class="container shadow d-flex flex-column justify-content-center pb-1 pt-3 text-white">
             <h1 class="mb-4">Enter to Portal</h1>
-            <input type="text" name="email" placeholder="Email" class="form-control mb-2">
+            <input type="text" name="nohp" placeholder="Nomor HP" class="form-control mb-2">
             <input type="password" name="password" autocomplete="current-password" placeholder="Password" class="form-control mb-2">
             <input type="submit" value="Sign In" class="btn-primary btn btn-block mb-3">
             <div class="separator mb-3">Or</div>
             <a href="/register" class="btn d-flex align-items-center btn-light border-secondary mb-2">
-                <span class="mx-auto">Register with Email</span>
+                <span class="mx-auto">Daftar Akun Baru</span>
             </a>
             <a href="/" class="btn d-flex align-items-center btn-light border-secondary mb-2">
                 <span class="mx-auto">Kembali</span>

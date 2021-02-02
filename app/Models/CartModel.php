@@ -16,7 +16,7 @@ class CartModel extends Model
     ];
     protected $primaryKey = 'id';
     protected $returnType = 'App\Entities\Cart';
-    protected $useTimestamps = false;
+    protected $useTimestamps = true;
 
     public function withToko($id)
     {
@@ -37,7 +37,7 @@ class CartModel extends Model
     public static function getTotal(array $cart)
     {
         return array_sum(array_map(function ($x) {
-            return $x->total;
+            return $x->total ?? $x->qty * $x->barang->harga;
         }, $cart));
     }
 

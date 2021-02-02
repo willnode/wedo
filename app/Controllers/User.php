@@ -7,9 +7,11 @@ use App\Entities\User as EntitiesUser;
 use App\Models\ArticleModel;
 use App\Models\BarangModel;
 use App\Models\CartModel;
+use App\Models\PenjualanModel;
 use App\Models\TokoModel;
 use App\Models\UserModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
+use Config\Database;
 use Config\Services;
 
 class User extends BaseController
@@ -40,7 +42,7 @@ class User extends BaseController
 		switch ($page) {
 			case 'list':
 				return view('belanja/toko/list', [
-					'page' => 'dashboard',
+					'page' => 'toko',
 					'data' => find_with_filter($model),
 				]);
 			case 'view':
@@ -100,6 +102,16 @@ class User extends BaseController
 						'barang_id' => 	$_POST['barang_id'],
 					])->delete();
 					return $this->response->redirect($_POST['r'] ?? previous_url());
+				case 'checkout':
+					$g = $model->with([
+						'user_id' => 	$_POST['user_id'],
+					])->findAll();
+					$c = PenjualanModel::makePenjualan($g, $_POST['user_id']);
+					$model->with([
+						'user_id' => 	$_POST['user_id'],
+					])->delete();
+					(new PenjualanModel())->save($c);
+					return $this->response->redirect('/user/history/view/' . Database::connect()->insertID());
 			}
 		}
 		switch ($page) {
@@ -110,46 +122,33 @@ class User extends BaseController
 		}
 	}
 
+	public function history($page = 'list', $id = null)
+	{
+		$model = new PenjualanModel();
+		$model->withUser($this->login->id);
+		switch ($page) {
+			case 'list':
+				return view('belanja/history/list', [
+					'data' => find_with_filter($model),
+					'page' => 'history',
+				]);
+			case 'view':
+				if (!($item = $model->find($id))) {
+					throw new PageNotFoundException();
+				}
+				return view('belanja/history/view', [
+					'item' => $item,
+					'page' => 'history',
+				]);
+		}
+	}
+
 	public function logout()
 	{
 		$this->session->destroy();
 		return $this->response->redirect('/');
 	}
 
-
-	public function manage($page = 'list', $id = null)
-	{
-		if ($this->login->role !== 'admin') {
-			throw new PageNotFoundException();
-		}
-		$model = new UserModel();
-		if ($this->request->getMethod() === 'post') {
-			if ($page === 'delete' && $model->delete($id)) {
-				return $this->response->redirect('/user/manage/');
-			} else if ($id = $model->processWeb($id)) {
-				return $this->response->redirect('/user/manage/');
-			}
-		}
-		switch ($page) {
-			case 'list':
-				return view('users/manage', [
-					'data' => find_with_filter($model),
-					'page' => 'users',
-				]);
-			case 'add':
-				return view('users/edit', [
-					'item' => new EntitiesUser()
-				]);
-			case 'edit':
-				if (!($item = $model->find($id))) {
-					throw new PageNotFoundException();
-				}
-				return view('users/edit', [
-					'item' => $item
-				]);
-		}
-		throw new PageNotFoundException();
-	}
 
 	public function uploads($directory)
 	{

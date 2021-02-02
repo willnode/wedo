@@ -43,7 +43,7 @@
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
         <li class="nav-item">
-          <a href="/user/" class="nav-link <?= ($page ?? '') == 'home' ? 'active' : '' ?>">
+          <a href="/user/" class="nav-link <?= ($page ?? '') == 'toko' ? 'active' : '' ?>">
             <i class="nav-icon fas fa-store"></i>
             <p>
               Belanja
@@ -59,7 +59,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="/user/cart/history/" class="nav-link <?= ($page ?? '') == 'history' ? 'active' : '' ?>">
+          <a href="/user/history/" class="nav-link <?= ($page ?? '') == 'history' ? 'active' : '' ?>">
             <i class="nav-icon fas fa-scroll"></i>
             <p>
               Transaksi

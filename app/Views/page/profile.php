@@ -21,8 +21,8 @@
                 <input type="text" class="form-control" name="name" value="<?= esc($item->name) ?>" required>
               </label>
               <label class="d-block mb-3">
-                <span>Email</span>
-                <input type="text" class="form-control" name="email" value="<?= esc($item->email) ?>" required>
+                <span>Nomor HP</span>
+                <input type="text" class="form-control" name="nohp" value="<?= esc($item->nohp) ?>" required>
               </label>
               <label class="d-block mb-3">
                 <span>Avatar</span>

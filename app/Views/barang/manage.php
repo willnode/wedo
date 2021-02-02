@@ -41,7 +41,7 @@
                 },
                 'Edit' => function (\App\Entities\Barang $x) {
                   return view('shared/button', [
-                    'actions' => ['edit', 'open'],
+                    'actions' => ['review','edit', 'open'],
                     'target' => $x->id,
                     'size' => 'btn-sm'
                   ]);

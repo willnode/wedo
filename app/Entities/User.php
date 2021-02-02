@@ -7,7 +7,7 @@ use CodeIgniter\Entity;
 /**
  * @property int $id
  * @property string $name
- * @property string $email
+ * @property string $nohp
  * @property string $avatar
  * @property string $password
  * @property string $role
@@ -27,6 +27,6 @@ class User extends Entity
         if ($this->avatar)
             return '/uploads/avatar/' . $this->avatar;
         else
-            return get_gravatar($this->email, 80, 'identicon');
+            return get_gravatar($this->nohp, 80, 'identicon');
     }
 }

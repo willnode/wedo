@@ -93,6 +93,10 @@ class Admin extends BaseController
 			}
 		}
 		switch ($page) {
+			case 'open':
+				return $this->response->redirect('/user/toko/view/' . $id);
+			case 'barang':
+				return $this->response->redirect('/admin/barang/?toko_id=' . $id);
 			case 'list':
 				return view('toko/manage', [
 					'data' => find_with_filter($model),
@@ -109,8 +113,6 @@ class Admin extends BaseController
 				return view('toko/edit', [
 					'item' => $item
 				]);
-			case 'detail':
-				return $this->response->redirect('/admin/barang/?toko_id=' . $id);
 		}
 		throw new PageNotFoundException();
 	}
@@ -130,6 +132,8 @@ class Admin extends BaseController
 			$toko = (new TokoModel())->find($_GET['toko_id']);
 		}
 		switch ($page) {
+			case 'review':
+				return $this->response->redirect('/admin/review/?toko_id=' . $id);
 			case 'list':
 				return view('barang/manage', [
 					'data' => find_with_filter($model),

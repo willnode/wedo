@@ -29,8 +29,8 @@ class Home extends BaseController
 		}
 		if ($this->request->getMethod() === 'post') {
 			$post = $this->request->getPost();
-			if (isset($post['email'], $post['password'])) {
-				$login = (new UserModel())->atEmail($post['email']);
+			if (isset($post['nohp'], $post['password'])) {
+				$login = (new UserModel())->atEmail($post['nohp']);
 				if ($login && password_verify(
 					$post['password'],
 					$login->password
@@ -60,7 +60,7 @@ class Home extends BaseController
 		} else {
 			if ($this->validate([
 				'name' => 'required|min_length[3]|max_length[255]',
-				'email' => 'required|valid_email|is_unique[login.email]',
+				'nohp' => 'required|is_unique[login.nohp]',
 				'password' => 'required|min_length[8]',
 				'g-recaptcha-response' => ENVIRONMENT === 'production' && $recaptha->recapthaSecret ? 'required' : 'permit_empty',
 			])) {
@@ -95,28 +95,6 @@ class Home extends BaseController
 		} else {
 			throw new PageNotFoundException();
 		}
-	}
-
-	public function category($name = null)
-	{
-		$model = new ArticleModel();
-		return view('article/list', [
-			'data' => $model->withCategory($name)->findAll(),
-			'page' => $name,
-		]);
-	}
-
-	public function search()
-	{
-		$model = new ArticleModel();
-		if ($q = $this->request->getGet('q')) {
-			$model->withSearch($q);
-		}
-		return view('article/list', [
-			'data' => find_with_filter($model),
-			'page' => '',
-			'search' => $q,
-		]);
 	}
 
 	public function uploads($directory, $file)

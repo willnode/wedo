@@ -55,18 +55,10 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="/user/" class="nav-link <?= ($page ?? '') === 'dashboard' ? 'active' : '' ?>">
+          <a href="/admin/" class="nav-link <?= ($page ?? '') === 'dashboard' ? 'active' : '' ?>">
             <i class="nav-icon fas fa-home"></i>
             <p>
               Dashboard
-            </p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="/user/article/" class="nav-link <?= ($page ?? '') === 'article' ? 'active' : '' ?>">
-            <i class="nav-icon fas fa-scroll"></i>
-            <p>
-              Articles
             </p>
           </a>
         </li>
@@ -75,14 +67,6 @@
             <i class="nav-icon fas fa-scroll"></i>
             <p>
               Toko
-            </p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="/admin/review/" class="nav-link <?= ($page ?? '') === 'review' ? 'active' : '' ?>">
-            <i class="nav-icon fas fa-scroll"></i>
-            <p>
-              Review
             </p>
           </a>
         </li>

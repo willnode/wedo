@@ -15,16 +15,16 @@ class UserModel extends Model
 
     protected $table         = 'user';
     protected $allowedFields = [
-        'name', 'email', 'password', 'avatar', 'role'
+        'name', 'nohp', 'password', 'avatar', 'role'
     ];
     protected $primaryKey = 'id';
     protected $returnType = 'App\Entities\User';
     protected $useTimestamps = false;
 
     /** @return User|null */
-    public function atEmail($email)
+    public function atEmail($nohp)
     {
-        $this->builder()->where('email', $email);
+        $this->builder()->where('nohp', $nohp);
         return $this->find()[0] ?? null;
     }
 
@@ -38,7 +38,7 @@ class UserModel extends Model
     public function register($data, $thenLogin = true)
     {
         $data = array_intersect_key($data, array_flip(
-            ['name', 'email', 'password']
+            ['name', 'nohp', 'password']
         ));
         $data['lang'] = Services::request()->getLocale();
         if (!empty($data['password']))
@@ -47,7 +47,7 @@ class UserModel extends Model
             if ($thenLogin) {
                 Services::session()->set('login', $this->insertID);
                 Services::session()->set('name', $data['name'] ?? '');
-                Services::session()->set('email', $data['email'] ?? '');
+                Services::session()->set('nohp', $data['nohp'] ?? '');
             }
             return $this->insertID;
         }

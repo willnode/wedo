@@ -26,8 +26,8 @@
                 'Nama' => function (\App\Entities\User $x) {
                   return $x->name;
                 },
-                'Email' => function (\App\Entities\User $x) {
-                  return $x->email;
+                'Nomor HP' => function (\App\Entities\User $x) {
+                  return $x->nohp;
                 },
                 'Role' => function (\App\Entities\User $x) {
                   return ucfirst($x->role);

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="<?= lang('Interface.code') ?>">
+<html lang="id">
 
 <?= view('shared/head') ?>
 
@@ -73,19 +73,19 @@
         <form method="POST" name="loginForm" class="container shadow d-flex flex-column justify-content-center pb-1 pt-3 text-white">
 
             <?= csrf_field() ?>
-            <h1 class="mb-4">Become a Member</h1>
+            <h1 class="mb-4">Mendaftar Akun Baru</h1>
             <?= $errors ?>
 
-            <input type="text" name="name" placeholder="Full Name" value="<?= old('name') ?>" class="form-control mb-2">
-            <input type="text" name="email" placeholder="Active Email" value="<?= old('email') ?>" class="form-control mb-2">
-            <input type="password" name="password" placeholder="Password" class="form-control mb-2" autocomplete="new-password">
+            <input type="text" name="name" placeholder="Nama" value="<?= old('name') ?>" minlength="3" class="form-control mb-2" required>
+            <input type="text" name="nohp" pattern="08\d+" placeholder="Nomor HP (08xxx)" value="<?= old('nohp') ?>" class="form-control mb-2" required>
+            <input type="password" name="password" placeholder="Password" class="form-control mb-2" minlength="8" autocomplete="new-password" required>
             <div class="g-recaptcha mb-2 mx-auto" data-sitekey="<?= $recapthaSite ?>"></div>
-            <p><small>By continuing you're agreeing with our service and privacy terms</small></p>
-            <input type="submit" value="Register" class="btn bg-indigo btn mb-3">
+            <p><small>Dengan mendaftar anda menyetujui Kebijakan Layanan Kami</small></p>
+            <input type="submit" value="Daftar" class="btn bg-indigo btn mb-3">
 
         </form>
         <div class="d-flex mb-5 text-shadow">
-            <a href="/login" class="btn btn-link text-white mr-auto">Sign In Instead</a>
+            <a href="/login" class="btn btn-link text-white mr-auto">Masuk Saja</a>
         </div>
 
         <div class="floating">
