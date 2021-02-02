@@ -8,7 +8,7 @@
     <meta name="og:description" content="<?= $meta_desc ?>" />
     <meta name="og:image" content="<?= esc($item->image_url ?? '') ?>" />
     <meta name="twitter:card" content="summary" />
-    <meta name="theme-color" content="#4285f4">
+    <meta name="theme-color" content="#ffc107">
 
     <link rel="manifest" href="/manifest.webmanifest">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.41.0/lib/codemirror.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css">
+    <link rel="stylesheet" href="/style.css">
 
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script defer src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>

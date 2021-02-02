@@ -10,10 +10,19 @@ class ReviewModel extends Model
 {
     protected $table         = 'review';
     protected $allowedFields = [
-        'toko_id', 'user_id', 'content'
+        'barang_id', 'user_id', 'content', 'rating'
     ];
     protected $primaryKey = 'id';
     protected $returnType = 'App\Entities\Review';
     protected $useTimestamps = true;
+
+
+    public function withBarang($id)
+    {
+        $this->builder()->where([
+            'barang_id' => $id,
+        ]);
+        return $this;
+    }
 
 }

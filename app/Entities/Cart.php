@@ -9,30 +9,27 @@ use CodeIgniter\I18n\Time;
 
 /**
  * @property int $id
- * @property int $toko_id
  * @property int $user_id
- * @property string $content
- * @property User $user
- * @property Toko $toko
+ * @property int $barang_id
+ * @property int $qty
  * @property Time $created_at
  * @property Time $updated_at
  */
-class Review extends Entity
+class Cart extends Entity
 {
     protected $casts = [
         'id' => 'integer',
-        'toko_id' => 'integer',
         'user_id' => 'integer',
+        'barang_id' => 'integer',
+        'qty' => 'integer',
     ];
-
-    public function getUser()
-    {
-        return (new UserModel())->find($this->user_id);
-    }
 
     public function getToko()
     {
-        return (new TokoModel())->find($this->user_id);
+        return (new TokoModel())->find($this->toko_id);
     }
-
+    public function getTotal()
+    {
+        return $this->harga * $this->qty;
+    }
 }

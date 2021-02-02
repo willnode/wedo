@@ -5,6 +5,8 @@ namespace App\Controllers;
 use App\Entities\Article;
 use App\Entities\User as EntitiesUser;
 use App\Models\ArticleModel;
+use App\Models\BarangModel;
+use App\Models\CartModel;
 use App\Models\TokoModel;
 use App\Models\UserModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
@@ -29,22 +31,83 @@ class User extends BaseController
 
 	public function index()
 	{
-		$model = new TokoModel();
-		return view('belanja/toko',[
-			'page' => 'dashboard',
-			'data' => find_with_filter($model),
-		]);
+		return $this->response->redirect('/user/toko/');
 	}
 
-	public function toko($id)
+	public function toko($page = 'list', $id = null)
 	{
 		$model = new TokoModel();
-		if (!($item = $model->find($id))) {
-			throw new PageNotFoundException();
+		switch ($page) {
+			case 'list':
+				return view('belanja/toko/list', [
+					'page' => 'dashboard',
+					'data' => find_with_filter($model),
+				]);
+			case 'view':
+				if (!($item = $model->find($id))) {
+					throw new PageNotFoundException();
+				}
+				return view('belanja/toko/view', [
+					'item' => $item
+				]);
 		}
-		return view('belanja/barang',[
-			'item' => $item
-		]);
+	}
+
+	public function barang($page = 'view', $id = null)
+	{
+		$model = new BarangModel();
+		switch ($page) {
+			case 'view':
+				if (!($item = $model->find($id))) {
+					throw new PageNotFoundException();
+				}
+				return view('belanja/barang/view', [
+					'item' => $item
+				]);
+		}
+		throw new PageNotFoundException();
+	}
+
+	public function cart($page = 'list')
+	{
+		$model = new CartModel();
+		if ($this->request->getMethod() == 'post') {
+			$_POST['user_id'] = $this->login->id;
+			switch ($page) {
+				case 'add':
+					try {
+						$model->processWeb(null);
+					} catch (\Throwable $th) {
+						$g = $model->with([
+							'user_id' => 	$_POST['user_id'],
+							'barang_id' => 	$_POST['barang_id'],
+						])->findAll()[0];
+						$g->qty += $_POST['qty'];
+						$model->save($g);
+					}
+					return $this->response->redirect($_POST['r'] ?? previous_url());
+				case 'set':
+					$g = $model->with([
+						'user_id' => 	$_POST['user_id'],
+						'barang_id' => 	$_POST['barang_id'],
+					])->findAll()[0];
+					$g->qty = $_POST['qty'];
+					$model->save($g);
+					return $this->response->redirect($_POST['r'] ?? previous_url());
+				case 'delete':
+					$model->with([
+						'user_id' => 	$_POST['user_id'],
+						'barang_id' => 	$_POST['barang_id'],
+					])->delete();
+					return $this->response->redirect($_POST['r'] ?? previous_url());
+			}
+		}
+		switch ($page) {
+			case 'list':
+				return view('belanja/cart/view', [
+					'page' => 'cart',
+				]);
+		}
 	}
 
 	public function logout()
@@ -53,40 +116,6 @@ class User extends BaseController
 		return $this->response->redirect('/');
 	}
 
-
-	public function article($page = 'list', $id = null)
-	{
-		$model = new ArticleModel();
-		if ($this->login->role !== 'admin') {
-			$model->withUser($this->login->id);
-		}
-		if ($this->request->getMethod() === 'post') {
-			if ($page === 'delete' && $model->delete($id)) {
-				return $this->response->redirect('/user/article/');
-			} else if ($id = $model->processWeb($id)) {
-				return $this->response->redirect('/user/article/');
-			}
-		}
-		switch ($page) {
-			case 'list':
-				return view('article/manage', [
-					'data' => find_with_filter(empty($_GET['category']) ? $model : $model->withCategory($_GET['category'])),
-					'page' => 'article',
-				]);
-			case 'add':
-				return view('article/edit', [
-					'item' => new Article()
-				]);
-			case 'edit':
-				if (!($item = $model->find($id))) {
-					throw new PageNotFoundException();
-				}
-				return view('article/edit', [
-					'item' => $item
-				]);
-		}
-		throw new PageNotFoundException();
-	}
 
 	public function manage($page = 'list', $id = null)
 	{

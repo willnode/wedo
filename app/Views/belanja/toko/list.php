@@ -4,11 +4,6 @@
 <?= view('shared/head') ?>
 
 <body>
-  <style>
-  .logo {
-    width: 64px;
-  }
-  </style>
   <div class="wrapper">
     <?= view('shared/navbar') ?>
     <div class="content-wrapper p-4">
@@ -16,12 +11,16 @@
         <div class="card">
           <div class="card-body">
             <?php /** @var \App\Entities\Toko[] $data */ ?>
-           <?php foreach ($data as $value) : ?>
-                <a href="/user/toko/<?= $value->id?>">
-               <img href="/uploads/logo/<?= $value->logo?>">
-               <?= $value->nama?>
-               </a>
-          <?php endforeach?>
+            <div class="row">
+              <?php foreach ($data as $toko) : ?>
+                <div class="col-md-6 col-lg-4 col-xl-3">
+                  <a href="/user/toko/view/<?= $toko->id ?>">
+                    <img src="/uploads/logo/<?= $toko->logo ?>" alt="" width="100%">
+                    <h4><?= $toko->nama ?></h4>
+                  </a>
+                </div>
+              <?php endforeach ?>
+            </div>
             <?= view('shared/pagination') ?>
           </div>
         </div>

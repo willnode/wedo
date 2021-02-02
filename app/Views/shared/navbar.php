@@ -43,26 +43,34 @@
     <nav class="mt-2">
       <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
         <li class="nav-item">
-          <a href="/" class="nav-link <?= ($page ?? '') == 'home' ? 'active' : '' ?>">
-            <i class="nav-icon fas fa-home"></i>
+          <a href="/user/" class="nav-link <?= ($page ?? '') == 'home' ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-store"></i>
             <p>
-              Home
+              Belanja
             </p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="/category/news/" class="nav-link <?= ($page ?? '') == 'news' ? 'active' : '' ?>">
-            <i class="nav-icon fas fa-newspaper"></i>
+          <a href="/user/cart/" class="nav-link <?= ($page ?? '') == 'cart' ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-shopping-cart"></i>
             <p>
-              News
+              Keranjang
             </p>
           </a>
         </li>
         <li class="nav-item">
-          <a href="/category/info/" class="nav-link <?= ($page ?? '') == 'akun' ? 'active' : '' ?>">
+          <a href="/user/cart/history/" class="nav-link <?= ($page ?? '') == 'history' ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-scroll"></i>
+            <p>
+              Transaksi
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" target="_blank" class="nav-link">
             <i class="nav-icon fas fa-info"></i>
             <p>
-              Akun
+              Chat Kami
             </p>
           </a>
         </li>
