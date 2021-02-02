@@ -2,7 +2,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= $meta_title = esc($item->title ?? $title ?? 'Template') ?></title>
+    <title><?= $meta_title = esc($item->nama ?? $nama ?? 'WE-DO Probolinggo') ?></title>
     <meta name="description" content="<?= $meta_desc = esc($item->description ?? $description ?? 'Awesome Description') ?>">
     <meta name="og:title" content="<?= $meta_title ?>" />
     <meta name="og:description" content="<?= $meta_desc ?>" />

@@ -19,7 +19,7 @@
             <div class="d-flex">
               <div class="ml-auto">
                 <?= view('shared/button', [
-                  'actions' => ['add'],
+                  'actions' => ['timer', 'archive'],
                   'target' => '',
                   'size' => 'btn-lg'
                 ]); ?>
@@ -28,15 +28,21 @@
             <?= view('shared/table', [
               'data' => $data,
               'columns' => [
-                'Nama' => function (\App\Entities\Penjualan $x) {
-                  return '<img src="/uploads/logo/' . $x->logo . '" alt="" class="mr-2 logo">' . esc($x->nama);
+                'Customer' => function (\App\Entities\Penjualan $x) {
+                  return esc($x->name);
                 },
                 'Lokasi' => function (\App\Entities\Penjualan $x) {
-                  return esc($x->lokasi);
+                  return esc($x->alamat);
+                },
+                'Total' => function (\App\Entities\Penjualan $x) {
+                  return rupiah($x->total);
+                },
+                'Status' => function (\App\Entities\Penjualan $x) {
+                  return \App\Models\PenjualanModel::$statusesInHtml[$x->status];
                 },
                 'Edit' => function (\App\Entities\Penjualan $x) {
                   return view('shared/button', [
-                    'actions' => ['detail','edit','open'],
+                    'actions' => ['wa', 'detail'],
                     'target' => $x->id,
                     'size' => 'btn-sm'
                   ]);

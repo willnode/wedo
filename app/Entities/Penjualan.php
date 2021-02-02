@@ -9,8 +9,8 @@ use CodeIgniter\I18n\Time;
 /**
  * @property int $id
  * @property int $user_id
- * @property int $toko_id
  * @property int $total
+ * @property User $user
  * @property Cart[] $nota
  * @property string $status
  * @property Time $created_at
@@ -22,7 +22,11 @@ class Penjualan extends Entity
         'id' => 'integer',
         'total' => 'integer',
         'user_id' => 'integer',
-        'toko_id' => 'integer',
         'nota' => 'json',
     ];
+
+    public function getUser()
+    {
+        return (new UserModel())->find($this->user_id);
+    }
 }

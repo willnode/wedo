@@ -11,10 +11,10 @@
       <div class="container">
         <div class="card">
           <div class="card-body">
+            <h4>Order: #<?= $item->id ?></h4>
+            <h4>Status: <?= \App\Models\PenjualanModel::$statusesInHtml[$item->status] ?></h4>
+            <h4>Tanggal Pembelian: <?= $item->created_at->toDateTimeString() ?></h4>
             <table class="table my-3">
-              <h4>Order: #<?= $item->id ?></h4>
-              <h4>Status: <?= \App\Models\PenjualanModel::$statusesInHtml[$item->status] ?></h4>
-              <h4>Tanggal Pembelian: <?= $item->created_at->toDateTimeString() ?></h4>
               <thead>
                 <tr>
                   <th>Barang</th>
@@ -26,7 +26,11 @@
               <tbody>
                 <?php foreach ($item->nota as $x) : ?>
                   <tr>
-                    <td><?= '<img src="/uploads/logo/' . $x->barang->logo . '" alt="" class="mr-2 logo">' . esc($x->barang->nama) ?></td>
+                    <td>
+                      <a href="/user/barang/view/<?= $x->barang_id ?>">
+                        <?= '<img src="/uploads/logo/' . $x->barang->logo . '" alt="" class="mr-2 logo">' . esc($x->barang->nama) ?>
+                      </a>
+                    </td>
                     <td style="vertical-align: middle;"><?= rupiah($x->barang->harga) ?></td>
                     <td style="vertical-align: middle;"> &times; <?= esc($x->qty) ?> </td>
                     <td style="vertical-align: middle;"><?= rupiah($x->barang->harga * $x->qty) ?></td>

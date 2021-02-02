@@ -202,37 +202,31 @@ class Admin extends BaseController
 			if ($page === 'delete' && $model->delete($id)) {
 				return $this->response->redirect('/admin/penjualan/');
 			} else if ($id = $model->processWeb($id)) {
-				return $this->response->redirect('/admin/penjualan/?toko_id=' . $_POST['toko_id'] ?? '');
+				return $this->response->redirect('/admin/penjualan/detail/' . $id);
 			}
-		}
-		if (!empty($_GET['toko_id'])) {
-			$model->withToko($_GET['toko_id']);
-			$toko = (new TokoModel())->find($_GET['toko_id']);
 		}
 		switch ($page) {
 			case 'list':
 				return view('admin/penjualan/manage', [
-					'data' => find_with_filter($model),
+					'data' => find_with_filter($model->joinUser()),
 					'toko' => $toko ?? null,
 					'page' => 'penjualan',
 				]);
 			case 'laporan':
-				return view('admin/penjualan/manage', [
-					'data' => find_with_filter($model),
-					'toko' => $toko ?? null,
+				return view('admin/penjualan/laporan', [
 					'page' => 'laporan',
 				]);
-			case 'add':
-				return view('admin/penjualan/edit', [
-					'toko' => $toko ?? null,
-					'item' => new Penjualan()
-				]);
-			case 'edit':
+			case 'wa':
+				/** @var Penjualan $item */
 				if (!($item = $model->find($id))) {
 					throw new PageNotFoundException();
 				}
-				return view('admin/penjualan/edit', [
-					'toko' => $toko ?? $item->toko,
+				return $this->response->redirect('https://wa.me/62' . substr($item->user->nohp, 1));
+			case 'detail':
+				if (!($item = $model->find($id))) {
+					throw new PageNotFoundException();
+				}
+				return view('admin/penjualan/view', [
 					'item' => $item
 				]);
 		}

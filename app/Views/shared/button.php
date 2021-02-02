@@ -41,9 +41,24 @@
                 <a href="?view=<?= ($_GET['view'] ?? '') === 'grid' ? 'list' : 'grid' ?>" class="btn <?= $size ?> btn-info"><i class="fa fa-<?= ($_GET['view'] ?? '') === 'grid' ? 'list' : 'th' ?>"></i></a>
             <?php
                 break;
+            case 'timer':
+            ?>
+                <a href="?<?= ($_GET['timer'] ?? '') === 'y' ? '' : 'timer=y' ?>" class="btn <?= $size ?> btn-info"><i class="fa-clock fa<?= ($_GET['timer'] ?? '') === 'y' ? 's' : 'r' ?>"></i></a>
+            <?php
+                break;
+            case 'archive':
+            ?>
+                <a href="?<?= ($_GET['archive'] ?? '') === 'y' ? '' : 'archive=y' ?>" class="btn <?= $size ?> btn-dark"><i class="fa-file-archive fa<?= ($_GET['archive'] ?? '') === 'y' ? 's' : 'r' ?>"></i></a>
+            <?php
+                break;
             case 'download':
             ?>
                 <a href="<?= $value . '/' . $target ?>" class="btn <?= $size ?> btn-success"><i class="fa fa-download"></i></a>
+            <?php
+                break;
+            case 'wa':
+            ?>
+                <a href="<?= $value . '/' . $target ?>" target="_blank" class="btn <?= $size ?> btn-success"><i class="fab fa-whatsapp"></i></a>
         <?php
                 break;
         } ?>

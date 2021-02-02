@@ -37,6 +37,13 @@ class PenjualanModel extends Model
         return $this;
     }
 
+    public function joinUser()
+    {
+        $this->builder()->select('penjualan.id, avatar, user_id, name, nota, nohp, status, total');
+        $this->builder()->join('user', 'user.id = penjualan.user_id');
+        return $this;
+    }
+
     /** @param Cart[] $cart */
     public static function makePenjualan(array $cart, $user_id)
     {
@@ -51,5 +58,21 @@ class PenjualanModel extends Model
         $item->total = CartModel::getTotal($cart);
         $item->status = 'menunggu';
         return $item;
+    }
+
+    public function processWeb($id)
+    {
+        if ($id === null) {
+            $item = (new Penjualan($_POST));
+            return $this->insert($item);
+        } else if ($item = $this->find($id)) {
+            /** @var Penjualan $item */
+            $item->fill($_POST);
+            if ($item->hasChanged()) {
+                $this->save($item);
+            }
+            return $id;
+        }
+        return false;
     }
 }
