@@ -22,7 +22,7 @@
 <aside class="main-sidebar sidebar-light-yellow elevation-4">
   <!-- Brand Logo -->
   <a href="/" class="brand-link">
-    <img src="/logo_light.png" alt="AdminLTE Logo" class="brand-image" style="opacity: .8">
+    <img src="/3wedo.png" alt="AdminLTE Logo" class="brand-image" style="opacity: .8">
     <span class="brand-text font-weight-light">WEDO
   </a>
 
@@ -67,6 +67,7 @@
           </a>
         </li>
         <li class="nav-item">
+<<<<<<< Updated upstream
           <a href="/user/profile/" class="nav-link <?= ($page ?? '') == 'profile' ? 'active' : '' ?>">
             <i class="nav-icon fas fa-user"></i>
             <p>
@@ -76,6 +77,9 @@
         </li>
         <li class="nav-item">
           <a href="#" target="_blank" class="nav-link">
+=======
+          <a href="https://wa.me/6285330147129/?text=|from%20USER%20WEDO|%20'PesanAnda'" target="_blank" class="nav-link">
+>>>>>>> Stashed changes
             <i class="nav-icon fas fa-info"></i>
             <p>
               Chat Kami

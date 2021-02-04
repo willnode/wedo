@@ -68,7 +68,7 @@
         }
     </style>
     <div class="justify-content-center container d-flex flex-column" style="min-height: 100vh; max-width: 476px">
-        <p class="mt-5"><a href="/"><img src="/logo_dark.png" alt="Logo" width="150px"></a></p>
+        <p class="mt-5"><a href="/"><img src="/3wedo.png" alt="Logo" width="150px"></a></p>
         <form method="POST" name="loginForm" class="container shadow d-flex flex-column justify-content-center pb-1 pt-3 text-white">
             <h1 class="mb-4">Enter to Portal</h1>
             <input type="text" name="nohp" placeholder="Nomor HP" class="form-control mb-2">

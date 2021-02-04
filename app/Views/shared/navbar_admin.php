@@ -27,8 +27,8 @@
 <aside class="main-sidebar sidebar-dark-yellow elevation-4">
   <!-- Brand Logo -->
   <a href="/" class="brand-link">
-    <img src="/logo_dark.png" alt="AdminLTE Logo" class="brand-image" style="opacity: .8">
-    <span class="brand-text font-weight-light">Template</span>
+    <img src="/6wedo.png" alt="AdminLTE Logo" class="brand-image" style="opacity: .8">
+    <span class="brand-text font-weight-light">WEDO Admin</span>
   </a>
 
   <!-- Sidebar -->

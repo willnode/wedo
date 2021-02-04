@@ -8,8 +8,7 @@
       <div class="card my-3">
         <div class="row gutter-0">
           <div class="carousel-item active">
-                        <div style="background: url(https://images.unsplash.com/photo-1591686224641-2e07b13c0b51?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1834&q=80) center/cover;
-        height: 100%;"></div>
+            <div style="background: url(https://unsplash.com/photos/fyJ3I6o7q84) center/cover; height: 100%;"></div>
            </div>
         </div>
       </div>
