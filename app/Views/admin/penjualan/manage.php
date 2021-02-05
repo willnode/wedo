@@ -5,9 +5,9 @@
 
 <body>
   <style>
-  .logo {
-    width: 64px;
-  }
+    .logo {
+      width: 64px;
+    }
   </style>
   <div class="wrapper">
     <?= view('shared/navbar_admin') ?>
@@ -38,6 +38,9 @@
                   return rupiah($x->total);
                 },
                 'Status' => function (\App\Entities\Penjualan $x) {
+                  if ($x->status == 'menunggu') {
+                    $_GET['waiting'] = 'y';
+                  }
                   return \App\Models\PenjualanModel::$statusesInHtml[$x->status];
                 },
                 'Edit' => function (\App\Entities\Penjualan $x) {
@@ -53,6 +56,19 @@
           </div>
         </div>
       </div>
+      <?php if ($_GET['timer'] ?? '') : ?>
+        <script>
+          setTimeout(function() {
+            location.reload();
+          }, 30000);
+        </script>
+        <?php if (isset($_GET['waiting'])) : ?>
+          <script>
+            var audio = new Audio('/notify.mp3');
+            audio.play();
+          </script>
+        <?php endif ?>
+      <?php endif ?>
     </div>
   </div>
 </body>

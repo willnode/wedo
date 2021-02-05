@@ -23,11 +23,11 @@
                     </tr>
                     <tr>
                       <td>Nomor HP</td>
-                      <th><a href="../wa/<?= $item->id ?>"><?= esc($user->nohp) ?></a></th>
+                      <th><a href="../wa/<?= $item->id ?>" target="_blank"><?= esc($user->nohp) ?></a></th>
                     </tr>
                     <tr>
                       <td>Alamat</td>
-                      <th><?= esc($user->alamat) ?></th>
+                      <th><a href="../maps/<?= $item->id ?>" target="_blank"><?= esc($user->alamat) ?></a></th>
                     </tr>
                     <tr>
                       <td>Avatar</td>
