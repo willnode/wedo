@@ -36,6 +36,11 @@ class PenjualanModel extends Model
         ]);
         return $this;
     }
+    public function with($filter)
+    {
+        $this->builder()->where($filter);
+        return $this;
+    }
 
     public function joinUser()
     {

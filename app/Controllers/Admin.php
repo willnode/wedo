@@ -207,6 +207,11 @@ class Admin extends BaseController
 		}
 		switch ($page) {
 			case 'list':
+				if ($_GET['archive'] ?? '') {
+					$model->with('status IN ("diterima", "dibatalkan")');
+				} else {
+					$model->with('status IN ("menunggu", "diproses")');
+				}
 				return view('admin/penjualan/manage', [
 					'data' => find_with_filter($model->joinUser()),
 					'toko' => $toko ?? null,
@@ -222,6 +227,12 @@ class Admin extends BaseController
 					throw new PageNotFoundException();
 				}
 				return $this->response->redirect('https://wa.me/62' . substr($item->user->nohp, 1));
+			case 'maps':
+				/** @var Penjualan $item */
+				if (!($item = $model->find($id))) {
+					throw new PageNotFoundException();
+				}
+				return $this->response->redirect('https://maps.google.com/?q=' . urlencode($item->user->alamat));
 			case 'detail':
 				if (!($item = $model->find($id))) {
 					throw new PageNotFoundException();
