@@ -5,3 +5,322 @@
 img {
     object-fit: contain;
 }
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=Roboto:wght@300;400;500;700;900&display=swap");
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Open Sans", sans-serif;
+}
+
+a {
+  text-decoration: none;
+}
+
+body,
+p {
+  font-family: "Roboto", sans-serif;
+}
+
+.navbar {
+  background: #0a0a0a !important;
+}
+
+.navbar a {
+  font-size: 18px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.btn-order {
+  background: #FBFB39;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.btn-order:hover {
+  -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+}
+
+.card {
+  border-radius: 20px;
+}
+
+.product-card .card {
+  margin-top: 30px;
+}
+
+.product-card .card:hover {
+  -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+}
+
+.product-card .card h5,
+.product-card .card p {
+  color: #000000;
+}
+
+.product-card:hover {
+  text-decoration: none;
+}
+
+.hero {
+  margin-top: 50px;
+}
+
+.hero .jumbotron {
+  border-radius: 0;
+  width: 100%;
+  height: 100vh;
+  min-height: 650px !important;
+  background-size: cover !important;
+  color: #FFFFFF;
+  padding: auto;
+}
+
+.hero .jumbotron .container {
+  padding-top: 150px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.service-section {
+  padding-top: 50px;
+  padding-bottom: 50px;
+  padding-left: 200px;
+  padding-right: 200px;
+}
+
+.service-section a {
+  color: #000000;
+  text-decoration: none;
+}
+
+.service-section a .card {
+  border: none;
+  border-radius: 20px;
+  -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+}
+
+.service-section a .card h5 {
+  margin-top: 20px;
+}
+
+.partner-section {
+  padding-top: 50px;
+  padding-bottom: 70px;
+}
+
+.partner-section .partner-card .card {
+  margin-top: 20px;
+  height: 300px auto;
+  padding: 20px 0;
+}
+
+.partner-section .partner-card .card:hover {
+  -webkit-box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+          box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+}
+
+.partner-section .partner-card .card h5 {
+  margin-top: 30px;
+  color: #000000;
+}
+
+.partner-section .partner-card:hover {
+  text-decoration: none;
+}
+
+.not-list-section {
+  background: #F3F3F3;
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.hero-page .jumbotron {
+  background-size: cover !important;
+  height: 300px;
+}
+
+.hero-page .jumbotron .container {
+  margin-top: 40px;
+  color: #FFFFFF;
+}
+
+.open-time-section {
+  padding-top: 50px;
+  padding-bottom: 50px;
+}
+
+.product-section {
+  padding-top: 50px;
+  padding-bottom: 80px;
+}
+
+.product-detail {
+  padding-top: 20px;
+  padding-bottom: 80px;
+}
+
+.product-detail .product-gallery {
+  cursor: pointer;
+}
+
+.recommended-section {
+  padding-top: 50px;
+  padding-bottom: 80px;
+}
+
+.shop-section {
+  padding-top: 50px;
+  padding-bottom: 80px;
+}
+
+.cart-section {
+  background: #fafafa;
+  padding-top: 50px;
+  padding-bottom: 80px;
+}
+
+.cart-section .card .card-cart-product {
+  width: 60px;
+}
+
+.cart-section .card .card-cart-product img {
+  width: 100%;
+}
+
+.cart-section td {
+  vertical-align: middle;
+}
+
+.footer-section {
+  padding-top: 30px;
+  padding-bottom: 20px;
+}
+
+.footer-section hr {
+  width: 100%;
+  height: 1px;
+}
+
+.footer-section .btn {
+  border-radius: 50px;
+}
+
+.footer-section .copyright-text {
+  text-align: center;
+  font-size: 14px;
+}
+
+@media screen and (max-width: 600px) {
+  .hidden-mobile {
+    display: none;
+  }
+  .hidden-desktop {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  h2 {
+    font-size: 26px;
+  }
+  
+  .navbar {
+      height: 10vh;
+  }
+  
+  .hero .jumbotron {
+    height: 300px !important;
+    background-size: cover !important;
+    background-position: center center !important;
+  }
+  
+  .hero .jumbotron .container {
+    -webkit-box-align: center !important;
+        -ms-flex-align: center !important;
+            align-items: center !important;
+  }
+  .hero .jumbotron .container h1 {
+    font-size: 40px;
+  }
+  .service-section {
+    height: 30vh;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .service-section .card img {
+    width: 50px;
+  }
+  .service-section .card h5 {
+    font-size: 14px;
+    margin-top: 20px;
+  }
+  .partner-section .partner-card .card img {
+    width: 80px;
+  }
+  .partner-section .partner-card .card h5 {
+    margin-top: 20px;
+    font-size: 16px;
+  }
+  .footer-section img {
+    text-align: center;
+  }
+  .footer-section h4,
+  .footer-section p,
+  .footer-section a {
+    text-align: center;
+  }
+}
+
+
+/* Edited */
+.banner > .hero {
+  height: 90vh;
+  margin-top: 10vh;
+}
+
+.hero .jumbotron {
+  height: 90vh;
+  min-height: unset !important;
+  padding: 0;
+  margin: 0;
+}
+
+.not-available {
+    text-align: center;
+    line-height: 1.6;
+    background-color: var(--danger);
+    color: #FFF;
+}
+
+@media screen and (max-width: 600px) {
+  .banner > .hero {
+    height: 60vh !important;
+  }
+
+  .hero .jumbotron {
+    height: 60vh !important;
+  }
+
+  .service-section {
+    position: relative;
+    top: -15px;
+  }
+  .service-section .card img {
+    width: 40px;
+  }
+
+}
+
+/*# sourceMappingURL=style.css.map */

@@ -1,29 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-<?= view('shared/head') ?>
+<?= view("shared/head.php")?>
 
-<body class="sidebar-collapse">
-  <div class="wrapper">
-    <div class="content-wrapper p-4">
-      <div class="card my-3">
-        <div class="row gutter-0">
-          <div class="carousel-item active">
-            <div style="background: url(https://unsplash.com/photos/fyJ3I6o7q84) center/cover; height: 100%;"></div>
-           </div>
+<body>
+
+    <?= view('shared/navbar_index.php'); ?>
+
+    <section class="banner">
+
+        <div class="hero">
+            <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
+                    <div class="carousel-item active">
+                        <div class="jumbotron bg-1" style="background-image: url('/gambar1.jpg'); background-position: center;"></div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="jumbotron" style="background: url('/gambar2.jpg'); background-position: center;"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="not-list-section">
+        <div class="service-section">
+            <div class="container">
+              <h2 class="text-center">Layanan Kami</h2>
+                <div class="row">
+                    <div class="col-4">
+                        <a href="user/index.php">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <img src="/food-delivery.png" width="100" alt="">
+                                    <h5 class="card-title">Antar Barang</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-4">
+                        <a href="#" data-toggle="modal" data-target="#sendModal">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <img src="/food-delivery.png" width="100" alt="">
+                                    <h5 class="card-title">Jemput Barang</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-4">
+                        <a href="#" data-toggle="modal" data-target="#shopModal">
+                            <div class="card text-center">
+                                <div class="card-body">
+                                    <img src="/food-delivery.png" width="100" alt="">
+                                    <h5 class="card-title">Antar Orang</h5>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <div class="not-list-section">
         <div class="container">
-            <h3 class="text-center">Ingin pesan makanan mudah?<br>Langsung Konsultasi Ke Kami</h3>
+            <h3 class="text-center">Pengen beli makanan favorit kamu dari rumah ?<br>Langsung daftarkan diri anda</h3>
             <p class="text-center mt-5">
-                <a href="/login" class="btn btn-warning">Klik Disini</a>
+                <a href="/login" class="btn btn-order">Klik Disini</a>
             </p>
         </div>
     </div>
-    </div>
-    
-    
-  </div>
+
+    <?= view('shared/footer.php'); ?>
+
 </body>
+
+<?= view('shared/script.php') ?>
 
 </html>

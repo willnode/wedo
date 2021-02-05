@@ -75,7 +75,6 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="#" target="_blank" class="nav-link">
           <a href="https://wa.me/6285330147129/?text=|from%20USER%20WEDO|%20'PesanAnda'" target="_blank" class="nav-link">
             <i class="nav-icon fas fa-info"></i>
             <p>
