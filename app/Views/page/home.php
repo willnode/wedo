@@ -22,7 +22,7 @@
         </div>
         <div class="service-section">
             <div class="container">
-              <h2 class="text-center">Layanan Kami</h2>
+              <h2 class="text-center">Layanan Kami</h2><br />
                 <div class="row">
                     <div class="col-4">
                         <a href="user/index.php">

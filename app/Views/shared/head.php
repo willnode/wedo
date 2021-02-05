@@ -6,7 +6,7 @@
     <meta name="description" content="<?= $meta_desc = esc($item->description ?? $description ?? 'Awesome Description') ?>">
     <meta name="og:title" content="<?= $meta_title ?>" />
     <meta name="og:description" content="<?= $meta_desc ?>" />
-    <meta name="og:image" content="<?= esc($item->image_url ?? 'public/3wedo') ?>" />
+    <meta name="og:image" content="<?= esc($item->image_url ?? '') ?>" />
     <meta name="twitter:card" content="summary" />
     <meta name="theme-color" content="#ffc107">
 

@@ -1,5 +1,6 @@
 .logo {
     width: 64px;
+    object-fit: contain;
 }
 
 img {
@@ -25,7 +26,7 @@ p {
 }
 
 .navbar {
-  background: #0a0a0a !important;
+  background:#FFD438 !important;
 }
 
 .navbar a {
@@ -35,7 +36,7 @@ p {
 }
 
 .btn-order {
-  background: #FBFB39;
+  background: #FFD438;
   font-size: 18px;
   font-weight: 500;
 }
