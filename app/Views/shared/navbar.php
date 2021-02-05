@@ -67,7 +67,6 @@
           </a>
         </li>
         <li class="nav-item">
-<<<<<<< Updated upstream
           <a href="/user/profile/" class="nav-link <?= ($page ?? '') == 'profile' ? 'active' : '' ?>">
             <i class="nav-icon fas fa-user"></i>
             <p>
@@ -77,9 +76,7 @@
         </li>
         <li class="nav-item">
           <a href="#" target="_blank" class="nav-link">
-=======
           <a href="https://wa.me/6285330147129/?text=|from%20USER%20WEDO|%20'PesanAnda'" target="_blank" class="nav-link">
->>>>>>> Stashed changes
             <i class="nav-icon fas fa-info"></i>
             <p>
               Chat Kami
