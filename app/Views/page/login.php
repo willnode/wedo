@@ -2,7 +2,7 @@
 <html lang="en">
 <?= view('shared/head') ?>
 
-<body class="text-center" style="background: url(https://images.unsplash.com/photo-1444723121867-7a241cacace9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1953&q=80) center/cover #004494; position: relative">
+<body class="text-center" style="background: url(https://images.unsplash.com/photo-1470219556762-1771e7f9427d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1953&q=80) center/cover #ffc107; position: relative">
     <style>
         form {
             border-radius: 10px;
@@ -67,6 +67,14 @@
             margin-left: .5em;
         }
     </style>
+    <script>
+		window.addEventListener('DOMContentLoaded', (event) => {
+			var browser = navigator.userAgent.toLowerCase();
+			if (browser.indexOf('firefox') > -1) {
+				document.getElementsByTagName("form")[0].style.background = document.getElementsByTagName("body")[0].style.backgroundColor;
+			}
+		});
+	</script>
     <div class="justify-content-center container d-flex flex-column" style="min-height: 100vh; max-width: 476px">
         <p class="mt-5"><a href="/"><img src="/3wedo.png" alt="Logo" width="150px"></a></p>
         <form method="POST" name="loginForm" class="container shadow d-flex flex-column justify-content-center pb-1 pt-3 text-white">

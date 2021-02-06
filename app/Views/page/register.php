@@ -68,6 +68,14 @@
             margin-left: .5em;
         }
     </style>
+    <script>
+		window.addEventListener('DOMContentLoaded', (event) => {
+			var browser = navigator.userAgent.toLowerCase();
+			if (browser.indexOf('firefox') > -1) {
+				document.getElementsByTagName("form")[0].style.background = document.getElementsByTagName("body")[0].style.backgroundColor;
+			}
+		});
+	</script>
     <div class="justify-content-center container d-flex flex-column" style="min-height: 100vh; max-width: 476px">
         <p class="my-5"><a href="/"><img src="/3wedo.png" alt="Logo" width="150px"></a></p>
         <form method="POST" name="loginForm" class="container shadow d-flex flex-column justify-content-center pb-1 pt-3 text-white">

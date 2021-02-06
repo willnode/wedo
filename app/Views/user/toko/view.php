@@ -12,7 +12,7 @@
         <div class="card">
           <div class="card-body">
             <div class="d-flex">
-              <img class="mr-2" src="/uploads/logo/<?= $item->logo ?>" width="120px" height="120px" alt="">
+              <img class="mr-3" src="/uploads/logo/<?= $item->logo ?>" width="150px" height="150px" alt="">
               <div>
                 <h1><?= $item->nama ?></h1>
                 <p><?= $item->deskripsi ?></p>
