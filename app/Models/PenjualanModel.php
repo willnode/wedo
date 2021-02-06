@@ -6,6 +6,7 @@ use App\Entities\Article;
 use App\Entities\Cart;
 use App\Entities\Penjualan;
 use CodeIgniter\Model;
+use Config\Database;
 use Config\Services;
 
 class PenjualanModel extends Model
@@ -40,6 +41,21 @@ class PenjualanModel extends Model
     {
         $this->builder()->where($filter);
         return $this;
+    }
+
+    public function aggregate()
+    {
+        return Database::connect()->query(
+            "SELECT
+            week(created_at) as week,
+            min(created_at) as min_date,
+            max(created_at) as max_date,
+            SUM(total) AS gross,
+            COUNT(*) AS qty
+                FROM penjualan
+                WHERE status = 'diterima'
+                GROUP BY WEEK(created_at)"
+        )->getResult();
     }
 
     public function joinUser()

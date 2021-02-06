@@ -220,6 +220,7 @@ class Admin extends BaseController
 			case 'laporan':
 				return view('admin/penjualan/laporan', [
 					'page' => 'laporan',
+					'data' => $model->aggregate(),
 				]);
 			case 'wa':
 				/** @var Penjualan $item */

@@ -15,7 +15,20 @@
       <div class="container">
         <div class="card">
           <div class="card-body">
-            Coming Soon
+          <?= view('shared/table', [
+              'data' => $data,
+              'columns' => [
+                'Tanggal' => function ($x) {
+                  return substr($x->min_date, 0, 10).' s/d '.substr($x->max_date, 0, 10);
+                },
+                'Penjualan' => function ($x) {
+                  return esc($x->qty);
+                },
+                'Bruto' => function ($x) {
+                  return rupiah($x->gross);
+                }
+              ]
+            ]) ?>
           </div>
         </div>
       </div>
