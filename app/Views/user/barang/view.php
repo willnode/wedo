@@ -42,10 +42,12 @@
                     <img src="<?= $user->getAvatarUrl() ?>" width="80px" alt="" class="mr-3">
                     <div>
                       <h5><?= esc($user->name) ?></h5>
-                      <p><?= esc($review->content) ?>
+                      <h6><?= str_repeat('<i class="fa fa-star"></i>', $review->rating)?></h6>
+                      <div>
+                        <?= esc($review->content) ?>
                         <br>
                         <small class="text-black-50"><?= esc($review->updated_at->humanize()) ?></small>
-                      </p>
+                      </div>
                     </div>
                   </div>
                 <?php endforeach ?>
