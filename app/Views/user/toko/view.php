@@ -12,25 +12,24 @@
         <div class="card">
           <div class="card-body">
             <div class="d-flex">
-              <img class="mr-2" src="/uploads/logo/<?= $item->logo ?>" width="100px" height="100px" alt="">
+              <img class="mr-2" src="/uploads/logo/<?= $item->logo ?>" width="120px" height="120px" alt="">
               <div>
                 <h1><?= $item->nama ?></h1>
                 <p><?= $item->deskripsi ?></p>
-                <p><?= $item->lokasi ?></p>
+                <p class="text-black-50">Alamat:<br><?= $item->lokasi ?></p>
               </div>
             </div>
           </div>
         </div>
         <div class="card">
           <div class="card-body">
-            <div class="row">
+            <div class="row user-choose">
               <?php foreach ($item->barang as $barang) : ?>
-                <div class="col-md-6 col-lg-4 col-xl-3">
+                <div class="col-md-6 col-lg-4 col-xl-3 user-item">
                   <a href="/user/barang/view/<?= $barang->id ?>">
                     <img src="/uploads/logo/<?= $barang->logo ?>" width="100%">
                     <h4><?= $barang->nama ?></h4>
-                    <div><?= rupiah($barang->harga) ?></div>
-                    <div><?= $barang->content ?></div>
+                    <div class="text-center text-black-50"><?= rupiah($barang->harga) ?></div>
                   </a>
                 </div>
               <?php endforeach ?>

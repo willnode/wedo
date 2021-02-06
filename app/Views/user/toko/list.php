@@ -11,9 +11,10 @@
         <div class="card">
           <div class="card-body">
             <?php /** @var \App\Entities\Toko[] $data */ ?>
-            <div class="row">
+            <h2 class="mb-3">Belanja Aneka Toko Disini:</h2>
+            <div class="row user-choose">
               <?php foreach ($data as $toko) : ?>
-                <div class="col-md-6 col-lg-4 col-xl-3">
+                <div class="col-md-6 col-lg-4 col-xl-3 user-item">
                   <a href="/user/toko/view/<?= $toko->id ?>">
                     <img src="/uploads/logo/<?= $toko->logo ?>" alt="" width="100%">
                     <h4><?= $toko->nama ?></h4>

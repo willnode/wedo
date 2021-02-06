@@ -6,6 +6,30 @@
 img {
     object-fit: contain;
 }
+
+
+.user-item {
+  padding-top: 0.5em;
+}
+.user-choose a {
+  color: black;
+}
+
+.user-choose h4 {
+  margin: 0.5em 0;
+  text-align: center;
+}
+
+
+.user-item {
+  transition: all 0.2s;
+}
+
+.user-item:hover {
+  background-color: #FFD438;
+}
+
+
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&family=Roboto:wght@300;400;500;700;900&display=swap");
 h1,
 h2,
@@ -234,17 +258,17 @@ p {
   h2 {
     font-size: 26px;
   }
-  
+
   .navbar {
       height: 10vh;
   }
-  
+
   .hero .jumbotron {
     height: 300px !important;
     background-size: cover !important;
     background-position: center center !important;
   }
-  
+
   .hero .jumbotron .container {
     -webkit-box-align: center !important;
         -ms-flex-align: center !important;
@@ -323,5 +347,3 @@ p {
   }
 
 }
-
-/*# sourceMappingURL=style.css.map */
