@@ -39,7 +39,7 @@
                     <th>
                       <?php if ($item->status == 'diterima') : ?>
                         <?php $rr = $rm->atBarangUser($x->barang_id, $item->user_id) ?>
-                        <button type="button" onclick="updateRatingBox(this)" class="btn btn-success" title="Review Barang Ini" data-toggle="modal" data-target="#exampleModal" data-barang="<?= $x->barang_id ?>" data-rating="<?= $rr->rating ?? 0 ?>" data-content="<?= esc($rr->content ?? '') ?>">
+                        <button type="button" onclick="updateRatingBox(this)" class="btn <?= $rr ? 'btn-success' : 'btn-outline-success' ?>" title="Review Barang Ini" data-toggle="modal" data-target="#exampleModal" data-barang="<?= $x->barang_id ?>" data-rating="<?= $rr->rating ?? 0 ?>" data-content="<?= esc($rr->content ?? '') ?>">
                           <i class="<?= $rr ? 'fas' : 'far' ?> fa-star"></i>
                         </button>
                       <?php endif ?>

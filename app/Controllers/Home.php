@@ -101,6 +101,19 @@ class Home extends BaseController
 	{
 		$path = WRITEPATH . implode(DIRECTORY_SEPARATOR, ['uploads', $directory, $file]);
 		if ($file && is_file($path)) {
+			$last_modified_time = filemtime($path);
+			$etag = md5_file($path);
+			header("Last-Modified: " . gmdate("D, d M Y H:i:s", $last_modified_time) . " GMT");
+			header("Etag: $etag");
+			header("Cache-Control: public");
+			header_remove('Pragma');
+			if (
+				strtotime($_SERVER['HTTP_IF_MODIFIED_SINCE'] ?? '') == $last_modified_time ||
+				trim($_SERVER['HTTP_IF_NONE_MATCH'] ?? '') == $etag
+			) {
+				header("HTTP/1.1 304 Not Modified");
+				exit;
+			}
 			header('Content-Type: ' . mime_content_type($path));
 			header('Content-Length: ' . filesize($path));
 			readfile($path);
