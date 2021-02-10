@@ -13,7 +13,7 @@
           <div class="col-lg-6">
             <div class="card">
               <div class="card-body">
-                <div class="d-flex">
+                <div class="d-flex flex-column flex-md-row">
                   <img class="mr-2" src="/uploads/logo/<?= $item->logo ?>" width="100px" height="100px" alt="">
                   <div>
                     <h1><?= esc($item->nama) ?></h1>

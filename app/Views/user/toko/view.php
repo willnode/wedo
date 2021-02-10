@@ -11,7 +11,7 @@
       <div class="container">
         <div class="card">
           <div class="card-body">
-            <div class="d-flex">
+            <div class="d-flex flex-column flex-md-row">
               <img class="mr-3" src="/uploads/logo/<?= $item->logo ?>" width="150px" height="150px" alt="">
               <div>
                 <h1><?= $item->nama ?></h1>
