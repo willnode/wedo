@@ -39,7 +39,7 @@ class Home extends BaseController
 					if ($r = $this->request->getCookie('r')) {
 						$this->response->deleteCookie('r');
 					}
-					return $this->response->redirect(base_url($r ?: $login->role));
+					return $this->response->redirect(base_url($login->role));
 				}
 			}
 			$m = lang('Interface.wrongLogin');
