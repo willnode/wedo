@@ -30,4 +30,8 @@ class User extends Entity
         else
             return get_gravatar($this->nohp, 80, 'identicon');
     }
+    public function discardPassword()
+    {
+        $this->attributes['password'] = $this->original['password'];
+    }
 }
