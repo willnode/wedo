@@ -40,6 +40,7 @@ class UserModel extends Model
         $data = array_intersect_key($data, array_flip(
             ['name', 'nohp', 'password', 'alamat']
         ));
+        $data['role'] = 'user';
         if (!empty($data['password']))
             $data['password'] = password_hash($data['password'], PASSWORD_BCRYPT);
         if ($this->save($data)) {
