@@ -9,7 +9,7 @@
             </div>
 
             <div class="col-md-10 mt-3">
-                <p style="text-align: justify"><strong>WEDO</strong> Merupakan kurir lokal, utamanya Kota Probolinggo yang membantumu untuk tetap bisa menikmati produk-produk berkualitas probolinggo walaupun sedang di rumah. Karena motto kami "(di isi motto)" yang tentunya akan memberikan kemudahan dan kenyamanan bagi anda para customer WEDO</div>
+                <p style="text-align: justify"><strong>WEDO</strong> Merupakan kurir lokal, utamanya Kota Probolinggo yang membantumu untuk tetap bisa menikmati produk-produk berkualitas probolinggo walaupun sedang di rumah. Karena motto kami Wedo What You Need yang tentunya akan memberikan kemudahan dan kenyamanan bagi anda para customer WEDO</div>
 
             <div class="col-md-12 mt-3 text-center">
                 <p>

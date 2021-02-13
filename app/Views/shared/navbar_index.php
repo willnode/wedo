@@ -1,7 +1,8 @@
-<nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" style="height: 10vh">
+<nav class="navbar-index fixed-top navbar-expand-lg navbar-light bg-light" style="height: 10vh">
     <div class="container">
+        <br />
         <a class="navbar-brand" href="#">
-            <img src="/4wedo.png" width="45" alt="">
+            <img src="/7wedo.png" width="100" alt="">
         </a>
     </div>
 </nav>

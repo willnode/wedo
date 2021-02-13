@@ -57,7 +57,9 @@ body,
 p {
   font-family: "Roboto", sans-serif;
 }
-
+.navbar-index{
+  background: #F3F3F3;
+}
 .navbar {
   background: #FFD438 !important;
 }
@@ -270,7 +272,7 @@ p {
     font-size: 26px;
   }
 
-  .navbar {
+  .navbar .navbar-index {
     height: 10vh;
   }
 
