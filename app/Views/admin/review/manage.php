@@ -18,7 +18,7 @@
             <?php /** @var \App\Entities\Barang[] $data */ ?>
             <?php /** @var \App\Entities\Toko $toko */ ?>
             <?php if ($toko) : ?>
-              <div class="d-flex align-items-center">
+              <div class="d-flex flex-column flex-md-row align-items-center">
                 <a href="/admin/toko/" class="btn btn-lg btn-outline-secondary mr-2"><div class="fa fa-arrow-left"></div></a>
                 <h1><?= esc($toko->nama) ?></h1>
                 <div class="ml-auto">

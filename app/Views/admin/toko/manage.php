@@ -16,7 +16,7 @@
         <div class="card">
           <div class="card-body">
             <?php /** @var \App\Entities\Toko[] $data */ ?>
-            <div class="d-flex">
+            <div class="d-flex flex-column flex-md-row">
               <div class="ml-auto">
                 <?= view('shared/button', [
                   'actions' => ['add'],

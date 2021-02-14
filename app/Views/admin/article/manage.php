@@ -11,7 +11,7 @@
         <div class="card">
           <div class="card-body">
             <?php /** @var \App\Entities\Article[] $data */ ?>
-            <div class="d-flex">
+            <div class="d-flex flex-column flex-md-row">
               <form method="get" class="btn-group">
                 <?= implode('', array_map(function ($x) {
                   return '<button type="submit" name="category" class="btn btn-primary ' . (($_GET['category'] ?? '') === $x ? 'active' : '') .
