@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Entities\Cart;
+use App\Entities\Config;
 use App\Entities\Review;
 use App\Libraries\CartProcessor;
 use App\Libraries\Recaptha;
@@ -27,6 +28,11 @@ class Home extends BaseController
 			'info' => find_with_filter((new ArticleModel())->withCategory('info'), 2),
 			'page' => 'home',
 		]);
+	}
+
+	public function custom()
+	{
+		return $this->response->redirect(HP2WA(Config::get()->whatsapp));
 	}
 
 	public function login()

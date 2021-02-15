@@ -87,13 +87,22 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="/admin/config/" class="nav-link <?= ($page ?? '') === 'config' ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-cogs"></i>
+            <p>
+              Pengaturan Web
+            </p>
+          </a>
+        </li>
+        <!-- <li class="nav-item">
           <a href="/admin/users/" class="nav-link <?= ($page ?? '') === 'users' ? 'active' : '' ?>">
             <i class="nav-icon fas fa-users"></i>
             <p>
               Users
             </p>
           </a>
-        </li>
+        </li> -->
+
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

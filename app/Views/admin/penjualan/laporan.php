@@ -15,6 +15,10 @@
       <div class="container">
         <div class="card">
           <div class="card-body">
+            <div class="d-flex align-items-center">
+              <h3 class="mr-auto">Ringkasan Penjualan</h3>
+              <a href="/admin/penjualan/export" class="btn btn-success" download><i class="fas fa-download"></i></a>
+            </div>
           <?= view('shared/table', [
               'data' => $data,
               'columns' => [

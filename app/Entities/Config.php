@@ -26,6 +26,11 @@ class Config extends Entity
         'ongkir_luar' => 'integer',
     ];
 
+    public function isOpen()
+    {
+        return time() > strtotime($this->operasional_buka) && time() < strtotime($this->operasional_tutup);
+    }
+
     private static ?Config $cache = null;
 
     public static function get()

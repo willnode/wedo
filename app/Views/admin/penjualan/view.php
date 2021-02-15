@@ -79,7 +79,7 @@
                     <?php foreach ($item->nota as $x) : ?>
                       <tr>
                         <td>
-                          <a href="/user/barang/view/<?= $x->barang_id ?>">
+                          <a href="/barang/view/<?= $x->barang_id ?>">
                             <?= '<img src="/uploads/logo/' . $x->barang->logo . '" alt="" class="mr-2 logo">' . esc($x->barang->nama) ?>
                           </a>
                         </td>

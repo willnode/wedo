@@ -27,3 +27,8 @@
     </ul>
   </div>
 </nav>
+<?php if (($page ?? '') !== 'home' && !\App\Entities\Config::get()->isOpen()) : ?>
+  <div class="alert alert-danger text-center">
+    Mohon maaf saat ini layanan aplikasi berada diluar jam operasional (<?= \App\Entities\Config::get()->operasional_buka ?> - <?= \App\Entities\Config::get()->operasional_tutup ?>).
+  </div>
+<?php endif ?>

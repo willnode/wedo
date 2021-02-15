@@ -5,10 +5,12 @@ namespace App\Controllers;
 use App\Entities\Article;
 use App\Entities\Barang;
 use App\Entities\Cart;
+use App\Entities\Config;
 use App\Entities\Penjualan;
 use App\Entities\Review;
 use App\Entities\Toko;
 use App\Entities\User as EntitiesUser;
+use App\Libraries\PenjualanProcessor;
 use App\Models\ArticleModel;
 use App\Models\BarangModel;
 use App\Models\PenjualanModel;
@@ -47,7 +49,6 @@ class Admin extends BaseController
 		$this->session->destroy();
 		return $this->response->redirect('/');
 	}
-
 
 	public function article($page = 'list', $id = null)
 	{
@@ -223,13 +224,15 @@ class Admin extends BaseController
 					'page' => 'laporan',
 					'data' => $model->aggregate(),
 				]);
+			case 'export':
+				(new PenjualanProcessor)->exportAndSend($model->findAll());
 			case 'wa':
 				/** @var Penjualan $item */
 				if (!($item = $model->find($id))) {
 					throw new PageNotFoundException();
 				}
 				return $this->response->redirect('https://wa.me/?' . http_build_query([
-					'text' => "Nama: {$item->nama}\nHP: {$item->linkHp}\nAlamat: {$item->alamat}\nTotal Belanja: {$item->rpTotal}\nDaftar Belanja:\n" . implode("\n", array_map(function ($x) {
+					'text' => "ID Order:{$item->id}\nNama: {$item->nama}\nHP: {$item->linkHp}\nAlamat: {$item->alamat}\nTotal Belanja: {$item->rpTotal}\nDaftar Belanja:" . implode("\n", array_map(function ($x) {
 						/** @var Cart $x */
 						$barang = $x->barang;
 						$toko = (new TokoModel)->find($barang->toko_id);
@@ -286,6 +289,14 @@ class Admin extends BaseController
 				]);
 		}
 		throw new PageNotFoundException();
+	}
+
+	public function config()
+	{
+		return view('admin/config', [
+			'page' => 'config',
+			'item' => Config::get(),
+		]);
 	}
 
 	public function uploads($directory)
