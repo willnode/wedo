@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Entities\Article;
 use App\Entities\Cart;
+use App\Entities\Config;
 use App\Entities\Penjualan;
 use CodeIgniter\Model;
 use Config\Database;
@@ -24,16 +25,16 @@ class PenjualanModel extends Model
 
     protected $table         = 'penjualan';
     protected $allowedFields = [
-        'user_id', 'nota', 'status', 'total'
+        'nama', 'email', 'hp', 'alamat', 'nota', 'status', 'total', 'kurir'
     ];
     protected $primaryKey = 'id';
     protected $returnType = 'App\Entities\Penjualan';
     protected $useTimestamps = true;
 
-    public function withUser($user_id)
+    public function withUser($email)
     {
         $this->builder()->where([
-            'user_id' => $user_id,
+            'email' => $email,
         ]);
         return $this;
     }
@@ -58,25 +59,24 @@ class PenjualanModel extends Model
         )->getResult();
     }
 
-    public function joinUser()
-    {
-        $this->builder()->select('penjualan.id, avatar, user_id, name, nota, nohp, status, total');
-        $this->builder()->join('user', 'user.id = penjualan.user_id');
-        return $this;
-    }
-
     /** @param Cart[] $cart */
-    public static function makePenjualan(array $cart, $user_id)
+    public static function makePenjualan(array $cart, array $data)
     {
         $item = new Penjualan();
-        $item->user_id = $user_id;
+        $item->nama = $data['nama'] ?? '';
+        $item->email = $data['email'] ?? '';
+        $item->hp = normHP($data['hp'] ?? '');
+        $item->alamat = ($data['alamat'] ?? '').', '.($data['alamat_kota'] ?? '').', '.($data['alamat_kab'] ?? '');
+        foreach ($data as $key => $value) {
+            Services::session()->set($key, $value);
+        }
         $item->nota = array_map(function ($x) {
             $d = $x->toArray();
             $d['barang'] = $x->barang->toArray();
             $x->harga = $d['barang']['harga'];
             return $d;
         }, $cart);
-        $item->total = CartModel::getTotal($cart);
+        $item->total = CartModel::getTotal($cart) + startsWith($data['alamat_kota'], 'Kecamatan') ? Config::get()->ongkir_luar : Config::get()->ongkir_dalam;
         $item->status = 'menunggu';
         return $item;
     }

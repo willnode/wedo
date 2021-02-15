@@ -11,7 +11,7 @@ class ReviewModel extends Model
 {
     protected $table         = 'review';
     protected $allowedFields = [
-        'barang_id', 'user_id', 'content', 'rating'
+        'barang_id', 'nama', 'email', 'content', 'rating'
     ];
     protected $primaryKey = 'id';
     protected $returnType = 'App\Entities\Review';
@@ -27,11 +27,11 @@ class ReviewModel extends Model
     }
 
     /** @return Review */
-    public function atBarangUser($barang_id, $user_id)
+    public function atBarangUser($barang_id, $email)
     {
         $this->builder()->where([
             'barang_id' => $barang_id,
-            'user_id' => $user_id,
+            'email' => $email,
         ]);
         return $this->findAll()[0] ?? null;
     }

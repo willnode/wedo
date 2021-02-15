@@ -8,9 +8,13 @@ use CodeIgniter\I18n\Time;
 
 /**
  * @property int $id
- * @property int $user_id
+ * @property string $nama
+ * @property string $email
+ * @property string $hp
+ * @property string $linkHp
+ * @property string $alamat
  * @property int $total
- * @property User $user
+ * @property string $rpTotal
  * @property Cart[] $nota
  * @property string $status
  * @property Time $created_at
@@ -21,12 +25,15 @@ class Penjualan extends Entity
     protected $casts = [
         'id' => 'integer',
         'total' => 'integer',
-        'user_id' => 'integer',
         'nota' => 'json',
     ];
 
-    public function getUser()
+    public function getLinkHp()
     {
-        return (new UserModel())->find($this->user_id);
+        return HP2WA($this->hp);
+    }
+    public function getRpTotal()
+    {
+        return rupiah($this->total);
     }
 }

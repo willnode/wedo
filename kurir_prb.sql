@@ -12,35 +12,8 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping structure for table wedo_db.article
-CREATE TABLE IF NOT EXISTS `article` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) DEFAULT NULL,
-  `content` mediumtext DEFAULT NULL,
-  `category` varchar(50) DEFAULT NULL,
-  `user_id` int(11) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`),
-  KEY `category` (`category`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
-
--- Dumping data for table wedo_db.article: ~9 rows (approximately)
-DELETE FROM `article`;
-/*!40000 ALTER TABLE `article` DISABLE KEYS */;
-INSERT INTO `article` (`id`, `title`, `content`, `category`, `user_id`, `created_at`, `updated_at`) VALUES
-	(1, 'About Us', '<p>This is a template</p>', 'page', 1, '2021-01-15 14:33:32', '2021-01-15 14:33:32'),
-	(2, 'FAQ', '<p>This is a template</p>', 'page', 1, '2021-01-15 14:33:32', '2021-01-15 14:33:32'),
-	(3, 'Contact', '<p>This is a template</p>', 'page', 1, '2021-01-15 14:33:32', '2021-01-15 14:33:32'),
-	(4, 'Privacy', '<p>This is a template</p>', 'page', 1, '2021-01-15 14:33:32', '2021-01-15 14:33:32'),
-	(5, 'Service', '<p>This is a template</p>', 'page', 1, '2021-01-15 14:33:32', '2021-01-15 14:33:32'),
-	(6, 'Info 1', '<p>This is a template</p>', 'info', 2, '2021-01-15 14:33:32', '2021-01-15 14:33:32'),
-	(7, 'Info 2', '<p>This is a template</p>', 'info', 2, '2021-01-15 14:33:32', '2021-01-15 14:33:32'),
-	(8, 'News 1', '<p>This is a template</p>', 'news', 2, '2021-01-15 14:33:32', '2021-01-15 14:33:32'),
-	(9, 'News 2', '<p>This is a template</p>', 'news', 2, '2021-01-15 14:33:32', '2021-01-15 14:33:32');
-/*!40000 ALTER TABLE `article` ENABLE KEYS */;
-
 -- Dumping structure for table wedo_db.barang
+DROP TABLE IF EXISTS `barang`;
 CREATE TABLE IF NOT EXISTS `barang` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nama` varchar(255) NOT NULL,
@@ -52,65 +25,81 @@ CREATE TABLE IF NOT EXISTS `barang` (
   KEY `id_toko` (`toko_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table wedo_db.barang: ~1 rows (approximately)
+-- Dumping data for table wedo_db.barang: ~0 rows (approximately)
 DELETE FROM `barang`;
 /*!40000 ALTER TABLE `barang` DISABLE KEYS */;
-
 /*!40000 ALTER TABLE `barang` ENABLE KEYS */;
 
--- Dumping structure for table wedo_db.cart
-CREATE TABLE IF NOT EXISTS `cart` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) DEFAULT NULL,
-  `barang_id` int(11) DEFAULT NULL,
-  `qty` int(11) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `user_id_barang_id` (`user_id`,`barang_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4;
+-- Dumping structure for table wedo_db.config
+DROP TABLE IF EXISTS `config`;
+CREATE TABLE IF NOT EXISTS `config` (
+  `key` varchar(50) NOT NULL,
+  `value` varchar(1024) DEFAULT NULL,
+  PRIMARY KEY (`key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- Dumping data for table wedo_db.cart: ~1 rows (approximately)
-DELETE FROM `cart`;
-/*!40000 ALTER TABLE `cart` DISABLE KEYS */;
-/*!40000 ALTER TABLE `cart` ENABLE KEYS */;
+-- Dumping data for table wedo_db.config: ~6 rows (approximately)
+DELETE FROM `config`;
+/*!40000 ALTER TABLE `config` DISABLE KEYS */;
+INSERT INTO `config` (`key`, `value`) VALUES
+	('agen_kurir', 'Rudi,Malik,Inem'),
+	('kecamatan_dalam', 'Kademangan,Kanigaran,Kedopok,Mayangan,Wonoasih'),
+	('kecamatan_luar', 'Bantaran,Banyuanyar,Besuk,Dringu,Gading,Gending,Kotaanyar,Kraksaan,Krejengan,Krucil,Kuripan,Leces,Lumbang,Maron,Paiton,Pajarakan,Pakuniran,Sukapura,Sumber,Sumberasih,Tegalsiwalan,Tiris,Tongas,Wonomerto'),
+	('ongkir_dalam', '5000'),
+	('ongkir_luar', '12000'),
+	('operasional_buka', '08:00:00'),
+	('operasional_tutup', '20:00:00'),
+	('whatsapp', '089');
+/*!40000 ALTER TABLE `config` ENABLE KEYS */;
 
 -- Dumping structure for table wedo_db.penjualan
+DROP TABLE IF EXISTS `penjualan`;
 CREATE TABLE IF NOT EXISTS `penjualan` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `user_id` int(11) NOT NULL,
+  `nama` varchar(255) NOT NULL DEFAULT '',
+  `email` varchar(255) NOT NULL DEFAULT '',
+  `hp` varchar(50) NOT NULL DEFAULT '',
+  `alamat` varchar(1024) NOT NULL DEFAULT '',
+  `kurir` varchar(255) DEFAULT NULL,
   `nota` text NOT NULL,
   `total` int(11) NOT NULL DEFAULT 0,
   `status` varchar(30) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `id_user` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table wedo_db.penjualan: ~4 rows (approximately)
 DELETE FROM `penjualan`;
+/*!40000 ALTER TABLE `penjualan` DISABLE KEYS */;
+/*!40000 ALTER TABLE `penjualan` ENABLE KEYS */;
 
 -- Dumping structure for table wedo_db.review
+DROP TABLE IF EXISTS `review`;
 CREATE TABLE IF NOT EXISTS `review` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `barang_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
+  `nama` varchar(255) DEFAULT NULL,
+  `email` varchar(50) DEFAULT NULL,
   `rating` int(11) NOT NULL,
   `content` varchar(255) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `id_user` (`user_id`),
-  KEY `id_toko` (`barang_id`) USING BTREE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  UNIQUE KEY `barang_id_user_id` (`barang_id`) USING BTREE,
+  KEY `id_toko` (`barang_id`) USING BTREE,
+  KEY `email` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4;
 
 -- Dumping data for table wedo_db.review: ~0 rows (approximately)
 DELETE FROM `review`;
 /*!40000 ALTER TABLE `review` DISABLE KEYS */;
+INSERT INTO `review` (`id`, `barang_id`, `nama`, `email`, `rating`, `content`, `created_at`, `updated_at`) VALUES
+	(6, 1, NULL, NULL, 4, 'Good!', '2021-02-06 08:47:37', '2021-02-06 08:47:37');
 /*!40000 ALTER TABLE `review` ENABLE KEYS */;
 
 -- Dumping structure for table wedo_db.toko
+DROP TABLE IF EXISTS `toko`;
 CREATE TABLE IF NOT EXISTS `toko` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nama` varchar(255) NOT NULL,
@@ -123,10 +112,10 @@ CREATE TABLE IF NOT EXISTS `toko` (
 -- Dumping data for table wedo_db.toko: ~0 rows (approximately)
 DELETE FROM `toko`;
 /*!40000 ALTER TABLE `toko` DISABLE KEYS */;
-
 /*!40000 ALTER TABLE `toko` ENABLE KEYS */;
 
 -- Dumping structure for table wedo_db.user
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) DEFAULT NULL,
@@ -144,8 +133,7 @@ CREATE TABLE IF NOT EXISTS `user` (
 DELETE FROM `user`;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
 INSERT INTO `user` (`id`, `name`, `nohp`, `avatar`, `alamat`, `password`, `role`) VALUES
-	(1, 'My Admin', 'admin', NULL, NULL, '$2y$10$jxUPYzsLgtdjigdX81iXxefrlFUgPMlrwyyqURLDbNtvWjWlGZknW', 'admin'),
-	(2, 'My User', 'user', NULL, NULL, '$2y$10$wJoYLg0rFn6yfhIbmEDXHOIRP/ezl5hd2aV/q1O7QmQm.R329EQ9u', 'user');
+	(1, 'My Admin', 'admin', NULL, NULL, '$2y$10$jxUPYzsLgtdjigdX81iXxefrlFUgPMlrwyyqURLDbNtvWjWlGZknW', 'admin');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

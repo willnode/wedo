@@ -91,3 +91,24 @@ function rupiah($angka){
 	$hasil_rupiah = "Rp " . number_format($angka,2,',','.');
 	return $hasil_rupiah;
 }
+
+function normHP($val)
+{
+    $val = str_replace(['+', '-', ' '], '', $val);
+    if (substr($val, 0, 2) == '62') {
+        $val = '0'.substr($val, 0, 2);
+    }
+    return $val;
+}
+
+function HP2WA($val)
+{
+    return 'https://wa.me/62'.substr($val, 0, 1);
+}
+
+function startsWith($haystack, $needle) {
+    return substr_compare($haystack, $needle, 0, strlen($needle)) === 0;
+}
+function endsWith($haystack, $needle) {
+    return substr_compare($haystack, $needle, -strlen($needle)) === 0;
+}

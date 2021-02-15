@@ -4,64 +4,60 @@
 <?= view('shared/head') ?>
 
 <body>
-  <div class="wrapper">
-    <?= view('shared/navbar') ?>
-    <?php /** @var \App\Entities\Penjualan $item */ ?>
-    <?php $rm = new \App\Models\ReviewModel() ?>
-    <div class="content-wrapper p-4">
-      <div class="container">
-        <div class="card">
-          <div class="card-body">
-            <h4>Order: #<?= $item->id ?></h4>
-            <h4>Status: <?= \App\Models\PenjualanModel::$statusesInHtml[$item->status] ?></h4>
-            <h4>Tanggal Pembelian: <?= $item->created_at->toDateTimeString() ?></h4>
-            <table class="table my-3">
-              <thead>
-                <tr>
-                  <th>Barang</th>
-                  <th>Harga</th>
-                  <th>Qty</th>
-                  <th>Total</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php foreach ($item->nota as $x) : ?>
-                  <tr>
-                    <td>
-                      <a href="/user/barang/view/<?= $x->barang_id ?>">
-                        <?= '<img src="/uploads/logo/' . $x->barang->logo . '" alt="" class="mr-2 logo">' . esc($x->barang->nama) ?>
-                      </a>
-                    </td>
-                    <td style="vertical-align: middle;"><?= rupiah($x->barang->harga) ?></td>
-                    <td style="vertical-align: middle;"> &times; <?= esc($x->qty) ?> </td>
-                    <td style="vertical-align: middle;"><?= rupiah($x->barang->harga * $x->qty) ?></td>
-                    <th>
-                      <?php if ($item->status == 'diterima') : ?>
-                        <?php $rr = $rm->atBarangUser($x->barang_id, $item->user_id) ?>
-                        <button type="button" onclick="updateRatingBox(this)" class="btn <?= $rr ? 'btn-success' : 'btn-outline-success' ?>" title="Review Barang Ini" data-toggle="modal" data-target="#exampleModal" data-barang="<?= $x->barang_id ?>" data-rating="<?= $rr->rating ?? 0 ?>" data-content="<?= esc($rr->content ?? '') ?>">
-                          <i class="<?= $rr ? 'fas' : 'far' ?> fa-star"></i>
-                        </button>
-                      <?php endif ?>
-                    </th>
-                  </tr>
-                <?php endforeach ?>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <th colspan="3">Total</th>
-                  <th style="vertical-align: middle;"><?= rupiah(\App\Models\CartModel::getTotal($item->nota)) ?></th>
-                  <th></th>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
-        </div>
-
-        <div class="mb-3">
-          <a href="/user/history/" class="btn btn-outline-secondary"><i class="fa fa-arrow-left mr-2"></i>Kembali</a>
-        </div>
+  <?= view('shared/navbar_index') ?>
+  <?php /** @var \App\Entities\Penjualan $item */ ?>
+  <?php $rm = new \App\Models\ReviewModel() ?>
+  <div class="container py-4">
+    <div class="card">
+      <div class="card-body">
+        <h4>Order: #<?= $item->id ?></h4>
+        <h4>Status: <?= \App\Models\PenjualanModel::$statusesInHtml[$item->status] ?></h4>
+        <h4>Tanggal Pembelian: <?= $item->created_at->toDateTimeString() ?></h4>
+        <table class="table my-3">
+          <thead>
+            <tr>
+              <th>Barang</th>
+              <th>Harga</th>
+              <th>Qty</th>
+              <th>Total</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <?php foreach ($item->nota as $x) : ?>
+              <tr>
+                <td>
+                  <a href="/barang/view/<?= $x->barang_id ?>">
+                    <?= '<img src="/uploads/logo/' . $x->barang->logo . '" alt="" class="mr-2 logo">' . esc($x->barang->nama) ?>
+                  </a>
+                </td>
+                <td style="vertical-align: middle;"><?= rupiah($x->barang->harga) ?></td>
+                <td style="vertical-align: middle;"> &times; <?= esc($x->qty) ?> </td>
+                <td style="vertical-align: middle;"><?= rupiah($x->barang->harga * $x->qty) ?></td>
+                <th>
+                  <?php if ($item->status == 'diterima') : ?>
+                    <?php $rr = $rm->atBarangUser($x->barang_id, $item->user_id) ?>
+                    <button type="button" onclick="updateRatingBox(this)" class="btn <?= $rr ? 'btn-success' : 'btn-outline-success' ?>" title="Review Barang Ini" data-toggle="modal" data-target="#exampleModal" data-barang="<?= $x->barang_id ?>" data-rating="<?= $rr->rating ?? 0 ?>" data-content="<?= esc($rr->content ?? '') ?>">
+                      <i class="<?= $rr ? 'fas' : 'far' ?> fa-star"></i>
+                    </button>
+                  <?php endif ?>
+                </th>
+              </tr>
+            <?php endforeach ?>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th colspan="3">Total</th>
+              <th style="vertical-align: middle;"><?= rupiah(\App\Models\CartModel::getTotal($item->nota)) ?></th>
+              <th></th>
+            </tr>
+          </tfoot>
+        </table>
       </div>
+    </div>
+
+    <div class="mb-3">
+      <a href="/history/" class="btn btn-outline-secondary"><i class="fa fa-arrow-left mr-2"></i>Kembali</a>
     </div>
   </div>
   <!-- Modal -->

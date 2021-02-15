@@ -27,6 +27,6 @@
             </div>
         </div>
 
-        <p class="copyright-text mt-5">&copy; 2021 <a href="" target="_blank" style="color: #000">WEDO</a></p>
+        <p class="copyright-text mt-5">&copy; 2021 <a href="/login/" class="text-dark">WEDO Probolinggo</a></p>
     </div>
 </div>

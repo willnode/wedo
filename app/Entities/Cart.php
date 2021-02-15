@@ -27,16 +27,18 @@ class Cart extends Entity
         'qty' => 'integer',
     ];
 
+    protected $_barang;
+
     public function getToko()
     {
         return (new TokoModel())->find($this->toko_id);
     }
     public function getBarang()
     {
-        return (new BarangModel())->find($this->barang_id);
+        return $this->_barang ?  $this->_barang : $this->_barang = (new BarangModel())->find($this->barang_id);
     }
     public function getTotal()
     {
-        return $this->harga * $this->qty;
+        return $this->barang->harga * $this->qty;
     }
 }

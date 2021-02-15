@@ -4,70 +4,118 @@
 <?= view('shared/head') ?>
 
 <body class="bg-dark-blue">
-  <div class="wrapper">
-    <?= view('shared/navbar') ?>
-    <?php /** @var \App\Entities\Barang $item */ ?>
-    <div class="content-wrapper p-4">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-6">
-            <div class="card">
-              <div class="card-body">
-                <div class="d-flex flex-column flex-md-row">
-                  <img class="mr-2" src="/uploads/logo/<?= $item->logo ?>" width="100px" height="100px" alt="">
+  <?= view('shared/navbar_index') ?>
+  <?php /** @var \App\Entities\Barang $item */ ?>
+  <div class="container py-4">
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card overflow-hidden">
+          <div class="mb-3" style="height: 200px;">
+            <img class="mr-2" src="/uploads/logo/<?= $item->logo ?>" width="100%" height="100%" style="object-fit: cover;" alt="">
+          </div>
+          <div class="card-body">
+            <div class="d-flex flex-column flex-md-row">
+              <div>
+                <div class="text-black-50">Dari Toko <a href="/toko/view/<?= $item->toko_id ?>"><?= $item->toko->nama ?></a></div>
+                <h1><?= esc($item->nama) ?></h1>
+                <p><?= rupiah($item->harga) ?></p>
+                <p><?= esc($item->content) ?></p>
+                <form action="/cart/add" method="POST" class="d-flex w-100 align-items-center">
+                  <input type="hidden" name="barang_id" value="<?= $item->id ?>">
+                  <input type="hidden" name="r" value="/barang/view/<?= $item->id ?>">
+                  <label class="m-0">
+                    <span>Beli: </span>
+                  </label>
+                  <input type="number" name="qty" value="1" min="1" max="99" class="form-control mx-3">
+                  <button class="btn btn-warning btn-block" title="Tambah ke Keranjang">
+                    <i class="fas fa-cart-plus mr-2"></i>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <?php foreach (($r = $item->reviews) as $review) : ?>
+              <div class="d-flex">
+                <img src="<?= $review->getAvatarUrl() ?>" width="80px" alt="" class="mr-3">
+                <div>
+                  <h5><?= esc($review->nama) ?></h5>
+                  <h6><?= str_repeat('<i class="fa fa-star"></i>', $review->rating) ?></h6>
                   <div>
-                    <h1><?= esc($item->nama) ?></h1>
-                    <p><?= rupiah($item->harga) ?></p>
-                    <p><?= esc($item->content) ?></p>
-                    <form action="/user/cart/add" method="POST" class="d-flex w-100 align-items-center">
-                      <input type="hidden" name="barang_id" value="<?= $item->id ?>">
-                      <input type="hidden" name="r" value="/user/barang/view/<?= $item->id ?>">
-                      <label class="m-0">
-                        <span>Beli: </span>
-                      </label>
-                      <input type="number" name="qty" value="1" min="1" max="99" class="form-control mx-3">
-                      <button class="btn btn-warning btn-block" title="Tambah ke Keranjang">
-                        <i class="fas fa-cart-plus mr-2"></i>
-                      </button>
-                    </form>
+                    <?= esc($review->content) ?>
+                    <br>
+                    <small class="text-black-50"><?= esc($review->updated_at->humanize()) ?></small>
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="card">
-              <div class="card-body">
-                <?php foreach (($r = $item->reviews) as $review) : ?>
-                  <?php $user = $review->user ?>
-                  <div class="d-flex">
-                    <img src="<?= $user->getAvatarUrl() ?>" width="80px" alt="" class="mr-3">
-                    <div>
-                      <h5><?= esc($user->name) ?></h5>
-                      <h6><?= str_repeat('<i class="fa fa-star"></i>', $review->rating)?></h6>
-                      <div>
-                        <?= esc($review->content) ?>
-                        <br>
-                        <small class="text-black-50"><?= esc($review->updated_at->humanize()) ?></small>
-                      </div>
-                    </div>
-                  </div>
-                <?php endforeach ?>
-                <?php if (!$r) : ?>
-                  <i>Tidak ada review sejauh ini</i>
-                <?php endif ?>
-                <?= view('shared/pagination') ?>
-              </div>
-            </div>
-            <div class="mb-3">
-              <a href="/user/toko/view/<?= $item->toko_id ?>" class="btn btn-outline-secondary"><i class="fa fa-arrow-left"></i></a>
-            </div>
+            <?php endforeach ?>
+            <?php if (!$r) : ?>
+              <i>Tidak ada review sejauh ini</i>
+            <?php endif ?>
+            <?= view('shared/pagination') ?>
           </div>
-          <div class="col-lg-6">
-            <?= view('user/cart/iframe') ?>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <?= view('user/cart/iframe') ?>
+        <?php $related = $item->toko->getBarang() ?>
+        <div class="card">
+          <div class="card-body">
+            <?php if (count($related) > 1) : ?>
+            <div class="slick">
+              <h3>Mungkin kamu suka</h3>
+              <?php foreach ($related as $barang) : ?>
+                <?php if ($barang->id == $item->id) continue; ?>
+                <a class="item" style="width: 20%;" href="/barang/view/<?= $barang->id ?>">
+                  <img src="/uploads/logo/<?= $barang->logo ?>" alt="" width="100%">
+                  <h4><?= $barang->nama ?></h4>
+                  <div class="text-center text-black-50"><?= rupiah($barang->harga) ?></div>
+                </a>
+              <?php endforeach ?>
+            </div>
+            <?php endif ?>
+            <a href="/toko/" class="btn btn-warning btn-block">Belanja Lainnya</a>
           </div>
         </div>
       </div>
     </div>
   </div>
+
+  <script>
+    window.addEventListener('DOMContentLoaded', (event) => {
+      $('.slick').slick({
+        slidesToShow: 5,
+        slidesToScroll: 1,
+        arrows: true,
+        responsive: [{
+            breakpoint: 1024,
+            settings: {
+              slidesToShow: 3,
+              slidesToScroll: 3,
+              infinite: true,
+              dots: true
+            }
+          },
+          {
+            breakpoint: 600,
+            settings: {
+              slidesToShow: 2,
+              slidesToScroll: 2
+            }
+          },
+          {
+            breakpoint: 480,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1
+            }
+          }
+        ]
+      })
+    });
+  </script>
 </body>
 
 </html>

@@ -6,7 +6,6 @@
   <div class="wrapper">
     <?= view('shared/navbar_admin') ?>
     <?php /** @var \App\Entities\Penjualan $item */ ?>
-    <?php $user = $item->user ?>
     <div class="content-wrapper p-4">
       <div class="container">
         <div class="row">
@@ -19,19 +18,15 @@
                   <tbody>
                     <tr>
                       <td>Nama</td>
-                      <th><?= esc($user->name) ?></th>
+                      <th><?= esc($item->nama) ?></th>
                     </tr>
                     <tr>
                       <td>Nomor HP</td>
-                      <th><a href="../wa/<?= $item->id ?>" target="_blank"><?= esc($user->nohp) ?></a></th>
+                      <th><a href="../wa/<?= $item->id ?>" target="_blank"><?= esc($item->hp) ?></a></th>
                     </tr>
                     <tr>
                       <td>Alamat</td>
-                      <th><a href="../maps/<?= $item->id ?>" target="_blank"><?= esc($user->alamat) ?></a></th>
-                    </tr>
-                    <tr>
-                      <td>Avatar</td>
-                      <th><img src="<?= $user->getAvatarUrl() ?>" width="60px" alt=""></th>
+                      <th><a href="../maps/<?= $item->id ?>" target="_blank"><?= esc($item->alamat) ?></a></th>
                     </tr>
                   </tbody>
                 </table>
@@ -105,6 +100,16 @@
             </div>
             <div class="card">
               <form method="POST" class="card-body">
+                <label class="d-block mb-3">
+                  <span>Kurir</span>
+                  <select name="kurir" class="form-control">
+                    <option value="">-- Belum Ditentukan --</option>
+                    <?= implode('', array_map(function ($x) use ($item) {
+                      return '<option ' . ($item->kurir === $x ? 'selected' : '') .
+                        ' value="' . $x . '">' . ucfirst($x) . '</option>';
+                    }, explode(',', \App\Entities\Config::get()->agen_kurir))) ?>
+                  </select>
+                </label>
                 <label class="d-block mb-3">
                   <span>Status</span>
                   <select name="status" class="form-control">

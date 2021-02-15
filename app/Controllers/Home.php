@@ -2,11 +2,21 @@
 
 namespace App\Controllers;
 
+use App\Entities\Cart;
+use App\Entities\Review;
+use App\Libraries\CartProcessor;
 use App\Libraries\Recaptha;
 use App\Models\ArticleModel;
+use App\Models\BarangModel;
+use App\Models\CartModel;
+use App\Models\PenjualanModel;
+use App\Models\ReviewModel;
+use App\Models\TokoModel;
 use App\Models\UserModel;
 use CodeIgniter\Exceptions\PageNotFoundException;
 use CodeIgniter\Files\Exceptions\FileNotFoundException;
+use Config\Database;
+use Config\Services;
 
 class Home extends BaseController
 {
@@ -49,34 +59,6 @@ class Home extends BaseController
 		]);
 	}
 
-	public function register()
-	{
-		$recaptha = new Recaptha();
-		if ($this->request->getMethod() === 'get') {
-			return view('page/register', [
-				'errors' => $this->session->errors,
-				'recapthaSite' => $recaptha->recapthaSite,
-			]);
-		} else {
-			if ($this->validate([
-				'name' => 'required|min_length[3]|max_length[255]',
-				'nohp' => 'required|is_unique[user.nohp]',
-				'password' => 'required|min_length[8]',
-				'g-recaptcha-response' => ENVIRONMENT === 'production' && $recaptha->recapthaSecret ? 'required' : 'permit_empty',
-			])) {
-				if (ENVIRONMENT !== 'production' || !$recaptha->recapthaSecret || (new Recaptha())->verify($_POST['g-recaptcha-response'])) {
-					$id = (new UserModel())->register($this->request->getPost());
-					(new UserModel())->find($id)->sendVerifyEmail();
-					if ($r = $this->request->getCookie('r')) {
-						$this->response->deleteCookie('r');
-					}
-					return $this->response->redirect(base_url($r ?: 'user'));
-				}
-			}
-			return redirect()->back()->withInput()->with('errors', $this->validator->listErrors());
-		}
-	}
-
 	public function article($id = null)
 	{
 		if ($id === 'about') $id = 1;
@@ -95,6 +77,116 @@ class Home extends BaseController
 		} else {
 			throw new PageNotFoundException();
 		}
+	}
+
+	public function toko($page = 'list', $id = null)
+	{
+		$model = new TokoModel();
+		switch ($page) {
+			case 'list':
+				return view('user/toko/list', [
+					'page' => 'toko',
+					'data' => find_with_filter($model),
+				]);
+			case 'view':
+				if (!($item = $model->find($id))) {
+					throw new PageNotFoundException();
+				}
+				return view('user/toko/view', [
+					'item' => $item
+				]);
+		}
+	}
+
+	public function barang($page = 'view', $id = null)
+	{
+		$model = new BarangModel();
+		switch ($page) {
+			case 'view':
+				if (!($item = $model->find($id))) {
+					throw new PageNotFoundException();
+				}
+				return view('user/barang/view', [
+					'item' => $item
+				]);
+		}
+		throw new PageNotFoundException();
+	}
+
+	public function cart($page = 'list')
+	{
+		if ($this->request->getMethod() == 'post') {
+			switch ($page) {
+				case 'add':
+					$g = CartProcessor::find($_POST['barang_id']);
+					if (!$g) {
+						CartProcessor::add($g = new Cart($_POST));
+					}
+					$g->qty += $_POST['qty'];
+					CartProcessor::save();
+					return $this->response->redirect($_POST['r'] ?? previous_url());
+				case 'set':
+					$g = CartProcessor::find($_POST['barang_id']);
+					$g->qty = $_POST['qty'];
+					CartProcessor::save();
+					return $this->response->redirect($_POST['r'] ?? previous_url());
+				case 'delete':
+					CartProcessor::delete($_POST['barang_id']);
+					CartProcessor::save();
+					return $this->response->redirect($_POST['r'] ?? previous_url());
+				case 'checkout':
+					$g = CartProcessor::load();
+					$c = PenjualanModel::makePenjualan($g, $_POST);
+					CartProcessor::delete();
+					CartProcessor::save();
+					(new PenjualanModel())->save($c);
+					return $this->response->redirect('/history/view/' . Database::connect()->insertID());
+			}
+		}
+		switch ($page) {
+			case 'list':
+				return view('user/cart/view', [
+					'page' => 'cart',
+				]);
+		}
+	}
+
+	public function history($page = 'list', $id = null)
+	{
+		$model = new PenjualanModel();
+		$model->withUser($_SESSION['email'] ?? '');
+		if ($this->request->getMethod() == 'post') {
+			$m = new ReviewModel();
+			$r = new Review($_POST);
+			$r->id = null;
+			$r->email = $_SESSION['email'] ?? '';
+			$r->nama = $_SESSION['nama'] ?? '';
+			$r->created_at = date('Y-m-d H:i:s');
+			$r->updated_at = date('Y-m-d H:i:s');
+			$m->replace($r->toArray());
+			return $this->response->redirect('/user/history/view/' . $id);
+		}
+		switch ($page) {
+			case 'list':
+				return view('user/history/list', [
+					'data' => find_with_filter($model),
+					'page' => 'history',
+				]);
+			case 'view':
+				if (!($item = $model->find($id))) {
+					throw new PageNotFoundException();
+				}
+				return view('user/history/view', [
+					'item' => $item,
+					'page' => 'history',
+				]);
+		}
+	}
+
+	public function logout()
+	{
+		Services::session()->destroy();
+		return $this->response->redirect('/');
 	}
 
 	public function uploads($directory, $file)

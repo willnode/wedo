@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-body">
     <h3>Keranjang Anda</h3>
-    <?php $cart =  (new \App\Models\CartModel())->withUser(\Config\Services::login()->id)->asCart() ?>
+    <?php $cart =  \App\Libraries\CartProcessor::load() ?>
     <table class="table my-3">
       <thead>
         <tr>
@@ -15,19 +15,18 @@
         <tbody>
           <?php foreach ($cart as $x) : ?>
             <tr>
-              <td><?= '<img src="/uploads/logo/' . $x->logo . '" alt="" class="mr-2 logo">' . esc($x->nama) ?></td>
+              <td><?= '<img src="/uploads/logo/' . $x->barang->logo . '" alt="" class="mr-2 logo">' . esc($x->barang->nama) ?></td>
               <td style="vertical-align: middle;">
-                <form action="/user/cart/set/" method="POST">
-                  <input type="hidden" name="barang_id" value="<?= $x->id ?>">
-                  <input class="form-control" style="width: 50px;" min="1" max="99" type="number" name="qty" value="<?= $x->qty ?>"
-                    onchange="event.target.form.submit()">
+                <form action="/cart/set/" method="POST">
+                  <input type="hidden" name="barang_id" value="<?= $x->barang_id ?>">
+                  <input class="form-control" style="width: 50px;" min="1" max="99" type="number" name="qty" value="<?= $x->qty ?>" onchange="event.target.form.submit()">
                 </form>
               </td>
               <td style="vertical-align: middle;"><?= rupiah($x->total) ?></td>
               <td>
-                <form action="/user/cart/delete/" method="POST">
+                <form action="/cart/delete/" method="POST">
                   <input type="hidden" name="barang_id" value="<?= $x->id ?>">
-                  <input type="hidden" name="r" value="/user/barang/view/<?= $x->id ?>">
+                  <input type="hidden" name="r" value="/barang/view/<?= $x->id ?>">
                   <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                 </form>
               </td>
@@ -36,17 +35,27 @@
         </tbody>
         <tfoot>
           <tr>
-            <th colspan="2">Total</th>
-            <th colspan="2" style="vertical-align: middle;"><?= rupiah(\App\Models\CartModel::getTotal($cart)) ?></th>
-          </tr>
-          <tr>
-            <th colspan="4">
-              <form action="/user/cart/checkout/" method="POST">
-                <button class="btn btn-block btn-warning"><i class="fa fa-shopping-cart"></i> Checkout</button>
-              </form>
+            <th colspan="2">Total
+              <br>
+              <?php if (($page ?? '') !== 'cart') : ?>
+                <div class="text-black-50 small">Belum termasuk ongkos kirim</div>
+              <?php else : ?>
+                <div class="text-black-50 small">Dibayar saat delivery</div>
+              <?php endif ?>
             </th>
-            </th>
+            <?php $total = \App\Models\CartModel::getTotal($cart) ?>
+            <th colspan="2" style="vertical-align: middle;" id="total" data-value="<?= $total ?>"><?= rupiah($total) ?></th>
           </tr>
+          <?php if (($page ?? '') !== 'cart') : ?>
+            <tr>
+              <th colspan="4">
+                <a href="/cart/" class="btn btn-block btn-warning">
+                  <i class="fa fa-shopping-cart"></i> Checkout
+                </a>
+              </th>
+              </th>
+            </tr>
+          <?php endif ?>
         </tfoot>
       <?php else : ?>
         <tr>

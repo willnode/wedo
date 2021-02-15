@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Entities\Article;
 use App\Entities\Barang;
+use App\Entities\Cart;
 use App\Entities\Penjualan;
 use App\Entities\Review;
 use App\Entities\Toko;
@@ -213,7 +214,7 @@ class Admin extends BaseController
 					$model->with('status IN ("menunggu", "diproses")');
 				}
 				return view('admin/penjualan/manage', [
-					'data' => find_with_filter($model->joinUser()),
+					'data' => find_with_filter($model),
 					'toko' => $toko ?? null,
 					'page' => 'penjualan',
 				]);
@@ -227,7 +228,14 @@ class Admin extends BaseController
 				if (!($item = $model->find($id))) {
 					throw new PageNotFoundException();
 				}
-				return $this->response->redirect('https://wa.me/62' . substr($item->user->nohp, 1));
+				return $this->response->redirect('https://wa.me/?' . http_build_query([
+					'text' => "Nama: {$item->nama}\nHP: {$item->linkHp}\nAlamat: {$item->alamat}\nTotal Belanja: {$item->rpTotal}\nDaftar Belanja:\n" . implode("\n", array_map(function ($x) {
+						/** @var Cart $x */
+						$barang = $x->barang;
+						$toko = (new TokoModel)->find($barang->toko_id);
+						return "\n{$barang->nama} ({$toko->nama}): " . rupiah($barang->harga) . " * {$x->qty}";
+					}, $item->nota))
+				]));
 			case 'maps':
 				/** @var Penjualan $item */
 				if (!($item = $model->find($id))) {
@@ -239,7 +247,8 @@ class Admin extends BaseController
 					throw new PageNotFoundException();
 				}
 				return view('admin/penjualan/view', [
-					'item' => $item
+					'item' => $item,
+					'page' => 'penjualan',
 				]);
 		}
 		throw new PageNotFoundException();
