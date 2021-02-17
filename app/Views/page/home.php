@@ -64,7 +64,7 @@
     <div class="container">
       <h3 class="text-center">Pengen beli makanan favorit kamu dari rumah ?<br>Langsung daftarkan diri anda</h3>
       <p class="text-center mt-5">
-        <a href="/login" class="btn btn-order">Klik Disini</a>
+        <a href="/toko/" class="btn btn-order">Klik Disini</a>
       </p>
     </div>
   </div>
