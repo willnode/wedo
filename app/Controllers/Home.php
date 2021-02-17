@@ -37,9 +37,6 @@ class Home extends BaseController
 
 	public function login()
 	{
-		if ($this->session->has('login')) {
-			return $this->response->redirect('/user/');
-		}
 		if ($r = $this->request->getGet('r')) {
 			return $this->response->setCookie('r', $r, 0)->redirect('/login/');
 		}
@@ -55,7 +52,7 @@ class Home extends BaseController
 					if ($r = $this->request->getCookie('r')) {
 						$this->response->deleteCookie('r');
 					}
-					return $this->response->redirect(base_url($login->role));
+					return $this->response->redirect(base_url('admin'));
 				}
 			}
 			$m = lang('Interface.wrongLogin');

@@ -16,7 +16,7 @@
   <ul class="navbar-nav ml-auto">
     <!-- Messages Dropdown Menu -->
     <li class="nav-item">
-      <a class="nav-link" href="/user/logout">
+      <a class="nav-link" href="/logout">
         <i class="fa fa-sign-out-alt mr-2"></i> Sign Out
       </a>
     </li>
