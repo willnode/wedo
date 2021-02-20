@@ -22,7 +22,7 @@
           $.ajax({
             data: data,
             type: "POST",
-            url: "/user/uploads/media/",
+            url: "/admin/uploads/media/",
             cache: false,
             contentType: false,
             processData: false,

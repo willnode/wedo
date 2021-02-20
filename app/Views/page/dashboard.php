@@ -15,7 +15,7 @@
                 <i class="fas fa-2x fa-info"></i><br>
                 Toko
               </a>
-              <a href="/user/manage/" class="btn btn-outline-primary py-4">
+              <a href="/admin/manage/" class="btn btn-outline-primary py-4">
                 <i class="fas fa-2x fa-users"></i><br>
                 Users
               </a>

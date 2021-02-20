@@ -55,8 +55,8 @@
     </div>
   </div>
 
-  <form method="POST" action="/user/article/delete/<?= $item->id ?>">
-    <input type="submit" hidden id="delete-form" onclick="return confirm('Do you want to delete this article permanently?')">
+  <form method="POST" action="/admin/barang/delete/<?= $item->id ?>">
+    <input type="submit" hidden id="delete-form" onclick="return confirm('Yakin ingin menghapus barang permanen?')">
   </form>
   <?= view('shared/summernote') ?>
 </body>

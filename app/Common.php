@@ -79,7 +79,7 @@ function post_file(Entity $entity, $name, string $folder = null)
             unlink($path . $entity->{$name});
         }
         $entity->{$name} = $file->getName();
-    } else if ($req->getPost('_'.$name) === 'delete') {
+    } else if ($req->getPost('_' . $name) === 'delete') {
         if ($entity->{$name} && is_file($path . $entity->{$name})) {
             unlink($path . $entity->{$name});
         }
@@ -87,28 +87,31 @@ function post_file(Entity $entity, $name, string $folder = null)
     }
 }
 
-function rupiah($angka){
-	$hasil_rupiah = "Rp " . number_format($angka,2,',','.');
-	return $hasil_rupiah;
+function rupiah($angka)
+{
+    $hasil_rupiah = "Rp " . number_format($angka, 0, ',', '.');
+    return $hasil_rupiah;
 }
 
 function normHP($val)
 {
     $val = str_replace(['+', '-', ' '], '', $val);
     if (substr($val, 0, 2) == '62') {
-        $val = '0'.substr($val, 0, 2);
+        $val = '0' . substr($val, 0, 2);
     }
     return $val;
 }
 
 function HP2WA($val)
 {
-    return 'https://wa.me/62'.substr($val, 0, 1);
+    return 'https://wa.me/62' . substr($val, 0, 1);
 }
 
-function startsWith($haystack, $needle) {
+function startsWith($haystack, $needle)
+{
     return substr_compare($haystack, $needle, 0, strlen($needle)) === 0;
 }
-function endsWith($haystack, $needle) {
+function endsWith($haystack, $needle)
+{
     return substr_compare($haystack, $needle, -strlen($needle)) === 0;
 }

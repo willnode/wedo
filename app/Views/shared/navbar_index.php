@@ -14,7 +14,11 @@
         <a class="nav-link" href="/toko/">Belanja</a>
       </li>
       <li class="nav-item  <?= ($page ?? '') == 'cart' ? 'active' : '' ?>">
-        <a class="nav-link" href="/cart/">Cart</a>
+        <a class="nav-link" href="/cart/">Cart
+          <?php if ($c = count(\App\Libraries\CartProcessor::load())) : ?>
+          <span class="badge badge-warning ml-1" style="font-size: 1em;"><?= $c ?></span>
+          <?php endif ?>
+        </a>
       </li>
       <?php if ($_SESSION['email'] ?? '') : ?>
         <li class="nav-item  <?= ($page ?? '') == 'history' ? 'active' : '' ?>">

@@ -167,7 +167,7 @@ class Home extends BaseController
 			$r->created_at = date('Y-m-d H:i:s');
 			$r->updated_at = date('Y-m-d H:i:s');
 			$m->replace($r->toArray());
-			return $this->response->redirect('/user/history/view/' . $id);
+			return $this->response->redirect('/history/view/' . $id);
 		}
 		switch ($page) {
 			case 'list':

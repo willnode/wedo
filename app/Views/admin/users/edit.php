@@ -13,7 +13,7 @@
             <form enctype="multipart/form-data" method="post">
               <div class="d-flex mb-3">
                 <h1 class="h3 mb-0 mr-auto">Edit User</h1>
-                <a href="/user/manage/" class="btn btn-outline-secondary ml-2">Kembali</a>
+                <a href="/admin/manage/" class="btn btn-outline-secondary ml-2">Kembali</a>
               </div>
               <label class="d-block mb-3">
                 <span>Full Name</span>
@@ -58,7 +58,7 @@
     </div>
   </div>
 
-  <form method="POST" action="/user/manage/delete/<?= $item->id ?>">
+  <form method="POST" action="/admin/manage/delete/<?= $item->id ?>">
     <input type="submit" hidden id="delete-form" onclick="return confirm('Do you want to delete this user permanently?')">
   </form>
 </body>

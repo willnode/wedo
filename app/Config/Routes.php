@@ -33,8 +33,6 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 $routes->add('/admin/', 'Admin::index');
 $routes->add('/admin/(:any)', 'Admin::$1');
-$routes->add('/user/', 'User::index');
-$routes->add('/user/(:any)', 'User::$1');
 $routes->add('/(:any)', 'Home::$1');
 
 /**

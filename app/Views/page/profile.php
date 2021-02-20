@@ -4,7 +4,7 @@
 
 <body>
   <div class="wrapper">
-    <?= view('shared/navbar') ?>
+    <?= view('shared/navbar_admin') ?>
 
     <?php /** @var \App\Entities\User $item */ ?>
     <div class="content-wrapper p-4">
@@ -14,7 +14,7 @@
             <form enctype="multipart/form-data" method="post">
               <div class="d-flex mb-3">
                 <h1 class="h3 mb-0 mr-auto">Edit Profile</h1>
-                <a href="/user/" class="btn btn-outline-secondary ml-2">Kembali</a>
+                <a href="/admin/" class="btn btn-outline-secondary ml-2">Kembali</a>
               </div>
               <label class="d-block mb-3">
                 <span>Nama Lengkap</span>

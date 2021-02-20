@@ -58,9 +58,9 @@ class Admin extends BaseController
 		}
 		if ($this->request->getMethod() === 'post') {
 			if ($page === 'delete' && $model->delete($id)) {
-				return $this->response->redirect('/user/article/');
+				return $this->response->redirect('/admin/article/');
 			} else if ($id = $model->processWeb($id)) {
-				return $this->response->redirect('/user/article/');
+				return $this->response->redirect('/admin/article/');
 			}
 		}
 		switch ($page) {
@@ -96,7 +96,7 @@ class Admin extends BaseController
 		}
 		switch ($page) {
 			case 'open':
-				return $this->response->redirect('/user/toko/view/' . $id);
+				return $this->response->redirect('/toko/view/' . $id);
 			case 'barang':
 				return $this->response->redirect('/admin/barang/?toko_id=' . $id);
 			case 'list':
@@ -235,8 +235,8 @@ class Admin extends BaseController
 					'text' => "ID Order:{$item->id}\nNama: {$item->nama}\nHP: {$item->linkHp}\nAlamat: {$item->alamat}\nTotal Belanja: {$item->rpTotal}\nDaftar Belanja:" . implode("\n", array_map(function ($x) {
 						/** @var Cart $x */
 						$barang = $x->barang;
-						$toko = (new TokoModel)->find($barang->toko_id);
-						return "\n{$barang->nama} ({$toko->nama}): " . rupiah($barang->harga) . " * {$x->qty}";
+						$toko = (new TokoModel)->find($barang->toko_id)->nama ?? '';
+						return "\n{$barang->nama} ({$toko}): " . rupiah($barang->harga) . " * {$x->qty}";
 					}, $item->nota))
 				]));
 			case 'maps':
@@ -319,7 +319,7 @@ class Admin extends BaseController
 	{
 		if ($this->request->getMethod() === 'post') {
 			if ((new UserModel())->processWeb($this->login->id)) {
-				return $this->response->redirect('/user/profile/');
+				return $this->response->redirect('/admin/profile/');
 			}
 		}
 		return view('page/profile', [

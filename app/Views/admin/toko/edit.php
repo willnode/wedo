@@ -49,7 +49,7 @@
     </div>
   </div>
 
-  <form method="POST" action="/user/article/delete/<?= $item->id ?>">
+  <form method="POST" action="/admin/article/delete/<?= $item->id ?>">
     <input type="submit" hidden id="delete-form" onclick="return confirm('Do you want to delete this article permanently?')">
   </form>
   <?= view('shared/summernote') ?>

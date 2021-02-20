@@ -13,7 +13,7 @@
             <form method="post">
               <div class="d-flex mb-3">
                 <h1 class="h3 mb-0 mr-auto">Edit Article</h1>
-                <a href="/user/article/" class="btn btn-outline-secondary ml-2">Kembali</a>
+                <a href="/admin/article/" class="btn btn-outline-secondary ml-2">Kembali</a>
               </div>
               <label class="d-block mb-3">
                 <span>Title</span>
@@ -45,7 +45,7 @@
     </div>
   </div>
 
-  <form method="POST" action="/user/article/delete/<?= $item->id ?>">
+  <form method="POST" action="/admin/article/delete/<?= $item->id ?>">
     <input type="submit" hidden id="delete-form" onclick="return confirm('Do you want to delete this article permanently?')">
   </form>
   <?= view('shared/summernote') ?>
