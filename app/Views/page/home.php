@@ -12,10 +12,16 @@
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <div class="jumbotron bg-1" style="background-image: url('/gambar1.jpg'); background-position: center;"></div>
+            <div class="jumbotron bg-1" style="background-image: url('/artboard1.jpg'); background-position: center;"></div>
           </div>
           <div class="carousel-item">
-            <div class="jumbotron" style="background: url('/gambar2.jpg'); background-position: center;"></div>
+            <div class="jumbotron" style="background: url('/artboard2.jpg'); background-position: center;"></div>
+          </div>
+          <div class="carousel-item">
+            <div class="jumbotron" style="background: url('/artboard3.jpg'); background-position: center;"></div>
+          </div>
+          <div class="carousel-item">
+            <div class="jumbotron" style="background: url('/artboard4.jpg'); background-position: center;"></div>
           </div>
         </div>
       </div>
