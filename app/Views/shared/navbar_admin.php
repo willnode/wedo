@@ -8,7 +8,7 @@
       <a href="/admin/" class="nav-link">Dashboard</a>
     </li>
     <li class="nav-item d-none d-sm-inline-block">
-      <a href="/admin/profile/" class="nav-link">Edit Profile</a>
+      <a href="/admin/profile/" class="nav-link">Edit Profil</a>
     </li>
   </ul>
 
@@ -17,7 +17,7 @@
     <!-- Messages Dropdown Menu -->
     <li class="nav-item">
       <a class="nav-link" href="/logout">
-        <i class="fa fa-sign-out-alt mr-2"></i> Sign Out
+        <i class="fa fa-sign-out-alt mr-2"></i> Keluar
       </a>
     </li>
   </ul>
@@ -64,7 +64,7 @@
         </li>
         <li class="nav-item">
           <a href="/admin/toko/" class="nav-link <?= ($page ?? '') === 'toko' ? 'active' : '' ?>">
-            <i class="nav-icon fas fa-scroll"></i>
+            <i class="nav-icon fas fa-store-alt"></i>
             <p>
               Toko
             </p>
@@ -72,7 +72,7 @@
         </li>
         <li class="nav-item">
           <a href="/admin/penjualan/" class="nav-link <?= ($page ?? '') === 'penjualan' ? 'active' : '' ?>">
-            <i class="nav-icon fas fa-scroll"></i>
+            <i class="nav-icon fas fa-shopping-cart"></i>
             <p>
               Penjualan
             </p>

@@ -92,7 +92,7 @@
                   <tfoot>
                     <tr>
                       <th colspan="3">Total</th>
-                      <th style="vertical-align: middle;"><?= rupiah(\App\Models\CartModel::getTotal($item->nota)) ?></th>
+                      <th style="vertical-align: middle;"><?= $item->rpTotal ?></th>
                     </tr>
                   </tfoot>
                 </table>
@@ -127,14 +127,17 @@
           </div>
         </div>
         <div class="d-flex mb-3">
-          <a href="/admin/penjualan/" class="btn btn-outline-secondary"><i class="fa fa-arrow-left"></i></a>
+          <a href="/admin/penjualan/" class="btn btn-outline-secondary mr-auto"><i class="fa fa-arrow-left"></i></a>
+          <?php if ($item->id) : ?>
+            <label for="delete-form" class="btn btn-danger mb-0"><i class="fa fa-trash"></i></label>
+          <?php endif ?>
         </div>
       </div>
     </div>
   </div>
 
   <form method="POST" action="/admin/penjualan/delete/<?= $item->id ?>">
-    <input type="submit" hidden id="delete-form" onclick="return confirm('Do you want to delete this article permanently?')">
+    <input type="submit" hidden id="delete-form" onclick="return confirm('Hapus penjualan secara permanen?')">
   </form>
   <?= view('shared/summernote') ?>
 </body>
