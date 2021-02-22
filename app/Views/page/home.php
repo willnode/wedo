@@ -30,7 +30,7 @@
       <div class="container">
         <h2 class="text-center">Layanan Kami</h2><br />
         <div class="row">
-          <div class="col-3">
+          <div class="col-4">
             <a href="/toko/">
               <div class="card text-center">
                 <div class="card-body">
@@ -40,7 +40,7 @@
               </div>
             </a>
           </div>
-          <div class="col-3">
+          <div class="col-4">
             <a href="/custom/" data-toggle="modal" data-target="#sendModal">
               <div class="card text-center">
                 <div class="card-body">
@@ -50,7 +50,7 @@
               </div>
             </a>
           </div>
-          <div class="col-3">
+          <div class="col-4">
             <a href="/custom/" data-toggle="modal" data-target="#sendModal">
               <div class="card text-center">
                 <div class="card-body">
