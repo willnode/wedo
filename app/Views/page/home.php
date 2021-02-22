@@ -30,7 +30,7 @@
       <div class="container">
         <h2 class="text-center">Layanan Kami</h2><br />
         <div class="row">
-          <div class="col-3">
+          <div class="col-4">
             <a href="/toko/">
               <div class="card text-center">
                 <div class="card-body">
@@ -40,17 +40,17 @@
               </div>
             </a>
           </div>
-          <div class="col-3">
+          <div class="col-4">
             <a href="/custom/" data-toggle="modal" data-target="#sendModal">
               <div class="card text-center">
                 <div class="card-body">
                   <img src="/food-delivery.png" width="100" alt="">
-                  <h5 class="card-title">Pesan Di Tempat Berbeda</h5>
+                  <h5 class="card-title">Pesanan Custom</h5>
                 </div>
               </div>
             </a>
           </div>
-          <div class="col-3">
+          <div class="col-4">
             <a href="/custom/" data-toggle="modal" data-target="#sendModal">
               <div class="card text-center">
                 <div class="card-body">
