@@ -293,6 +293,12 @@ class Admin extends BaseController
 
 	public function config()
 	{
+		if ($this->request->getMethod() == 'post') {
+			$c = Config::get();
+			$c->fill($_POST);
+			$c->save();
+			return $this->response->redirect('/admin/config');
+		}
 		return view('admin/config', [
 			'page' => 'config',
 			'item' => Config::get(),
