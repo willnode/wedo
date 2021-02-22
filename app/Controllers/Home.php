@@ -6,10 +6,8 @@ use App\Entities\Cart;
 use App\Entities\Config;
 use App\Entities\Review;
 use App\Libraries\CartProcessor;
-use App\Libraries\Recaptha;
 use App\Models\ArticleModel;
 use App\Models\BarangModel;
-use App\Models\CartModel;
 use App\Models\PenjualanModel;
 use App\Models\ReviewModel;
 use App\Models\TokoModel;
@@ -33,6 +31,11 @@ class Home extends BaseController
 	public function custom()
 	{
 		return $this->response->redirect(HP2WA(Config::get()->whatsapp));
+	}
+
+	public function feedback()
+	{
+		return $this->response->redirect(Config::get()->feedback);
 	}
 
 	public function login()

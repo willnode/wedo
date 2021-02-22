@@ -39,9 +39,7 @@ class Admin extends BaseController
 
 	public function index()
 	{
-		return view('page/dashboard', [
-			'page' => 'dashboard'
-		]);
+		return $this->response->redirect('/admin/penjualan/');
 	}
 
 	public function logout()
@@ -136,6 +134,8 @@ class Admin extends BaseController
 		switch ($page) {
 			case 'review':
 				return $this->response->redirect('/admin/review/?toko_id=' . $id);
+			case 'open':
+				return $this->response->redirect('/barang/view/' . $id);
 			case 'list':
 				return view('admin/barang/manage', [
 					'data' => find_with_filter($model),
