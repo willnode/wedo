@@ -70,7 +70,7 @@
     <div class="container">
       <h3 class="text-center">Bantu kami untuk mengetahui cara mengoptimalkan kinerja kami<br>Ulas kami dengan</h3>
       <p class="text-center mt-5">
-        <a href="/custom/" class="btn btn-order">Klik Disini</a>
+        <a href="https://forms.gle/ydsocJtz92Y7aRt86" class="btn btn-order">Klik Disini</a>
       </p>
     </div>
   </div>
