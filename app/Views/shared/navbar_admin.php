@@ -55,14 +55,6 @@
           </a>
         </li>
         <li class="nav-item">
-          <a href="/admin/" class="nav-link <?= ($page ?? '') === 'dashboard' ? 'active' : '' ?>">
-            <i class="nav-icon fas fa-home"></i>
-            <p>
-              Dashboard
-            </p>
-          </a>
-        </li>
-        <li class="nav-item">
           <a href="/admin/toko/" class="nav-link <?= ($page ?? '') === 'toko' ? 'active' : '' ?>">
             <i class="nav-icon fas fa-store-alt"></i>
             <p>
