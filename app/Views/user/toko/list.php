@@ -10,8 +10,8 @@
     <h2 class="mb-3">Belanja Aneka Toko Disini:</h2>
     <div class="row user-choose">
         <div class="col-lg-10 col-md-8">
-          <div class="card">
-            <div class="card-body">
+          <div class="card-body">
+            <div class="col-md-6 col-lg-4 col-xl-3 user-item">
               <?php foreach ($data as $toko) : ?>
                 <a class="item" style="width: 20%;" href="/toko/view/<?= $toko->id ?>">
                   <img src="/uploads/logo/<?= $toko->logo ?>" alt="" width="100%">
