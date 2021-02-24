@@ -232,12 +232,27 @@ class Admin extends BaseController
 					throw new PageNotFoundException();
 				}
 				return $this->response->redirect('https://wa.me/?' . http_build_query([
-					'text' => "ID Order:{$item->id}\nNama: {$item->nama}\nHP: {$item->linkHp}\nAlamat: {$item->alamat}\nTotal Belanja: {$item->rpTotal}\nDaftar Belanja:" . implode("\n", array_map(function ($x) {
+					'text' => 
+					"-------------------------------- \n
+					{$item->tanggal}\n
+					-------------------------------- \n
+					Nomor Nota:{$item->id}\n\n
+					Daftar Belanja:" . implode("\n", array_map(function ($x) {
 						/** @var Cart $x */
 						$barang = $x->barang;
 						$toko = (new TokoModel)->find($barang->toko_id)->nama ?? '';
 						return "\n{$barang->nama} ({$toko}): " . rupiah($barang->harga) . " * {$x->qty}";
 					}, $item->nota))
+					"\n Total Belanja: {$item->rpTotal}\n
+					-------------------------------- \n
+					Nama: {$item->nama}\n
+					HP: {$item->linkHp}\n
+					Alamat: {$item->alamat}\n
+					INI ADALAH HARGA KHUSUS APABILA MEMESAN VIA WEDO\n
+					www.wedoprb.com
+					-------------------------------- \n
+					*We Do What You Need*
+					"
 				]));
 			case 'maps':
 				/** @var Penjualan $item */
