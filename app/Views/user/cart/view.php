@@ -22,10 +22,6 @@
                 </label>
                 <div class="row">
                   <label class="mb-3 col-6">
-                    <span>Email</span>
-                    <input type="email" autocomplete="email" name="email" class="form-control" required>
-                  </label>
-                  <label class="mb-3 col-6">
                     <span>Nomor HP (WA)</span>
                     <input type="text" autocomplete="tel" name="hp" class="form-control" required>
                   </label>
