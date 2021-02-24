@@ -41,7 +41,7 @@
             </a>
           </div>
           <div class="col-4">
-            <a href="/custom/" data-toggle="modal" data-target="#sendModal">
+            <a href="/custom/">
               <div class="card text-center">
                 <div class="card-body">
                   <img src="/food-delivery.png" width="100" alt="">
@@ -51,7 +51,7 @@
             </a>
           </div>
           <div class="col-4">
-            <a href="/custom/" data-toggle="modal" data-target="#sendModal">
+            <a href="/custom/">
               <div class="card text-center">
                 <div class="card-body">
                   <img src="/food-delivery.png" width="100" alt="">
