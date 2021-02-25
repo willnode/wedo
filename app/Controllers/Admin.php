@@ -13,6 +13,7 @@ use App\Entities\User as EntitiesUser;
 use App\Libraries\PenjualanProcessor;
 use App\Models\ArticleModel;
 use App\Models\BarangModel;
+use App\Models\CartModel;
 use App\Models\PenjualanModel;
 use App\Models\ReviewModel;
 use App\Models\TokoModel;
@@ -87,6 +88,7 @@ class Admin extends BaseController
 		$model = new TokoModel();
 		if ($this->request->getMethod() === 'post') {
 			if ($page === 'delete' && $model->delete($id)) {
+				(new BarangModel())->withToko($id)->delete();
 				return $this->response->redirect('/admin/toko/');
 			} else if ($id = $model->processWeb($id)) {
 				return $this->response->redirect('/admin/toko/');
@@ -231,28 +233,33 @@ class Admin extends BaseController
 				if (!($item = $model->find($id))) {
 					throw new PageNotFoundException();
 				}
+				$sumbb = CartModel::getTotal($item->nota);
 				return $this->response->redirect('https://wa.me/?' . http_build_query([
-					'text' => 
-					"-------------------------------- \n
-					{$item->tanggal}\n
-					-------------------------------- \n
-					Nomor Nota:{$item->id}\n\n
-					Daftar Belanja:" . implode("\n", array_map(function ($x) {
+					'text' =>
+					"-------------------------------- \n".
+					"{$item->created_at->toLocalizedString('dd/MM/yyyy HH:mm')} WIB\n".
+					"-------------------------------- \n".
+					"Nomor Nota:\n{$item->id}\n\n".
+					"Daftar Belanja:\n" . implode("\n", array_map(function ($x, $i) {
 						/** @var Cart $x */
 						$barang = $x->barang;
 						$toko = (new TokoModel)->find($barang->toko_id)->nama ?? '';
-						return "\n{$barang->nama} ({$toko}): " . rupiah($barang->harga) . " * {$x->qty}";
-					}, $item->nota))
-					"\n Total Belanja: {$item->rpTotal}\n
-					-------------------------------- \n
-					Nama: {$item->nama}\n
-					HP: {$item->linkHp}\n
-					Alamat: {$item->alamat}\n
-					INI ADALAH HARGA KHUSUS APABILA MEMESAN VIA WEDO\n
-					www.wedoprb.com
-					-------------------------------- \n
-					*We Do What You Need*
-					"
+						return ($i + 1).". \n{$barang->nama}\n {$toko}" .
+						"\n Jumlah : {$x->qty} pcs".
+						"\n Harga (@) : ". rupiah($barang->harga).
+						"\n Total Harga : ".rupiah($barang->harga * $x->qty).
+						"\n\n";
+					}, $item->nota, array_keys($item->nota))) .
+					"Sub Total: ". rupiah($sumbb).
+					"\nOngkir: ". rupiah($item->total - $sumbb).
+					"\nSub Total: {$item->rpTotal}\n".
+					"-------------------------------- \n".
+					"Nama:\n {$item->nama} ({$item->hp})\n".
+					"Alamat:\n {$item->alamat}\n\n".
+					"INI ADALAH HARGA KHUSUS APABILA MEMESAN VIA WEDO\n".
+					"          wedoprb.com\n".
+					"-------------------------------- \n".
+					"*We Do What You Need*"
 				]));
 			case 'maps':
 				/** @var Penjualan $item */

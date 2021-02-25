@@ -31,10 +31,10 @@ class PenjualanModel extends Model
     protected $returnType = 'App\Entities\Penjualan';
     protected $useTimestamps = true;
 
-    public function withUser($email)
+    public function withUser($hp)
     {
         $this->builder()->where([
-            'email' => $email,
+            'hp' => $hp,
         ]);
         return $this;
     }
@@ -63,9 +63,11 @@ class PenjualanModel extends Model
     public static function makePenjualan(array $cart, array $data)
     {
         $item = new Penjualan();
+        if ($data['hp'] ?? '') {
+            $data['hp'] = normHP($data['hp'] ?? '');
+        }
         $item->nama = $data['nama'] ?? '';
-        $item->email = $data['email'] ?? '';
-        $item->hp = normHP($data['hp'] ?? '');
+        $item->hp = $data['hp'] ?? '';
         $item->alamat = ($data['alamat'] ?? '').', '.($data['alamat_kota'] ?? '').', '.($data['alamat_kab'] ?? '');
         foreach ($data as $key => $value) {
             Services::session()->set($key, $value);

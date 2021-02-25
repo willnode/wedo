@@ -160,12 +160,12 @@ class Home extends BaseController
 	public function history($page = 'list', $id = null)
 	{
 		$model = new PenjualanModel();
-		$model->withUser($_SESSION['email'] ?? '');
+		$model->withUser($_SESSION['hp'] ?? '');
 		if ($this->request->getMethod() == 'post') {
 			$m = new ReviewModel();
 			$r = new Review($_POST);
 			$r->id = null;
-			$r->email = $_SESSION['email'] ?? '';
+			$r->hp = $_SESSION['hp'] ?? '';
 			$r->nama = $_SESSION['nama'] ?? '';
 			$r->created_at = date('Y-m-d H:i:s');
 			$r->updated_at = date('Y-m-d H:i:s');

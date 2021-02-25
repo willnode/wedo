@@ -26,36 +26,36 @@
         </div>
       </div>
     </div>
-    <div class="service-section">
+    <div class="service-section py-5 mx-5">
       <div class="container">
         <h2 class="text-center">Layanan Kami</h2><br />
         <div class="row">
-          <div class="col-4">
+          <div class="col-sm-4">
             <a href="/toko/">
               <div class="card text-center">
                 <div class="card-body">
-                  <img src="/food-delivery.png" width="100" alt="">
-                  <h5 class="card-title">Pesan Makanan</h5>
+                  <div><img src="/food-delivery.png" width="100" alt=""></div>
+                  <h5>Pesan Makanan</h5>
                 </div>
               </div>
             </a>
           </div>
-          <div class="col-4">
+          <div class="col-sm-4">
             <a href="/custom/">
               <div class="card text-center">
                 <div class="card-body">
-                  <img src="/food-delivery.png" width="100" alt="">
-                  <h5 class="card-title">Pesan Di Tempat Berbeda</h5>
+                  <div><img src="/food-delivery.png" width="100" alt=""></div>
+                  <h5>Pesan Di Tempat Berbeda</h5>
                 </div>
               </div>
             </a>
           </div>
-          <div class="col-4">
+          <div class="col-sm-4">
             <a href="/custom/">
               <div class="card text-center">
                 <div class="card-body">
-                  <img src="/food-delivery.png" width="100" alt="">
-                  <h5 class="card-title">Antar Jemput</h5>
+                  <div><img src="/food-delivery.png" width="100" alt=""></div>
+                  <h5>Antar Jemput</h5>
                 </div>
               </div>
             </a>
