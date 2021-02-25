@@ -21,7 +21,7 @@
                   <input type="text" autocomplete="name" name="nama" class="form-control" required>
                 </label>
                 <div class="row">
-                  <label class="mb-3 col-6">
+                  <label class="mb-3 w-100">
                     <span>Nomor HP (WA)</span>
                     <input type="text" autocomplete="tel" name="hp" class="form-control" required>
                   </label>
