@@ -83,7 +83,7 @@
             <input type="password" name="password" autocomplete="current-password" placeholder="Password" class="form-control mb-2">
             <input type="submit" value="Sign In" class="btn-primary btn btn-block mb-3">
             <div class="separator mb-3">Or</div>
-            <a href="/" class="btn d-flex align-items-center btn-light border-secondary mb-2">
+            <a href="/home/" class="btn d-flex align-items-center btn-light border-secondary mb-2">
                 <span class="mx-auto">Kembali</span>
             </a>
         </form>
