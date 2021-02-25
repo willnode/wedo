@@ -239,7 +239,7 @@ class Admin extends BaseController
 					"-------------------------------- \n".
 					"{$item->created_at->toLocalizedString('dd/MM/yyyy HH:mm')} WIB\n".
 					"-------------------------------- \n".
-					"Nomor Nota:\n{$item->id}\n\n".
+					"Nomor Nota:\n".date('y').sprintf('%03d', $item->id)."\n\n".
 					"Daftar Belanja:\n" . implode("\n", array_map(function ($x, $i) {
 						/** @var Cart $x */
 						$barang = $x->barang;
