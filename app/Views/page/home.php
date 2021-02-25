@@ -14,15 +14,6 @@
           <div class="carousel-item active">
             <div class="jumbotron bg-1" style="background-image: url('/artboard4.png'); background-position: center;"></div>
           </div>
-          <div class="carousel-item">
-            <div class="jumbotron bg-2" style="background: url('/artboard2.jpg'); background-position: center;"></div>
-          </div>
-          <div class="carousel-item">
-            <div class="jumbotron" style="background: url('/artboard3.jpg'); background-position: center;"></div>
-          </div>
-          <div class="carousel-item">
-            <div class="jumbotron" style="background: url('/artboard1.jpg'); background-position: center;"></div>
-          </div>
         </div>
       </div>
     </div>
@@ -34,7 +25,7 @@
             <a href="/toko/">
               <div class="card text-center">
                 <div class="card-body">
-                  <img src="/food-delivery.png" width="100" alt="">
+                  <img src="/artboard1.jpg" width="100" alt="">
                   <h5 class="card-title">Pesan Makanan</h5>
                 </div>
               </div>
@@ -44,7 +35,7 @@
             <a href="/custom/">
               <div class="card text-center">
                 <div class="card-body">
-                  <img src="/food-delivery.png" width="100" alt="">
+                  <img src="/artboard2.jpg" width="100" alt="">
                   <h5 class="card-title">Pesan Di Tempat Berbeda</h5>
                 </div>
               </div>
@@ -54,7 +45,7 @@
             <a href="/custom/">
               <div class="card text-center">
                 <div class="card-body">
-                  <img src="/food-delivery.png" width="100" alt="">
+                  <img src="/artboard3.jpg" width="100" alt="">
                   <h5 class="card-title">Antar Jemput</h5>
                 </div>
               </div>
