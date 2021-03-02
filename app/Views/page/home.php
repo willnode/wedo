@@ -12,7 +12,7 @@
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <div class="jumbotron bg-1" style="background: url('/artboard4.png') center/cover; "></div>
+            <div class="jumbotron bg-1" style="background: url('/artboard4.jpg') center/cover; "></div>
           </div>
         </div>
       </div>
