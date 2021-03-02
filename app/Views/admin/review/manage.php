@@ -10,7 +10,7 @@
     }
   </style>
   <div class="wrapper">
-    <?= view('shared/navbar_admin') ?>
+    <?= view('admin/navbar') ?>
     <div class="content-wrapper p-4">
       <div class="container">
         <div class="card">

@@ -5,7 +5,7 @@
 
 <body>
     <div class="wrapper">
-        <?= view('shared/navbar') ?>
+        <?= view('user/navbar') ?>
         <?php /** @var \App\Entities\Penjualan[] $data */ ?>
         <div class="content-wrapper p-4">
             <div class="container">

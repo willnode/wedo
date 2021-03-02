@@ -4,7 +4,7 @@
 <?= view('shared/head') ?>
 
 <body>
-    <?= view('shared/navbar_index') ?>
+    <?= view('user/navbar') ?>
       <div class="container py-4">
         <div class="card">
           <div class="card-body">

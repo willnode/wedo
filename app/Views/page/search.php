@@ -4,8 +4,9 @@
 
 <body>
   <div class="wrapper">
-    <?= view('shared/navbar') ?>
-    <div class="content-wrapper p-4 text-yellow">
+    <?= view('user/navbar') ?>
+    <div class="content-wrapper p-4">
+
     </div>
   </div>
 </body>

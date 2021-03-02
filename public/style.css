@@ -206,6 +206,15 @@ p {
   padding-bottom: 80px;
 }
 
+
+.service-section .card {
+  transition: all 0.2s;
+}
+
+.service-section .card:hover {
+  background-color: #FFD438;
+}
+
 .cart-section .card .card-cart-product {
   width: 60px;
 }
@@ -236,6 +245,7 @@ p {
   text-align: center;
   font-size: 14px;
 }
+
 
 @media screen and (max-width: 600px) {
   .hidden-mobile {
@@ -280,9 +290,7 @@ p {
     padding-right: 0;
   }
 
-  .service-section .card img {
-    width: 50px;
-  }
+
 
   .service-section .card h5 {
     font-size: 14px;
@@ -341,11 +349,6 @@ p {
 
   .service-section {
     position: relative;
-    top: -15px;
-  }
-
-  .service-section .card img {
-    width: 40px;
   }
 
 }

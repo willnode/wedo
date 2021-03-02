@@ -4,7 +4,7 @@
 <?= view('shared/head') ?>
 
 <body class="bg-dark-blue">
-  <?= view('shared/navbar_index') ?>
+  <?= view('user/navbar') ?>
   <?php /** @var \App\Entities\Barang $item */ ?>
   <div class="container py-4">
     <div class="row">

@@ -4,7 +4,7 @@
 <?= view('shared/head') ?>
 
 <body>
-  <?= view('shared/navbar_index') ?>
+  <?= view('user/navbar') ?>
   <div class="container py-4">
     <?php /** @var \App\Entities\Toko[] $data */ ?>
     <h2 class="mb-3">Belanja Aneka Toko Disini:</h2>

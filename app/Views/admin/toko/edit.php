@@ -4,7 +4,7 @@
 
 <body>
   <div class="wrapper">
-    <?= view('shared/navbar_admin') ?>
+    <?= view('admin/navbar') ?>
     <?php /** @var \App\Entities\Toko $item */ ?>
     <div class="content-wrapper p-4">
       <div class="container">

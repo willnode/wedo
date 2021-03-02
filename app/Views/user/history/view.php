@@ -4,7 +4,7 @@
 <?= view('shared/head') ?>
 
 <body>
-  <?= view('shared/navbar_index') ?>
+  <?= view('user/navbar') ?>
   <?php /** @var \App\Entities\Penjualan $item */ ?>
   <?php $rm = new \App\Models\ReviewModel() ?>
   <div class="container py-4">

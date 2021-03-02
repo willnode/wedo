@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<?= view("shared/head.php") ?>
+<?= view("shared/head") ?>
 
 <body>
 
-  <?= view('shared/navbar_index.php'); ?>
+  <?= view('user/navbar'); ?>
 
   <section class="banner">
 
@@ -12,7 +12,7 @@
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <div class="jumbotron bg-1" style="background-image: url('/artboard4.png'); background-position: center;"></div>
+            <div class="jumbotron bg-1" style="background: url('/artboard4.png') center/cover; "></div>
           </div>
         </div>
       </div>
@@ -25,7 +25,7 @@
             <a href="/toko/">
               <div class="card text-center">
                 <div class="card-body">
-                  <img src="/artboard1.jpg" width="100" alt="">
+                  <img src="/artboard1.jpg" width="100%" alt="">
                   <h5 class="card-title">Pesan Makanan</h5>
                 </div>
               </div>
@@ -35,7 +35,7 @@
             <a href="/custom/">
               <div class="card text-center">
                 <div class="card-body">
-                  <img src="/artboard2.jpg" width="100" alt="">
+                  <img src="/artboard2.jpg" width="100%" alt="">
                   <h5 class="card-title">Pesan Di Tempat Berbeda</h5>
                 </div>
               </div>
@@ -45,7 +45,7 @@
             <a href="/custom/">
               <div class="card text-center">
                 <div class="card-body">
-                  <img src="/artboard3.jpg" width="100" alt="">
+                  <img src="/artboard3.jpg" width="100%" alt="">
                   <h5 class="card-title">Antar Jemput</h5>
                 </div>
               </div>
@@ -66,10 +66,7 @@
     </div>
   </div>
 
-  <?= view('shared/footer.php'); ?>
+  <?= view('shared/footer'); ?>
 
 </body>
-
-<?= view('shared/script.php') ?>
-
 </html>
