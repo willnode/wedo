@@ -46,7 +46,7 @@
                     <tr>
                       <td>Waktu Order</td>
                       <th>
-                        (<?= $item->created_at->humanize() ?>)<br>
+                        (<?= humanize($item->created_at) ?>)<br>
                         <?= $item->created_at->toDateTimeString() ?>
                       </th>
                     </tr>

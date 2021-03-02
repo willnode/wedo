@@ -47,7 +47,7 @@
                   <div>
                     <?= esc($review->content) ?>
                     <br>
-                    <small class="text-black-50"><?= esc($review->updated_at->humanize()) ?></small>
+                    <small class="text-black-50"><?= humanize($review->updated_at) ?></small>
                   </div>
                 </div>
               </div>

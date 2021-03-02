@@ -10,9 +10,10 @@
   <div class="container py-4">
     <div class="card">
       <div class="card-body">
-        <h4>Order: #<?= $item->id ?></h4>
-        <h4>Status: <?= \App\Models\PenjualanModel::$statusesInHtml[$item->status] ?></h4>
-        <h4>Tanggal Pembelian: <?= $item->created_at->toDateTimeString() ?></h4>
+        <h4>Nomor Order: #<?= $item->id ?></h4>
+        <h4>Status Order: <?= \App\Models\PenjualanModel::$statusesInHtml[$item->status] ?></h4>
+        <h4>Waktu Order: <?= humanize($item->created_at) ?></h4>
+        <small>(<?= $item->created_at->toDateTimeString() ?> WIB)</small>
         <table class="table my-3">
           <thead>
             <tr>
