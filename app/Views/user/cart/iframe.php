@@ -34,6 +34,14 @@
           <?php endforeach ?>
         </tbody>
         <tfoot>
+          <?php if (($page ?? '') === 'cart') : ?>
+            <tr>
+              <th colspan="2">
+                Ongkir
+              </th>
+              <th colspan="2" style="vertical-align: middle;" id="ongkir">-</th>
+            </tr>
+          <?php endif ?>
           <tr>
             <th colspan="2">Total
               <br>

@@ -29,7 +29,7 @@
               'data' => $data,
               'columns' => [
                 'Nama' => function (\App\Entities\Toko $x) {
-                  return '<img src="/uploads/logo/' . $x->logo . '" alt="" class="mr-2 logo">' . esc($x->nama);
+                  return '<img src="/uploads/logo/' . $x->logo . '?w=150&h=150" alt="" class="mr-2 logo">' . esc($x->nama);
                 },
                 'Lokasi' => function (\App\Entities\Toko $x) {
                   return esc($x->lokasi);

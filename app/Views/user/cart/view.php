@@ -20,12 +20,10 @@
                   <span>Nama</span>
                   <input type="text" autocomplete="name" name="nama" class="form-control" required>
                 </label>
-                <div class="row">
-                  <label class="mb-3 w-100">
-                    <span>Nomor HP (WA)</span>
-                    <input type="text" autocomplete="tel" name="hp" class="form-control" required>
-                  </label>
-                </div>
+                <label class="mb-3 w-100">
+                  <span>Nomor HP (WA)</span>
+                  <input type="text" autocomplete="tel" name="hp" class="form-control" required>
+                </label>
                 <label class="mb-3 w-100">
                   <span>Alamat</span>
                   <input type="text" autocomplete="street-address" name="alamat" class="form-control" required>
@@ -74,6 +72,7 @@
         maximumFractionDigits: 0,
       });
       var tag = ('' + $('#kota').val()).startsWith('Kecamatan') ? '<?= \App\Entities\Config::get()->ongkir_luar ?>' : '<?= \App\Entities\Config::get()->ongkir_dalam ?>'
+      $('#ongkir').text(formatter.format(parseInt(tag)));
       $('#total').text(formatter.format(parseInt($('#total').data('value')) + parseInt(tag)));
     }
 

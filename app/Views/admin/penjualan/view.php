@@ -80,7 +80,7 @@
                       <tr>
                         <td>
                           <a href="/barang/view/<?= $x->barang_id ?>">
-                            <?= '<img src="/uploads/logo/' . $x->barang->logo . '" alt="" class="mr-2 logo">' . esc($x->barang->nama) ?>
+                            <?= '<img src="/uploads/logo/' . $x->barang->logo . '?w=64&h=64" alt="" class="mr-2 logo">' . esc($x->barang->nama) ?>
                           </a>
                         </td>
                         <td style="vertical-align: middle;"><?= rupiah($x->barang->harga) ?></td>

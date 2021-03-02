@@ -21,6 +21,10 @@ class TokoModel extends Model
     {
         $this->builder()->where($filter);
     }
+    public function search($filter)
+    {
+        $this->builder()->like('nama', $filter);
+    }
 
     public function processWeb($id)
     {

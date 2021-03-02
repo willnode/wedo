@@ -34,7 +34,7 @@
               'data' => $data,
               'columns' => [
                 'Nama' => function (\App\Entities\Barang $x) {
-                  return '<img src="/uploads/logo/' . $x->logo . '" alt="" class="mr-2 logo">' . esc($x->nama);
+                  return '<img src="/uploads/logo/' . $x->logo . '?w=64&h=64" alt="" class="mr-2 logo">' . esc($x->nama);
                 },
                 'Harga' => function (\App\Entities\Barang $x) {
                   return rupiah($x->harga);

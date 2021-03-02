@@ -3,7 +3,7 @@
         <hr>
         <div class="row">
             <div class="col-md-2 mt-3">
-                <p>
+                <p class="text-center">
                     <img src="/3wedo.png" width="80" alt="">
                 </p>
             </div>

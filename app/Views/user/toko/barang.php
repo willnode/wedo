@@ -7,8 +7,9 @@
   <?= view('user/navbar') ?>
   <?php /** @var \App\Entities\Barang $item */ ?>
   <div class="container py-4">
-    <div class="row">
-      <div class="col-lg-6">
+    <?= view('user/search') ?>
+    <div class="row justify-content-center">
+      <div class="col-lg-6 mb-3">
         <div class="card overflow-hidden">
           <div class="mb-3" style="height: 200px;">
             <img class="mr-2" src="/uploads/logo/<?= $item->logo ?>" width="100%" height="100%" style="object-fit: cover;" alt="">
@@ -52,62 +53,41 @@
               </div>
             <?php endforeach ?>
             <?php if (!$r) : ?>
-              <i>Tidak ada review sejauh ini</i>
+              <p class="my-3"><i>Tidak ada review sejauh ini</i></p>
             <?php endif ?>
             <?= view('shared/pagination') ?>
           </div>
         </div>
       </div>
-      <div class="col-lg-6">
+      <div class="col-lg-6 mb-3">
         <?= view('user/cart/iframe') ?>
         <?php $related = $item->toko->getBarang() ?>
+      </div>
+      <div class="col-12 col-lg-10 mb-3">
         <div class="card">
           <div class="card-body">
             <?php if (count($related) > 1) : ?>
-            <h3>Mungkin kamu suka</h3>
-            <div class="slick user-choose">
-              <?php foreach ($related as $barang) : ?>
-                <?php if ($barang->id == $item->id) continue; ?>
-                <a class="item" style="width: 20%;" href="/barang/view/<?= $barang->id ?>">
-                  <img src="/uploads/logo/<?= $barang->logo ?>" alt="" width="100%">
-                  <h4><?= $barang->nama ?></h4>
-                  <div class="text-center text-black-50"><?= rupiah($barang->harga) ?></div>
-                </a>
-              <?php endforeach ?>
-            </div>
+              <h3 class="mb-3">Mungkin kamu suka</h3>
+              <div class="row user-choose justify-content-center">
+                <?php foreach (array_slice($related, 0, 3) as $barang) : ?>
+                  <?php if ($barang->id == $item->id) continue; ?>
+                  <a class="item col-4 mb-3" href="/barang/view/<?= $barang->id ?>">
+                    <img src="/uploads/logo/<?= $barang->logo ?>?w=400&h=200" alt="" width="100%">
+                    <h4><?= $barang->nama ?></h4>
+                    <div class="text-center text-black-50"><?= rupiah($barang->harga) ?></div>
+                  </a>
+                <?php endforeach ?>
+              </div>
             <?php endif ?>
+            <a href="/toko/view/<?= $item->toko_id ?>" class="btn btn-outline-warning btn-block">Lihat Semua Barang di Toko</a>
             <a href="/toko/" class="btn btn-warning btn-block">Belanja Lainnya</a>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <?= view('shared/footer.php'); ?>
 
-  <script>
-    window.addEventListener('DOMContentLoaded', (event) => {
-      $('.slick').slick({
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        arrows: true,
-        responsive: [
-          {
-            breakpoint: 600,
-            settings: {
-              slidesToShow: 2,
-              slidesToScroll: 2
-            }
-          },
-          {
-            breakpoint: 480,
-            settings: {
-              slidesToShow: 1,
-              slidesToScroll: 1
-            }
-          }
-        ]
-      })
-    });
-  </script>
 </body>
 
 </html>

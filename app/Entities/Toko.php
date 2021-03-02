@@ -20,7 +20,7 @@ class Toko extends Entity
         'id' => 'integer',
     ];
     /**
-    * @return Barang
+    * @return Barang[]
     */
     public function getBarang()
     {

@@ -25,6 +25,11 @@ class BarangModel extends Model
             return $this;
     }
 
+    public function search($filter)
+    {
+        $this->builder()->like('nama', $filter);
+    }
+
     public function processWeb($id)
     {
         if ($id === null) {

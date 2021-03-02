@@ -6,6 +6,7 @@ use App\Entities\Cart;
 use App\Entities\Config;
 use App\Entities\Review;
 use App\Libraries\CartProcessor;
+use App\Libraries\ImageProcessor;
 use App\Models\ArticleModel;
 use App\Models\BarangModel;
 use App\Models\PenjualanModel;
@@ -65,26 +66,6 @@ class Home extends BaseController
 		]);
 	}
 
-	public function article($id = null)
-	{
-		if ($id === 'about') $id = 1;
-		else if ($id === 'faq') $id = 2;
-		else if ($id === 'contact') $id = 3;
-
-		$model = new ArticleModel();
-		if ($id === null) {
-			return view('article/list', [
-				'data' => $model->findAll(),
-			]);
-		} else if ($item = $model->find($id)) {
-			return view('article/view', [
-				'item' => $item
-			]);
-		} else {
-			throw new PageNotFoundException();
-		}
-	}
-
 	public function toko($page = 'list', $id = null)
 	{
 		$model = new TokoModel();
@@ -112,7 +93,7 @@ class Home extends BaseController
 				if (!($item = $model->find($id))) {
 					throw new PageNotFoundException();
 				}
-				return view('user/barang/view', [
+				return view('user/toko/barang', [
 					'item' => $item
 				]);
 		}
@@ -127,8 +108,9 @@ class Home extends BaseController
 					$g = CartProcessor::find($_POST['barang_id']);
 					if (!$g) {
 						CartProcessor::add($g = new Cart($_POST));
+					} else {
+						$g->qty += $_POST['qty'];
 					}
-					$g->qty += $_POST['qty'];
 					CartProcessor::save();
 					return $this->response->redirect($_POST['r'] ?? previous_url());
 				case 'set':
@@ -189,16 +171,38 @@ class Home extends BaseController
 		}
 	}
 
+	public function search()
+	{
+		if (!($s = $_GET['s'] ?? '')) {
+			return $this->response->redirect('/toko/');
+		}
+		$toko = new TokoModel();
+		$toko->search($s);
+		$barang = new BarangModel();
+		$barang->search($s);
+		return view('user/toko/search', [
+			'page' => 'toko',
+			'tokodata' => $toko->findAll(),
+			'barangdata' => $barang->findAll(),
+		]);
+	}
+
 	public function logout()
 	{
 		Services::session()->destroy();
 		return $this->response->redirect('/');
 	}
 
-	public function uploads($directory, $file)
+	public function uploads($directory = null, $file = null)
 	{
+		if (!$directory || !$file) {
+			throw new FileNotFoundException();
+		}
 		$path = WRITEPATH . implode(DIRECTORY_SEPARATOR, ['uploads', $directory, $file]);
 		if ($file && is_file($path)) {
+			if (isset($_GET['w'], $_GET['h']) && ImageProcessor::is_image($path)) {
+				$path = ImageProcessor::image_cache($path, $_GET['w'], $_GET['h']);
+			}
 			$last_modified_time = filemtime($path);
 			$etag = md5_file($path);
 			header("Last-Modified: " . gmdate("D, d M Y H:i:s", $last_modified_time) . " GMT");
