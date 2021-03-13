@@ -29,16 +29,6 @@ class Home extends BaseController
 		]);
 	}
 
-	public function custom()
-	{
-		return $this->response->redirect(HP2WA(Config::get()->whatsapp));
-	}
-
-	public function feedback()
-	{
-		return $this->response->redirect(Config::get()->feedback);
-	}
-
 	public function login()
 	{
 		if ($r = $this->request->getGet('r')) {

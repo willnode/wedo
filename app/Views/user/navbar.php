@@ -25,9 +25,6 @@
           <a class="nav-link" href="/history/">History</a>
         </li>
       <?php endif ?>
-      <li class="nav-item  <?= ($page ?? '') == 'custom' ? 'active' : '' ?>">
-        <a class="nav-link" href="/custom/">Custom Order</a>
-      </li>
     </ul>
   </div>
 </nav>
