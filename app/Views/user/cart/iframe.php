@@ -37,7 +37,7 @@
           <?php if (($page ?? '') === 'cart') : ?>
             <tr>
               <th colspan="2">
-                Ongkir
+                Ongkos Kirim
               </th>
               <th colspan="2" style="vertical-align: middle;" id="ongkir">-</th>
             </tr>

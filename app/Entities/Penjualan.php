@@ -13,6 +13,7 @@ use CodeIgniter\I18n\Time;
  * @property string $hp
  * @property string $linkHp
  * @property string $alamat
+ * @property int $ongkir
  * @property int $total
  * @property string $rpTotal
  * @property Cart[] $nota
@@ -31,6 +32,10 @@ class Penjualan extends Entity
     public function getLinkHp()
     {
         return HP2WA($this->hp);
+    }
+    public function getRpOngkir()
+    {
+        return rupiah($this->ongkir);
     }
     public function getRpTotal()
     {

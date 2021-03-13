@@ -25,7 +25,7 @@ class PenjualanModel extends Model
 
     protected $table         = 'penjualan';
     protected $allowedFields = [
-        'nama', 'email', 'hp', 'alamat', 'nota', 'status', 'total', 'kurir'
+        'nama', 'email', 'hp', 'alamat', 'nota', 'status', 'total', 'ongkir', 'kurir'
     ];
     protected $primaryKey = 'id';
     protected $returnType = 'App\Entities\Penjualan';
@@ -78,7 +78,8 @@ class PenjualanModel extends Model
             $x->harga = $d['barang']['harga'];
             return $d;
         }, $cart);
-        $item->total = CartModel::getTotal($cart) + startsWith($data['alamat_kota'], 'Kecamatan') ? Config::get()->ongkir_luar : Config::get()->ongkir_dalam;
+        $item->ongkir = startsWith($data['alamat_kota'], 'Kecamatan') ? Config::get()->ongkir_luar : Config::get()->ongkir_dalam;
+        $item->total = CartModel::getTotal($cart) + $item->ongkir;
         $item->status = 'menunggu';
         return $item;
     }

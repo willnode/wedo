@@ -22,7 +22,7 @@
     </div>
     <div class="row user-choose justify-content-center">
       <?php foreach ($item->barang as $barang) : $s = 1 ?>
-        <div class="col-6 col-md-4 col-lg-3 col-xl-2 user-item mb-3">
+        <div class="col-6 col-md-4 col-lg-3 user-item mb-3">
           <a class="item" href="/barang/view/<?= $barang->id ?>">
             <img src="/uploads/logo/<?= $barang->logo ?>?w=400&h=300" width="100%">
             <h4><?= $barang->nama ?></h4>

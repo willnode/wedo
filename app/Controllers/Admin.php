@@ -233,7 +233,6 @@ class Admin extends BaseController
 				if (!($item = $model->find($id))) {
 					throw new PageNotFoundException();
 				}
-				$sumbb = CartModel::getTotal($item->nota);
 				return $this->response->redirect('https://wa.me/?' . http_build_query([
 					'text' =>
 					"-------------------------------- \n".
@@ -250,9 +249,9 @@ class Admin extends BaseController
 						"\n Total Harga : ".rupiah($barang->harga * $x->qty).
 						"\n\n";
 					}, $item->nota, array_keys($item->nota))) .
-					"Sub Total: ". rupiah($sumbb).
-					"\nOngkir: ". rupiah($item->total - $sumbb).
-					"\nSub Total: {$item->rpTotal}\n".
+					"Sub Total: ". rupiah(CartModel::getTotal($item->nota)).
+					"\nOngkos Kirim: ". $item->rpOngkir.
+					"\nTotal Belanja: {$item->rpTotal}\n".
 					"-------------------------------- \n".
 					"Nama:\n {$item->nama} ({$item->hp})\n".
 					"Alamat:\n {$item->alamat}\n\n".

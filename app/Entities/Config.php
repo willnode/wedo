@@ -17,7 +17,11 @@ use Config\Database;
  * @property string $operasional_buka
  * @property string $operasional_tutup
  * @property string $agen_kurir
- * @property string $whatsapp
+ * @property string $link_wefood
+ * @property string $link_webox
+ * @property string $link_wetrans
+ * @property string $link_custom_order
+ * @property string $link_feedback
  */
 class Config extends Entity
 {

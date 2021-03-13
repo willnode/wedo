@@ -48,8 +48,13 @@
           </tbody>
           <tfoot>
             <tr>
-              <th colspan="3">Total</th>
-              <th style="vertical-align: middle;"><?= rupiah(\App\Models\CartModel::getTotal($item->nota)) ?></th>
+              <th colspan="3">Ongkis Kirim</th>
+              <th style="vertical-align: middle;"><?= rupiah($item->ongkir) ?></th>
+              <th></th>
+            </tr>
+            <tr>
+              <th colspan="3">Total Belanja</th>
+              <th style="vertical-align: middle;"><?= rupiah($item->total) ?></th>
               <th></th>
             </tr>
           </tfoot>

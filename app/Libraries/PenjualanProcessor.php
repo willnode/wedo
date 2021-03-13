@@ -18,8 +18,11 @@ class PenjualanProcessor extends BaseExcelProcessor
             'key' => 'status',
             'title' => 'Status',
         ], [
+            'key' => 'ongkir',
+            'title' => 'Ongkir',
+        ], [
             'key' => 'total',
-            'title' => 'Harga',
+            'title' => 'Total',
         ], [
             'key' => 'kurir',
             'title' => 'Kurir',

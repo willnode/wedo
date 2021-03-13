@@ -91,7 +91,11 @@
                   </tbody>
                   <tfoot>
                     <tr>
-                      <th colspan="3">Total</th>
+                      <th colspan="3">Ongkos Kirim</th>
+                      <th style="vertical-align: middle;"><?= $item->rpOngkir ?></th>
+                    </tr>
+                    <tr>
+                      <th colspan="3">Total Belanja</th>
                       <th style="vertical-align: middle;"><?= $item->rpTotal ?></th>
                     </tr>
                   </tfoot>
