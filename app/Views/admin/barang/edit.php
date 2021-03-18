@@ -35,12 +35,12 @@
               </label>
               <label class="d-block mb-3">
                 <span>Logo</span>
-                <?= view('shared/file', [
-                  'value' => $item->logo,
-                  'name' => 'logo',
-                  'path' => 'logo',
-                  'disabled' => false,
-                ]) ?>
+                  <?= view('shared/files', [
+                    'value' => $item->logo ?? [],
+                    'name' => "logo",
+                    'count' => 5,
+                    'path' => 'logo',
+                  ]); ?>
               </label>
               <div class="d-flex mb-3">
                 <input type="submit" value="Simpan" class="btn btn-primary mr-auto">

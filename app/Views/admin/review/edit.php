@@ -36,7 +36,7 @@
               <label class="d-block mb-3">
                 <span>Logo</span>
                 <?= view('shared/file', [
-                  'value' => $item->logo,
+                  'value' => $item->logo[0] ?? '',
                   'name' => 'logo',
                   'path' => 'logo',
                   'disabled' => false,

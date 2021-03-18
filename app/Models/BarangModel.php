@@ -34,13 +34,13 @@ class BarangModel extends Model
     {
         if ($id === null) {
             $item = (new Barang($_POST));
-            post_file($item, 'logo');
+            post_files($item, 'logo');
             $id = $this->insert($item);
             return $id;
         } else if ($item = $this->find($id)) {
             /** @var Barang $item */
             $item->fill($_POST);
-            post_file($item, 'logo');
+            post_files($item, 'logo');
             if ($item->hasChanged()) {
                 $this->save($item);
             }

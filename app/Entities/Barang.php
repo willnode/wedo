@@ -12,7 +12,7 @@ use CodeIgniter\I18n\Time;
  * @property int $id
  * @property string $nama
  * @property int $harga
- * @property string $logo
+ * @property string[] $logo
  * @property string $content
  * @property Toko $toko
  * @property Review[] $reviews
@@ -24,6 +24,7 @@ class Barang extends Entity
         'id' => 'integer',
         'harga' => 'integer',
         'toko_id' => 'integer',
+        'logo' => 'json-array',
     ];
 
     public function getToko()

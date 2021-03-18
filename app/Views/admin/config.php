@@ -14,7 +14,16 @@
               <?php foreach ($item->toArray() as $key => $value) : ?>
                 <label class="d-block mb-3">
                   <span><?= ucwords(str_replace('_', ' ', $key)) ?></span>
-                  <input type="text" class="form-control" name="<?= $key ?>" value="<?= esc($value) ?>" required>
+                  <?php if ($key == 'banner') : ?>
+                    <?= view('shared/files', [
+                      'value' => $item->banner ?? [],
+                      'name' => "banner",
+                      'count' => 8,
+                      'path' => 'banner',
+                    ]); ?>
+                  <?php else : ?>
+                    <input type="text" class="form-control" name="<?= $key ?>" value="<?= esc($value) ?>" required>
+                  <?php endif ?>
                 </label>
               <?php endforeach ?>
               <div class="d-flex mb-3">

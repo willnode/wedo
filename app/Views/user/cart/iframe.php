@@ -15,7 +15,7 @@
         <tbody>
           <?php foreach ($cart as $x) : ?>
             <tr>
-              <td><?= '<img src="/uploads/logo/' . $x->barang->logo . '" alt="" class="mr-2 logo">' . esc($x->barang->nama) ?></td>
+              <td><?= '<img src="/uploads/logo/' . $x->barang->logo[0] ?? '' . '" alt="" class="mr-2 logo">' . esc($x->barang->nama) ?></td>
               <td style="vertical-align: middle;">
                 <form action="/cart/set/" method="POST">
                   <input type="hidden" name="barang_id" value="<?= $x->barang_id ?>">

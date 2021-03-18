@@ -7,16 +7,26 @@
   <?= view('user/navbar'); ?>
 
   <section class="banner">
-
     <div class="hero">
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <div class="jumbotron bg-1" style="background: url('/artboard4.jpg') center/cover; "></div>
+        <div class="carousel-inner" style="max-height: 80vh;">
+          <div class="slick">
+            <?php foreach (\App\Entities\Config::get()->banner ?: [] as $banner) : ?>
+              <img src="/uploads/banner/<?= $banner ?>?w=1920&h=1024" alt="" width="100%" height="100%" style="object-fit: cover;">
+            <?php endforeach ?>
           </div>
         </div>
       </div>
     </div>
+    <script>
+      window.addEventListener('DOMContentLoaded', (event) => {
+        $('.slick').slick({
+          dots: true,
+          navs: true,
+          autoplay: true,
+        });
+      });
+    </script>
     <div class="service-section py-5 mx-5">
       <div class="fluid-container">
         <h2 class="text-center">Layanan Kami</h2><br />

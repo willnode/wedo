@@ -16,7 +16,7 @@
                 <div class="col-12">
                   <div class="py-2">
                     <a href="/history/view/<?= $item->id ?>" class="item d-flex flex-row align-items-center pr-3">
-                      <img class="mr-2" src="/uploads/logo/<?= $nota[0]->barang->logo ?>?w=200&h=200" alt="" width="100px">
+                      <img class="mr-2" src="/uploads/logo/<?= $nota[0]->barang->logo[0] ?? '' ?>?w=200&h=200" alt="" width="100px">
                       <h4 class="mr-auto"><?= $nota[0]->barang->nama ?><?= isset($nota[1]) ? ', ...' : '' ?></h4>
                       <h5 class="text-black-50 mx-4"><?= humanize($item->created_at) ?></h5>
                       <h4><?= \App\Models\PenjualanModel::$statusesInHtml[$item->status] ?></h4>

@@ -88,6 +88,30 @@ function post_file(Entity $entity, $name, string $folder = null)
     }
 }
 
+function post_files(Entity $entity, $name, string $folder = null)
+{
+    if (!is_dir($path  = WRITEPATH . implode(DIRECTORY_SEPARATOR, ['uploads', $folder ?? $name, '']))) {
+        mkdir($path, 0775, true);
+    }
+    $req = Services::request();
+    $files = $req->getFileMultiple($name);
+    $new_files = [];
+    foreach ($files as $file) {
+        if ($file && $file->isValid() && $file->move($path)) {
+            $new_files[] = $file->getName();
+        }
+    }
+    if ($new_files && is_array($entity->{$name})) {
+        foreach ($entity->{$name} as $old_file) {
+            if ($old_file && is_file($path . $old_file)) {
+                unlink($path . $old_file);
+            }
+        }
+        $entity->{$name} = $new_files;
+    }
+}
+
+
 function rupiah($angka)
 {
     $hasil_rupiah = "Rp " . number_format($angka, 0, ',', '.');

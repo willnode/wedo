@@ -317,6 +317,7 @@ class Admin extends BaseController
 		if ($this->request->getMethod() == 'post') {
 			$c = Config::get();
 			$c->fill($_POST);
+			post_files($c, 'banner');
 			$c->save();
 			return $this->response->redirect('/admin/config');
 		}

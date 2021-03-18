@@ -11,8 +11,10 @@
     <div class="row justify-content-center">
       <div class="col-lg-6 mb-3">
         <div class="card overflow-hidden">
-          <div class="mb-3" style="height: 200px;">
-            <img class="mr-2" src="/uploads/logo/<?= $item->logo ?>" width="100%" height="100%" style="object-fit: cover;" alt="">
+          <div class="mb-3 slick">
+            <?php foreach ($item->logo ?: [] as $logo) : ?>
+              <img src="/uploads/logo/<?= $logo ?>?w=600&h=300" alt="" width="100%" height="100%" style="object-fit: cover;">
+            <?php endforeach ?>
           </div>
           <div class="card-body">
             <div class="d-flex flex-column flex-md-row">
@@ -72,7 +74,7 @@
                 <?php foreach (array_slice($related, 0, 3) as $barang) : ?>
                   <?php if ($barang->id == $item->id) continue; ?>
                   <a class="item col-4 mb-3" href="/barang/view/<?= $barang->id ?>">
-                    <img src="/uploads/logo/<?= $barang->logo ?>?w=400&h=200" alt="" width="100%">
+                    <img src="/uploads/logo/<?= $barang->logo[0] ?? '' ?>?w=400&h=200" alt="" width="100%">
                     <h4><?= $barang->nama ?></h4>
                     <div class="text-center text-black-50"><?= rupiah($barang->harga) ?></div>
                   </a>
@@ -84,6 +86,14 @@
           </div>
         </div>
       </div>
+      <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+          $('.slick').slick({
+            dots: true,
+            autoplay: true,
+          });
+        });
+      </script>
     </div>
   </div>
   <?= view('shared/footer.php'); ?>

@@ -28,6 +28,7 @@ class Config extends Entity
     protected $casts = [
         'ongkir_dalam' => 'integer',
         'ongkir_luar' => 'integer',
+        'banner' => 'json-array',
     ];
 
     public function isOpen()
@@ -53,7 +54,7 @@ class Config extends Entity
     public function save()
     {
         $table = Database::connect()->table('config');
-        foreach ($this->toArray(true) as $key => $value) {
+        foreach ($this->toRawArray(true) as $key => $value) {
             $table->replace(['key' => $key, 'value' => $value]);
         }
     }

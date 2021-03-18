@@ -331,12 +331,8 @@ p {
 
 
 /* Edited */
-.banner>.hero {
-  height: 45vw;
-}
 
 .hero .jumbotron {
-  height: 45vw;
   min-height: unset !important;
   padding: 0;
   margin: 0;
@@ -347,19 +343,4 @@ p {
   line-height: 1.6;
   background-color: var(--danger);
   color: #FFF;
-}
-
-@media screen and (max-width: 600px) {
-  .banner>.hero {
-    height: 60vh !important;
-  }
-
-  .hero .jumbotron {
-    height: 60vh !important;
-  }
-
-  .service-section {
-    position: relative;
-  }
-
 }
