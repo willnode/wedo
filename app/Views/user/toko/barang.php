@@ -69,7 +69,7 @@
         <div class="card">
           <div class="card-body">
             <?php if (count($related) > 1) : ?>
-              <h3 class="mb-3">Mungkin kamu suka</h3>
+              <h3 class="mb-3 text-center">Mungkin kamu suka</h3>
               <div class="row user-choose justify-content-center">
                 <?php foreach (array_slice($related, 0, 3) as $barang) : ?>
                   <?php if ($barang->id == $item->id) continue; ?>

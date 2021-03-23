@@ -11,7 +11,7 @@
     <h2 class="my-3 text-center">Belanja Aneka Toko Disini:</h2>
     <div class="row user-choose justify-content-center">
       <?php foreach ($data as $toko) : ?>
-        <div class="col-md-6 col-lg-4 col-xl-3 col-6">
+        <div class="col-md-6 col-lg-4 col-xl-3 col-6 mb-2">
           <a class="item" href="/toko/view/<?= $toko->id ?>">
             <img src="<?= $toko->logo ? "/uploads/logo/$toko->logo?w=400&h=300" : '/5wedo.png' ?>" alt="" width="100%">
             <h4><?= $toko->nama ?></h4>

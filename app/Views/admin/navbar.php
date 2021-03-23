@@ -63,6 +63,14 @@
           </a>
         </li>
         <li class="nav-item">
+          <a href="/admin/review/" class="nav-link <?= ($page ?? '') === 'review' ? 'active' : '' ?>">
+            <i class="nav-icon fas fa-star"></i>
+            <p>
+              Review
+            </p>
+          </a>
+        </li>
+        <li class="nav-item">
           <a href="/admin/penjualan/" class="nav-link <?= ($page ?? '') === 'penjualan' ? 'active' : '' ?>">
             <i class="nav-icon fas fa-shopping-cart"></i>
             <p>

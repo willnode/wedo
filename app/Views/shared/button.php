@@ -3,7 +3,7 @@
         <?php switch ($value) {
             case 'delete':
         ?>
-                <a href="<?= $value . '/' . $target ?>" class="btn <?= $size ?> btn-danger"><i class="fa fa-delete"></i></a>
+                <a href="<?= $value . '/' . $target ?>" onclick="return confirm('Apakah anda yakin ingin menghapus review ini?')" class="btn <?= $size ?> btn-danger"><i class="fa fa-trash"></i></a>
             <?php
                 break;
             case 'edit':
@@ -59,7 +59,7 @@
             case 'wa':
             ?>
                 <a href="<?= $value . '/' . $target ?>" target="_blank" class="btn <?= $size ?> btn-success"><i class="fab fa-whatsapp"></i></a>
-        <?php
+            <?php
                 break;
         } ?>
     <?php endforeach ?>

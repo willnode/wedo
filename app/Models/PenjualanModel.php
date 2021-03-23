@@ -17,10 +17,10 @@ class PenjualanModel extends Model
     ];
 
     public static $statusesInHtml = [
-        'menunggu' => '<span class="badge badge-info">Menunggu Respon</span>',
-        'diproses' => '<span class="badge badge-warning">Sedang Diproses</span>',
-        'diterima' => '<span class="badge badge-success">Sudah Diterima</span>',
-        'dibatalkan' => '<span class="badge badge-warning">Dibatalkan</span>',
+        'menunggu' => '<span class="badge text-wrap badge-info">Menunggu Respon</span>',
+        'diproses' => '<span class="badge text-wrap badge-warning">Sedang Diproses</span>',
+        'diterima' => '<span class="badge text-wrap badge-success">Sudah Diterima</span>',
+        'dibatalkan' => '<span class="badge text-wrap badge-warning">Dibatalkan</span>',
     ];
 
     protected $table         = 'penjualan';

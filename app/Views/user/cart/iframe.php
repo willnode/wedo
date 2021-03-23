@@ -15,7 +15,7 @@
         <tbody>
           <?php foreach ($cart as $x) : ?>
             <tr>
-              <td><?= '<img src="/uploads/logo/' . $x->barang->logo[0] ?? '' . '" alt="" class="mr-2 logo">' . esc($x->barang->nama) ?></td>
+              <td><?= '<img src="/uploads/logo/' . ($x->barang->logo[0] ?? '') . '" alt="" class="mr-2 logo">' . esc($x->barang->nama) ?></td>
               <td style="vertical-align: middle;">
                 <form action="/cart/set/" method="POST">
                   <input type="hidden" name="barang_id" value="<?= $x->barang_id ?>">
@@ -25,9 +25,9 @@
               <td style="vertical-align: middle;"><?= rupiah($x->total) ?></td>
               <td>
                 <form action="/cart/delete/" method="POST">
-                  <input type="hidden" name="barang_id" value="<?= $x->id ?>">
-                  <input type="hidden" name="r" value="/barang/view/<?= $x->id ?>">
-                  <button class="btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
+                  <input type="hidden" name="barang_id" value="<?= $x->barang_id ?>">
+                  <input type="hidden" name="r" value="<?= ($page ?? '') !== 'cart' ? "/barang/view/$x->barang_id" : "/cart" ?>">
+                  <button class=" btn btn-sm btn-danger"><i class="fa fa-trash"></i></button>
                 </form>
               </td>
             </tr>

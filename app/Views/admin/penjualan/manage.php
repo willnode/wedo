@@ -31,11 +31,11 @@
                 'Customer' => function (\App\Entities\Penjualan $x) {
                   return esc($x->nama).' &bullet; <small>'.rupiah($x->total).'</small><br><small class="text-black-50">'.esc($x->alamat).'</small>';
                 },
-                'Status' => function (\App\Entities\Penjualan $x) {
+                '<span class="d-none d-sm-block">Status</span>' => function (\App\Entities\Penjualan $x) {
                   if ($x->status == 'menunggu') {
                     $_GET['waiting'] = 'y';
                   }
-                  return \App\Models\PenjualanModel::$statusesInHtml[$x->status].($x->kurir ? "<br><small class='text-black-50'>$x->kurir</small>" : "");
+                  return '<span class="d-none d-sm-block">'. \App\Models\PenjualanModel::$statusesInHtml[$x->status].($x->kurir ? "<br><small class='text-black-50'>$x->kurir</small>" : "").'</span>';
                 },
                 'Edit' => function (\App\Entities\Penjualan $x) {
                   return view('shared/button', [

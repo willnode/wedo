@@ -20,7 +20,7 @@
           <?php endif ?>
         </a>
       </li>
-      <?php if ($_SESSION['email'] ?? '') : ?>
+      <?php if ($_SESSION['hp'] ?? '') : ?>
         <li class="nav-item  <?= ($page ?? '') == 'history' ? 'active' : '' ?>">
           <a class="nav-link" href="/history/">History</a>
         </li>

@@ -17,31 +17,21 @@
           <div class="card-body">
             <?php /** @var \App\Entities\Barang[] $data */ ?>
             <?php /** @var \App\Entities\Toko $toko */ ?>
-            <?php if ($toko) : ?>
-              <div class="d-flex flex-column flex-md-row align-items-center">
-                <a href="/admin/toko/" class="btn btn-lg btn-outline-secondary mr-2"><div class="fa fa-arrow-left"></div></a>
-                <h1><?= esc($toko->nama) ?></h1>
-                <div class="ml-auto">
-                  <?= view('shared/button', [
-                    'actions' => ['add'],
-                    'target' => '?toko_id=' . $toko->id,
-                    'size' => 'btn-lg'
-                  ]); ?>
-                </div>
-              </div>
-            <?php endif ?>
             <?= view('shared/table', [
               'data' => $data,
               'columns' => [
-                'Nama' => function (\App\Entities\Barang $x) {
-                  return '<img src="/uploads/logo/' . $x->logo . '?w=64&h=64" alt="" class="mr-2 logo">' . esc($x->nama);
+                'Nama' => function (\App\Entities\Review $x) {
+                  return esc($x->nama);
                 },
-                'Harga' => function (\App\Entities\Barang $x) {
-                  return rupiah($x->harga);
+                'Rating' => function (\App\Entities\Review $x) {
+                  return $x->rating.'/5';
                 },
-                'Edit' => function (\App\Entities\Barang $x) {
+                'Komentar' => function (\App\Entities\Review $x) {
+                  return esc($x->content);
+                },
+                'Edit' => function (\App\Entities\Review $x) {
                   return view('shared/button', [
-                    'actions' => ['edit', 'open'],
+                    'actions' => ['open', 'delete'],
                     'target' => $x->id,
                     'size' => 'btn-sm'
                   ]);

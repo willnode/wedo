@@ -27,11 +27,11 @@ class ReviewModel extends Model
     }
 
     /** @return Review */
-    public function atBarangUser($barang_id, $email)
+    public function atBarangUser($barang_id, $hp)
     {
         $this->builder()->where([
             'barang_id' => $barang_id,
-            'email' => $email,
+            'hp' => $hp,
         ]);
         return $this->findAll()[0] ?? null;
     }

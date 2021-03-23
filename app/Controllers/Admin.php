@@ -168,7 +168,7 @@ class Admin extends BaseController
 			if ($page === 'delete' && $model->delete($id)) {
 				return $this->response->redirect('/admin/review/');
 			} else if ($id = $model->processWeb($id)) {
-				return $this->response->redirect('/admin/review/?toko_id=' . $_POST['toko_id'] ?? '');
+				return $this->response->redirect('/admin/review/');
 			}
 		}
 		if (!empty($_GET['toko_id'])) {
@@ -182,19 +182,9 @@ class Admin extends BaseController
 					'toko' => $toko ?? null,
 					'page' => 'review',
 				]);
-			case 'add':
-				return view('admin/review/edit', [
-					'toko' => $toko ?? null,
-					'item' => new Review()
-				]);
-			case 'edit':
-				if (!($item = $model->find($id))) {
-					throw new PageNotFoundException();
-				}
-				return view('admin/review/edit', [
-					'toko' => $toko ?? $item->toko,
-					'item' => $item
-				]);
+			case 'delete':
+				$model->delete($id);
+				return $this->response->redirect('/admin/review/');
 		}
 		throw new PageNotFoundException();
 	}
@@ -235,30 +225,30 @@ class Admin extends BaseController
 				}
 				return $this->response->redirect('https://wa.me/?' . http_build_query([
 					'text' =>
-					"-------------------------------- \n".
-					"{$item->created_at->toLocalizedString('dd/MM/yyyy HH:mm')} WIB\n".
-					"-------------------------------- \n".
-					"Nomor Nota:\n".date('y').sprintf('%03d', $item->id)."\n\n".
-					"Daftar Belanja:\n" . implode("\n", array_map(function ($x, $i) {
-						/** @var Cart $x */
-						$barang = $x->barang;
-						$toko = (new TokoModel)->find($barang->toko_id)->nama ?? '';
-						return ($i + 1).". \n{$barang->nama}\n {$toko}" .
-						"\n Jumlah : {$x->qty} pcs".
-						"\n Harga (@) : ". rupiah($barang->harga).
-						"\n Total Harga : ".rupiah($barang->harga * $x->qty).
-						"\n\n";
-					}, $item->nota, array_keys($item->nota))) .
-					"Sub Total: ". rupiah(CartModel::getTotal($item->nota)).
-					"\nOngkos Kirim: ". $item->rpOngkir.
-					"\nTotal Belanja: {$item->rpTotal}\n".
-					"-------------------------------- \n".
-					"Nama:\n {$item->nama} ({$item->hp})\n".
-					"Alamat:\n {$item->alamat}\n\n".
-					"INI ADALAH HARGA KHUSUS APABILA MEMESAN VIA WEDO\n".
-					"          wedoprb.com\n".
-					"-------------------------------- \n".
-					"*We Do What You Need*"
+					"-------------------------------- \n" .
+						"{$item->created_at->toLocalizedString('dd/MM/yyyy HH:mm')} WIB\n" .
+						"-------------------------------- \n" .
+						"Nomor Nota:\n" . date('y') . sprintf('%03d', $item->id) . "\n\n" .
+						"Daftar Belanja:\n" . implode("\n", array_map(function ($x, $i) {
+							/** @var Cart $x */
+							$barang = $x->barang;
+							$toko = (new TokoModel)->find($barang->toko_id)->nama ?? '';
+							return ($i + 1) . ". \n{$barang->nama}\n {$toko}" .
+								"\n Jumlah : {$x->qty} pcs" .
+								"\n Harga (@) : " . rupiah($barang->harga) .
+								"\n Total Harga : " . rupiah($barang->harga * $x->qty) .
+								"\n\n";
+						}, $item->nota, array_keys($item->nota))) .
+						"Sub Total: " . rupiah(CartModel::getTotal($item->nota)) .
+						"\nOngkos Kirim: " . $item->rpOngkir .
+						"\nTotal Belanja: {$item->rpTotal}\n" .
+						"-------------------------------- \n" .
+						"Nama:\n {$item->nama} ({$item->hp})\n" .
+						"Alamat:\n {$item->alamat}\n\n" .
+						"INI ADALAH HARGA KHUSUS APABILA MEMESAN VIA WEDO\n" .
+						"          wedoprb.com\n" .
+						"-------------------------------- \n" .
+						"*We Do What You Need*"
 				]));
 			case 'maps':
 				/** @var Penjualan $item */
